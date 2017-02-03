@@ -69,12 +69,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="CommandObjects\CommandObjectBase.cs" />
+    <Compile Include="CommandObjects\GetAllRacersCommand.cs" />
+    <Compile Include="CommandObjects\GetRacerCommand.cs" />
+    <Compile Include="CommandObjects\RemoveRacerCommand.cs" />
+    <Compile Include="CommandObjects\SaveRacerCommand.cs" />
+    <Compile Include="Contexts\RaceContext.cs" />
+    <Compile Include="Migrations\201702022030301_InitialMigration.cs" />
+    <Compile Include="Migrations\201702022030301_InitialMigration.Designer.cs">
+      <DependentUpon>201702022030301_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Racer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201702022030301_InitialMigration.resx">
+      <DependentUpon>201702022030301_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MastersRacers.ViewModels\MastersRacers.DTOs.csproj">
+      <Project>{1f8e3af5-adf9-4b44-a91f-27919fa1a80d}</Project>
+      <Name>MastersRacers.DTOs</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
