@@ -238,7 +238,6 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\RacersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1093,11 +1092,6 @@
     <Content Include="Scripts\version.json" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
-    <Content Include="Views\Racers\Create.cshtml" />
-    <Content Include="Views\Racers\Delete.cshtml" />
-    <Content Include="Views\Racers\Details.cshtml" />
-    <Content Include="Views\Racers\Edit.cshtml" />
-    <Content Include="Views\Racers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
