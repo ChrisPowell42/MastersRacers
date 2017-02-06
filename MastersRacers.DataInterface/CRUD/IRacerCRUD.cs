@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MastersRacers.DataInterface.CRUD
 {
-    public interface IRacerCRUD
+    public interface IRacerCRUD : IDisposable
     {
         Task<ICollection<RacerDTO>> GetAll();
         Task<RacerDTO> Get(Guid id);

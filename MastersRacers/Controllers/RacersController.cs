@@ -128,11 +128,11 @@ namespace MastersRacers.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            //if (disposing)
-            //{
-            //    db.Dispose();
-            //}
-            //base.Dispose(disposing);
+            if (disposing)
+            {
+                _racerCrud.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }
