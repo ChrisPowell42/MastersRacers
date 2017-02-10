@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MastersRacers.Data.CommandObjects
+namespace MastersRacers.Data.CommandObjects.RacerCommands
 {
     public interface IGetRacerCommand: IDisposable
     {

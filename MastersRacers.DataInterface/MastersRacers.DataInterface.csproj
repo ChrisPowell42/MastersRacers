@@ -73,7 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CRUD\IRacerCRUD.cs" />
+    <Compile Include="CRUD\LocationCRUD.cs" />
     <Compile Include="CRUD\RacerCRUD.cs" />
     <Compile Include="Startup\AutoMapperConfig.cs" />
     <Compile Include="Startup\DataUnityConfig.cs" />

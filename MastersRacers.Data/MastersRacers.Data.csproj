@@ -70,16 +70,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandObjects\CommandObjectBase.cs" />
-    <Compile Include="CommandObjects\GetAllRacersCommand.cs" />
-    <Compile Include="CommandObjects\GetRacerCommand.cs" />
-    <Compile Include="CommandObjects\RemoveRacerCommand.cs" />
-    <Compile Include="CommandObjects\SaveRacerCommand.cs" />
+    <Compile Include="CommandObjects\LocationCommands\GetAllLocationsCommand.cs" />
+    <Compile Include="CommandObjects\LocationCommands\RemoveLocationCommand.cs" />
+    <Compile Include="CommandObjects\LocationCommands\SaveLocationCommand.cs" />
+    <Compile Include="CommandObjects\RacerCommands\GetAllRacersCommand.cs" />
+    <Compile Include="CommandObjects\RacerCommands\GetRacerCommand.cs" />
+    <Compile Include="CommandObjects\RacerCommands\RemoveRacerCommand.cs" />
+    <Compile Include="CommandObjects\RacerCommands\SaveRacerCommand.cs" />
     <Compile Include="Contexts\RaceContext.cs" />
     <Compile Include="Migrations\201702022030301_InitialMigration.cs" />
     <Compile Include="Migrations\201702022030301_InitialMigration.Designer.cs">
       <DependentUpon>201702022030301_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702081919185_AddLocations.cs" />
+    <Compile Include="Migrations\201702081919185_AddLocations.Designer.cs">
+      <DependentUpon>201702081919185_AddLocations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702081934449_UpdateLocationPosTypes.cs" />
+    <Compile Include="Migrations\201702081934449_UpdateLocationPosTypes.Designer.cs">
+      <DependentUpon>201702081934449_UpdateLocationPosTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Racer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -91,6 +103,12 @@
     <EmbeddedResource Include="Migrations\201702022030301_InitialMigration.resx">
       <DependentUpon>201702022030301_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702081919185_AddLocations.resx">
+      <DependentUpon>201702081919185_AddLocations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702081934449_UpdateLocationPosTypes.resx">
+      <DependentUpon>201702081934449_UpdateLocationPosTypes.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -101,6 +119,7 @@
       <Name>MastersRacers.DTOs</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

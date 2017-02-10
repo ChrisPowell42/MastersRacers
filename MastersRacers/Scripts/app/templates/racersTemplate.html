@@ -1,0 +1,21 @@
+﻿<div class="panel-group">
+    <div ng-repeat="racer in Racers" class="panel panel-default">
+        <div class="panel-body">{{racer.name}}  <span class="label label-default">{{racer.bibNumber}}</span>  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#{{racer.id}}">Details</button></div>
+        <div id="{{racer.id}}" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Racer Details: <small>{{racer.name}}</small></h3>
+                    </div>
+                    <div class="modal-body">
+                        <p>Race Series: {{racer.raceSeries}}</p>
+                        <p>Bib Number: {{racer.bibNumber}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

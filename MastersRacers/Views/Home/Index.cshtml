@@ -1,13 +1,39 @@
-﻿<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">Masters Racers is a demonstation application for recording and organizing race results for the Manitoba Masters Ski Club.</p>
-</div>
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-        a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-        is an ideal platform for building RESTful applications on the .NET Framework.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301870">Learn more &raquo;</a></p>
+﻿<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#racersPanel">Racers</a></li>
+    <li><a data-toggle="tab" href="#races">Races</a></li>
+    <li><a data-toggle="tab" href="#locationsPanel">Locations</a></li>
+    <li><a data-toggle="tab" href="#seasons">Seasons</a></li>
+</ul>
+
+<div class="tab-content">
+    <div id="racersPanel" class="tab-pane fade in active">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-right">
+                        <button data-toggle="collapse" data-target="#AddRacer" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-plus"></span></button>
+                    </div>
+                    <div class="panel-body"><racer-list></racer-list></div>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div id="AddRacer" class="collapse">
+                    This is some test text.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="races" class="tab-pane fade">
+        <p>Test Race text.</p>
+    </div>
+    <div id="locationsPanel" class="tab-pane fade">
+        <div class="row">
+            <location-list></location-list>
+        </div>    
+    </div>
+    <div id="seasons" class="tab-pane fade">
+        <p>Test Seasons Text.</p>
     </div>
 </div>
+
+

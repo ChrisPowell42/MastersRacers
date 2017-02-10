@@ -12,6 +12,7 @@ namespace MastersRacers.Data.Contexts
     public interface IRaceContext : IDisposable
     {
         IDbSet<Racer> Racers { get; set; }
+        IDbSet<Location> Locations { get; set; }
 
         int SaveChanges();
         Task<int> SaveChangesAsync();
@@ -25,6 +26,6 @@ namespace MastersRacers.Data.Contexts
         }
 
         public IDbSet<Racer> Racers { get; set; }
-
+        public IDbSet<Location> Locations { get; set; }
     }
 }

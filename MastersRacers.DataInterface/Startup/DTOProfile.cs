@@ -15,6 +15,9 @@ namespace MastersRacers.DataInterface.Startup
         {
             CreateMap<RacerDTO, Racer>();
             CreateMap<Racer, RacerDTO>();
+
+            CreateMap<LocationDTO, Location>();
+            CreateMap<Location, LocationDTO>();
         }
 
     }

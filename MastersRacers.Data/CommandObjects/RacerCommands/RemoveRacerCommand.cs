@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MastersRacers.Data.CommandObjects
+namespace MastersRacers.Data.CommandObjects.RacerCommands
 {
     public interface IRemoveRacerCommand: IDisposable
     {
@@ -30,7 +30,7 @@ namespace MastersRacers.Data.CommandObjects
             else
             {
                 _dbContext.Racers.Remove(toDelete);
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
 
                 return true;
             }

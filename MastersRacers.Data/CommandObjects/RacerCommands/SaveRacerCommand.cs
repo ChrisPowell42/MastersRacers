@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MastersRacers.Data.CommandObjects
+namespace MastersRacers.Data.CommandObjects.RacerCommands
 {
     public interface ISaveRacerCommand: IDisposable
     {
-        Task<bool> SaveRacer(Racer toSave);
+        Task<Racer> SaveRacer(Racer toSave);
     }
 
     public class SaveRacerCommand : CommandObjectBase, ISaveRacerCommand
@@ -21,7 +21,7 @@ namespace MastersRacers.Data.CommandObjects
         {
         }
 
-        public async Task<bool> SaveRacer(Racer toSave)
+        public async Task<Racer> SaveRacer(Racer toSave)
         {
 
             if (toSave.ID.Equals(Guid.Empty))
@@ -35,22 +35,22 @@ namespace MastersRacers.Data.CommandObjects
             
         }
 
-        private async Task<bool> EditRacer(Racer toEdit)
+        private async Task<Racer> EditRacer(Racer toEdit)
         {
             _dbContext.Entry(toEdit).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
 
-            return true;
+            return toEdit;
         }
 
-        private async Task<bool> AddRacer(Racer toAdd)
+        private async Task<Racer> AddRacer(Racer toAdd)
         {
             toAdd.ID = Guid.NewGuid();
 
             _dbContext.Racers.Add(toAdd);
             await _dbContext.SaveChangesAsync();
 
-            return true;
+            return toAdd;
         }
 
     }

@@ -4,12 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MastersRacers.DTOs;
-using MastersRacers.Data.CommandObjects;
+using MastersRacers.Data.CommandObjects.RacerCommands;
 using MastersRacers.Data.Models;
 using AutoMapper;
 
 namespace MastersRacers.DataInterface.CRUD
 {
+    public interface IRacerCRUD : IDisposable
+    {
+        Task<ICollection<RacerDTO>> GetAll();
+        Task<RacerDTO> Get(Guid id);
+        Task<bool> Remove(Guid id);
+        Task<RacerDTO> Put(RacerDTO racer);
+
+    }
+
+
     public class RacerCRUD : IRacerCRUD
     {
         private readonly IGetRacerCommand _getRacerCmd;
@@ -47,11 +57,13 @@ namespace MastersRacers.DataInterface.CRUD
             return racerDTOs;
         }
 
-        public async Task<bool> Put(RacerDTO racer)
+        public async Task<RacerDTO> Put(RacerDTO racer)
         {
             Racer toSave = _mapper.Map<Racer>(racer);
+            Racer saved = await _saveRacerCmd.SaveRacer(toSave);
+            RacerDTO dtoRacer = _mapper.Map<RacerDTO>(saved);
 
-            return await _saveRacerCmd.SaveRacer(toSave);
+            return dtoRacer;
         }
 
         public async Task<bool> Remove(Guid id)

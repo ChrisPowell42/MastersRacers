@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Threading.Tasks;
 
-namespace MastersRacers.Data.CommandObjects
+namespace MastersRacers.Data.CommandObjects.RacerCommands
 {
     public interface IGetAllRacersCommand: IDisposable
     {

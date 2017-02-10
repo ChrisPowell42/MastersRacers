@@ -5,6 +5,8 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
+using MastersRacers.App_Start;
+using Microsoft.Practices.Unity.Mvc;
 
 namespace MastersRacers
 {
@@ -12,6 +14,9 @@ namespace MastersRacers
     {
         public static void Register(HttpConfiguration config)
         {
+            var container = UnityConfig.GetConfiguredContainer();
+            config.DependencyResolver = new UnityWebApiResolver(container);
+
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
             config.SuppressDefaultHostAuthentication();

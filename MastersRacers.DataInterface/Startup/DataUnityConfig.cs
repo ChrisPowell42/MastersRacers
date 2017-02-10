@@ -1,4 +1,5 @@
-﻿using MastersRacers.Data.CommandObjects;
+﻿using MastersRacers.Data.CommandObjects.LocationCommands;
+using MastersRacers.Data.CommandObjects.RacerCommands;
 using MastersRacers.Data.Contexts;
 using MastersRacers.DataInterface.CRUD;
 using Microsoft.Practices.Unity;
@@ -22,6 +23,13 @@ namespace MastersRacers.DataInterface.Startup
             container.RegisterType<ISaveRacerCommand, SaveRacerCommand>();
 
             container.RegisterType<IRacerCRUD, RacerCRUD>();
+
+            container.RegisterType<IGetAllLocationsCommand, GetAllLocationsCommand>();
+            container.RegisterType<IRemoveLocationCommand, RemoveLocationCommand>();
+            container.RegisterType<ISaveLocationCommand, SaveLocationCommand>();
+
+            container.RegisterType<ILocationCRUD, LocationCRUD>();
+
         }
 
     }
