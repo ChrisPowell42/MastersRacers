@@ -1,0 +1,27 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading">
+        {{mlCtrl.modifyAction}}
+    </div>
+    <div class="panel-body">
+        <form>
+            <div class="form-group">
+                <label for="lName">Name:</label>
+                <input type="text" class="form-control" id="lName" ng-model="mlCtrl.modifyItem.name" />
+            </div>
+            <div class="form-group">
+                <label for="lDesc">Description:</label>
+                <textarea class="form-control" rows="10" id="lDesc" ng-model="mlCtrl.modifyItem.description"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="lLat">Latitude:</label>
+                <input type="number" class="form-control" id="lLat" ng-model="mlCtrl.modifyItem.latPos" />
+            </div>
+            <div class="form-group">
+                <label for="lLong">Longitude:</label>
+                <input type="number" class="form-control" id="lLong" ng-model="mlCtrl.modifyItem.longPos" />
+            </div>
+            <button type="button" class="btn btn-primary" ng-click="mlCtrl.modify()">{{mlCtrl.modifyAction}}</button>
+            <button type="button" class="btn btn-default" ng-click="mlCtrl.cancel()">Cancel</button>
+        </form>
+    </div>
+</div>

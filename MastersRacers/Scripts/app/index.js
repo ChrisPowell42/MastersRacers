@@ -1,1 +1,1 @@
-﻿angular.module("racerApp", []);
+﻿angular.module("racerApp", ['ui.bootstrap']);

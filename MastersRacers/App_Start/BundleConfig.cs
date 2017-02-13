@@ -22,10 +22,14 @@ namespace MastersRacers
 
             bundles.Add(new ScriptBundle("~/bundles/angularjs").Include(
                       "~/Scripts/angular.js",
+                      "~/Scripts/angular-ui/ui-bootstrap.js",
                       "~/Scripts/app/index.js",
-                      "~/Scripts/app/racersComponent.js",
+                      "~/Scripts/app/racersList.js",
+                      "~/Scripts/app/racerListItem.js",
+                      "~/Scripts/app/modifyRacer.js",
                       "~/Scripts/app/locationListItem.js",
-                      "~/Scripts/app/locationList.js"));
+                      "~/Scripts/app/locationList.js",
+                      "~/Scripts/app/modifyLocation.js"));
         }
     }
 }

@@ -1,17 +1,21 @@
 ﻿<div class="col-sm-3">
     <div class="panel panel-default">
         <div class="panel-heading text-right">
-            <button data-toggle="collapse" data-target="#AddLocation" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span></button>
+            <button class="btn btn-default btn-sm" ng-click="locList.dataLoad()"><span class="glyphicon glyphicon-refresh"></span></button>
+            <button class="btn btn-default btn-sm" ng-click="locList.toggleAddPanel()"><span class="glyphicon glyphicon-plus"></span></button>
         </div>
         <div class="panel-body">
             <div class="panel-group">
-                <location-list-item ng-repeat="loc in locList.locations" list-item="loc"></location-list-item>
+                <location-list-item ng-repeat="loc in locList.locations" list-item="loc" on-delete="locList.deleteLocation(loc)" on-edit-toggle="locList.toggleEditPanel(loc)"></location-list-item>
             </div>
         </div>
     </div>
 </div>
 <div class="col-sm-9">
-    <div id="AddLocation" class="collapse">
-        This is some test text.
+    <div id="AddLocation" class="horizontal-collapse" uib-collapse="locList.addLocationCollapsed">
+        <modify-location modify-action="Add" modify-item="locList.locationToAdd" on-modify="locList.addLocation(locList.locationToAdd)" on-cancel="locList.toggleAddPanel()"></modify-location>
+    </div>
+    <div id="EditLocation" class="horizontal-collapse" uib-collapse="locList.editLocationCollapsed">
+        <modify-location modify-action="Edit" modify-item="locList.locationToEdit" on-modify="locList.updateLocation(locList.locationToEdit)" on-cancel="locList.toggleEditPanel(null)"></modify-location>
     </div>
 </div>

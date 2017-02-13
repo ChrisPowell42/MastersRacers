@@ -40,7 +40,7 @@ namespace MastersRacers.Controllers
         }
 
         // GET: api/Racers/5
-        [Route("racers/{id:Guid}")]
+        [Route("racer/{id:Guid}")]
         [ResponseType(typeof(RacerDTO))]
         [HttpGet]
         public async Task<IHttpActionResult> Get(Guid id)
@@ -65,16 +65,49 @@ namespace MastersRacers.Controllers
         }
 
         // POST: api/Racers
-        public void Post([FromBody]string value)
+        [Route("racer")]
+        [ResponseType(typeof(RacerDTO))]
+        [HttpPost]
+        public async Task<IHttpActionResult> Post([FromBody]RacerDTO value)
         {
+            RacerDTO returnResult;
+
+            try
+            {
+                returnResult = await _racerCRUD.Put(value);
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+
+            return Ok(returnResult);
+
         }
 
         // PUT: api/Racers/5
-        public void Put(int id, [FromBody]string value)
+        [Route("racer/{id:Guid}")]
+        [ResponseType(typeof(RacerDTO))]
+        [HttpPut]
+        public async Task<IHttpActionResult> Put(Guid id, [FromBody]RacerDTO value)
         {
+            RacerDTO returnResult;
+
+            try
+            {
+                returnResult = await _racerCRUD.Put(value);
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+
+            return Ok(returnResult);
+
         }
 
         // DELETE: api/Racers/5
+        [Route("racer/{id:Guid}")]
         [ResponseType(typeof(bool))]
         [HttpDelete]
         public async Task<IHttpActionResult> Delete(Guid id)

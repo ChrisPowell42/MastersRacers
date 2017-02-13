@@ -1,0 +1,23 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading">
+        {{mrCtrl.modifyAction}}
+    </div>
+    <div class="panel-body">
+        <form>
+            <div class="form-group">
+                <label for="rName">Name:</label>
+                <input type="text" class="form-control" id="rName" ng-model="mrCtrl.modifyItem.name" />
+            </div>
+            <div class="form-group">
+                <label for="rBibN">Bib Number:</label>
+                <input type="number" class="form-control" id="rBibN" ng-model="mrCtrl.modifyItem.bibNumber" />
+            </div>
+            <div class="form-group">
+                <label for="rSeries">Race Series:</label>
+                <input type="text" class="form-control" id="rSeries" ng-model="mrCtrl.modifyItem.raceSeries" />
+            </div>
+            <button type="button" class="btn btn-primary" ng-click="mrCtrl.modify()">{{mrCtrl.modifyAction}}</button>
+            <button type="button" class="btn btn-default" ng-click="mrCtrl.cancel()">Cancel</button>
+        </form>
+    </div>
+</div>

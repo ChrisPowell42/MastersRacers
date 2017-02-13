@@ -1,8 +1,16 @@
 ﻿var myApp = angular.module("racerApp");
 
-function locationItemController() {
+function locationItemController($log) {
 
     var vm = this;
+
+    vm.delete = function () {
+        vm.onDelete({ location: vm.listItem });
+    };
+
+    vm.editToggle = function () {
+        vm.onEditToggle({ location: vm.listItem });
+    }
 
 };
 
@@ -11,6 +19,8 @@ myApp.component("locationListItem", {
     controller: locationItemController,
     controllerAs: 'lItem',
     bindings: {
-        listItem: '<'
+        listItem: '<',
+        onEditToggle: '&',
+        onDelete: '&'
     }
 });

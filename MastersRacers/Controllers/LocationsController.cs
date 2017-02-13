@@ -67,8 +67,23 @@ namespace MastersRacers.Controllers
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        [Route("location/{id:Guid}")]
+        [ResponseType(typeof(LocationDTO))]
+        [HttpPut]
+        public async Task<IHttpActionResult> Put(Guid id, [FromBody]LocationDTO value)
         {
+            LocationDTO returnResult;
+
+            try
+            {
+                returnResult = await _locationCRUD.Put(value);
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+
+            return Ok(returnResult);
         }
 
         // DELETE api/<controller>/5
