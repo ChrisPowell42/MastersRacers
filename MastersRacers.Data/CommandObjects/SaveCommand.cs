@@ -7,22 +7,23 @@ using MastersRacers.Data.Contexts;
 using MastersRacers.Data.Models;
 using System.Data.Entity;
 
-namespace MastersRacers.Data.CommandObjects.LocationCommands
+namespace MastersRacers.Data.CommandObjects
 {
-    public interface ISaveLocationCommand:IDisposable
+
+    public interface ISaveCommand<T>:IDisposable where T: class, IDBObject
     {
-        Task<Location> SaveLocation(Location toSave);
+        Task<T> Save(T toSave);
     }
 
-    public class SaveLocationCommand : CommandObjectBase, ISaveLocationCommand
+    public class SaveCommand<T> : CommandObjectBase, ISaveCommand<T> where T : class, IDBObject
     {
-        public SaveLocationCommand(IRaceContext dbContext) : base(dbContext)
+        public SaveCommand(IRaceContext dbContext) : base(dbContext)
         {
         }
 
-        public async Task<Location> SaveLocation(Location toSave)
+        public async Task<T> Save(T toSave)
         {
-            if (toSave.ID.Equals(Guid.Empty))
+            if (toSave.Id.Equals(Guid.Empty))
             {
                 return await Add(toSave);
             }
@@ -30,25 +31,27 @@ namespace MastersRacers.Data.CommandObjects.LocationCommands
             {
                 return await Edit(toSave);
             }
-
         }
 
-        private async Task<Location> Add(Location toSave)
+        private async Task<T> Add(T toSave)
         {
-            toSave.ID = Guid.NewGuid();
+            toSave.Id = Guid.NewGuid();
 
-            _dbContext.Locations.Add(toSave);
+            _dbContext.Set<T>().Add(toSave);
+
             await _dbContext.SaveChangesAsync();
 
             return toSave;
         }
 
-        private async Task<Location> Edit(Location toEdit)
+        private async Task<T> Edit(T toEdit)
         {
             _dbContext.Entry(toEdit).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
 
             return toEdit;
         }
+
     }
+
 }

@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace MastersRacers.Data.Models
 {
-    public class Location
+    public class Location:IDBObject
     {
         [Key]
-        public Guid ID { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         [MaxLength(200)]
@@ -19,5 +19,8 @@ namespace MastersRacers.Data.Models
         public string Description { get; set; }
         public double LatPos { get; set; }
         public double LongPos { get; set; }
+
+        public virtual List<Season> Seasons { get; set; }
+
     }
 }

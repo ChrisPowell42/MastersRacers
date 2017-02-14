@@ -22,7 +22,7 @@ namespace MastersRacers.Data.CommandObjects.LocationCommands
 
         public async Task<bool> RemoveLocation(Guid id)
         {
-            Location toDelete = await _dbContext.Locations.SingleOrDefaultAsync(x => x.ID.Equals(id));
+            Location toDelete = await _dbContext.Locations.SingleOrDefaultAsync(x => x.Id.Equals(id));
 
             if (toDelete == null)
                 return false;

@@ -1,0 +1,17 @@
+﻿<div class="col-sm-3">
+    <div class="panel panel-default">
+        <div class="panel-heading text-right">
+            <button class="btn btn-default btn-sm" ng-click="sList.loadData()"><span class="glyphicon glyphicon-refresh"></span></button>
+            <button class="btn btn-default btn-sm" ng-click="sList.createSeason()"><span class="glyphicon glyphicon-plus"></span></button>
+        </div>
+        <ul class="list-group">
+            <season-list-item ng-repeat="season in sList.seasons" list-item="season" on-edit-toggle="sList.toggleEditPanel(season)"></season-list-item>
+        </ul>
+    </div>
+</div>
+<div class="col-sm-9">
+    <div id="EditSeason" class="horizontal-collapse" uib-collapse="sList.editSeasonCollapsed">
+        <div class="well">Place holder for Edit Season.</div>
+        <!--<modify-location modify-action="Edit" modify-item="locList.locationToEdit" on-modify="locList.updateLocation(locList.locationToEdit)" on-cancel="locList.toggleEditPanel(null)"></modify-location>-->
+    </div>
+</div>

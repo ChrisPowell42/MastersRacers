@@ -70,13 +70,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandObjects\CommandObjectBase.cs" />
-    <Compile Include="CommandObjects\LocationCommands\GetAllLocationsCommand.cs" />
+    <Compile Include="CommandObjects\GetAllCommand.cs" />
     <Compile Include="CommandObjects\LocationCommands\RemoveLocationCommand.cs" />
-    <Compile Include="CommandObjects\LocationCommands\SaveLocationCommand.cs" />
-    <Compile Include="CommandObjects\RacerCommands\GetAllRacersCommand.cs" />
     <Compile Include="CommandObjects\RacerCommands\GetRacerCommand.cs" />
     <Compile Include="CommandObjects\RacerCommands\RemoveRacerCommand.cs" />
-    <Compile Include="CommandObjects\RacerCommands\SaveRacerCommand.cs" />
+    <Compile Include="CommandObjects\SaveCommand.cs" />
+    <Compile Include="CommandObjects\SeasonCommands\CreateActiveSeasonCommand.cs" />
+    <Compile Include="CommandObjects\SeasonCommands\GetAllSeasonsCommand.cs" />
     <Compile Include="Contexts\RaceContext.cs" />
     <Compile Include="Migrations\201702022030301_InitialMigration.cs" />
     <Compile Include="Migrations\201702022030301_InitialMigration.Designer.cs">
@@ -90,9 +90,16 @@
     <Compile Include="Migrations\201702081934449_UpdateLocationPosTypes.Designer.cs">
       <DependentUpon>201702081934449_UpdateLocationPosTypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702141706445_AddSeasons.cs" />
+    <Compile Include="Migrations\201702141706445_AddSeasons.Designer.cs">
+      <DependentUpon>201702141706445_AddSeasons.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\IDBObject.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\RaceEvent.cs" />
     <Compile Include="Models\Racer.cs" />
+    <Compile Include="Models\Season.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702081934449_UpdateLocationPosTypes.resx">
       <DependentUpon>201702081934449_UpdateLocationPosTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702141706445_AddSeasons.resx">
+      <DependentUpon>201702141706445_AddSeasons.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

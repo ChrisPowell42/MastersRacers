@@ -241,6 +241,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\RacersController.cs" />
+    <Compile Include="Controllers\SeasonsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -327,6 +328,8 @@
     <Content Include="Scripts\app\modifyLocation.js" />
     <Content Include="Scripts\app\modifyRacer.js" />
     <Content Include="Scripts\app\racersList.js" />
+    <Content Include="Scripts\app\seasonList.js" />
+    <Content Include="Scripts\app\seasonListItem.js" />
     <Content Include="Scripts\app\templates\locationList.html" />
     <Content Include="Scripts\app\templates\locationListItem.html" />
     <Content Include="Scripts\app\templates\modifyLocation.html" />
@@ -334,6 +337,8 @@
     <Content Include="Scripts\app\templates\modifyRacer.html" />
     <Content Include="Scripts\app\templates\racerListItem.html" />
     <Content Include="Scripts\app\templates\racersList.html" />
+    <Content Include="Scripts\app\templates\seasonList.html" />
+    <Content Include="Scripts\app\templates\seasonListItem.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\errors.json" />

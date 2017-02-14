@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MastersRacers.Data.CommandObjects;
 using MastersRacers.Data.CommandObjects.LocationCommands;
 using MastersRacers.Data.Models;
 using MastersRacers.DTOs;
@@ -21,15 +22,15 @@ namespace MastersRacers.DataInterface.CRUD
     }
     public class LocationCRUD : ILocationCRUD
     {
-        private readonly IGetAllLocationsCommand _getAllLocationsCmd;
+        private readonly IGetAllCommand<Location> _getAllLocationsCmd;
         private readonly IRemoveLocationCommand _removeLocationCmd;
-        private readonly ISaveLocationCommand _saveLocationCmd;
+        private readonly ISaveCommand<Location> _saveLocationCmd;
 
         private readonly IMapper _mapper;
 
-        public LocationCRUD(IGetAllLocationsCommand getAllLocationsCmd,
+        public LocationCRUD(IGetAllCommand<Location> getAllLocationsCmd,
                             IRemoveLocationCommand removeLocationCmd,
-                            ISaveLocationCommand saveLocationCmd,
+                            ISaveCommand<Location> saveLocationCmd,
                             IMapper mapper)
         {
             _getAllLocationsCmd = getAllLocationsCmd;
@@ -45,7 +46,7 @@ namespace MastersRacers.DataInterface.CRUD
 
         public async Task<ICollection<LocationDTO>> GetAll()
         {
-            ICollection<Location> locations = await _getAllLocationsCmd.GetAllLocations();
+            ICollection<Location> locations = await _getAllLocationsCmd.GetAll();
             ICollection<LocationDTO> locationDTOs = _mapper.Map<ICollection<LocationDTO>>(locations);
 
             return locationDTOs;
@@ -54,7 +55,7 @@ namespace MastersRacers.DataInterface.CRUD
         public async Task<LocationDTO> Put(LocationDTO location)
         {
             Location toSave = _mapper.Map<Location>(location);
-            Location saved = await _saveLocationCmd.SaveLocation(toSave);
+            Location saved = await _saveLocationCmd.Save(toSave);
             LocationDTO dtoLocation = _mapper.Map<LocationDTO>(saved);
 
             return dtoLocation;
@@ -76,6 +77,8 @@ namespace MastersRacers.DataInterface.CRUD
                 if (disposing)
                 {
                     _getAllLocationsCmd.Dispose();
+                    _removeLocationCmd.Dispose();
+                    _saveLocationCmd.Dispose();
                 }
 
                 // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.

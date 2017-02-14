@@ -24,6 +24,8 @@ namespace MastersRacers
                       "~/Scripts/angular.js",
                       "~/Scripts/angular-ui/ui-bootstrap.js",
                       "~/Scripts/app/index.js",
+                      "~/Scripts/app/seasonList.js",
+                      "~/Scripts/app/seasonListItem.js",
                       "~/Scripts/app/racersList.js",
                       "~/Scripts/app/racerListItem.js",
                       "~/Scripts/app/modifyRacer.js",

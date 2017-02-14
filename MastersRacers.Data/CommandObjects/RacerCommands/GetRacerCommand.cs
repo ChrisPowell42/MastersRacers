@@ -23,7 +23,7 @@ namespace MastersRacers.Data.CommandObjects.RacerCommands
 
         public async Task<Racer> GetRacerAsync(Guid id)
         {
-            return await _dbContext.Racers.FirstOrDefaultAsync(x => x.ID.Equals(id));
+            return await _dbContext.Racers.FirstOrDefaultAsync(x => x.Id.Equals(id));
         }
     }
 }

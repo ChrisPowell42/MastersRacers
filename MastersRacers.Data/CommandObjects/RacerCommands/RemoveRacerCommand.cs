@@ -23,7 +23,7 @@ namespace MastersRacers.Data.CommandObjects.RacerCommands
 
         public async Task<bool> RemoveRacer(Guid id)
         {
-            Racer toDelete = await _dbContext.Racers.SingleOrDefaultAsync(x => x.ID.Equals(id));
+            Racer toDelete = await _dbContext.Racers.SingleOrDefaultAsync(x => x.Id.Equals(id));
 
             if (toDelete == null)
                 return false;

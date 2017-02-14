@@ -13,10 +13,14 @@ namespace MastersRacers.Data.Contexts
     {
         IDbSet<Racer> Racers { get; set; }
         IDbSet<Location> Locations { get; set; }
+        IDbSet<Season> Seasons { get; set; }
 
         int SaveChanges();
         Task<int> SaveChangesAsync();
         DbEntityEntry Entry(object entry);
+
+        DbSet<T> Set<T>() where T:class;
+
     }
 
     public class RaceContext: DbContext, IRaceContext
@@ -27,5 +31,6 @@ namespace MastersRacers.Data.Contexts
 
         public IDbSet<Racer> Racers { get; set; }
         public IDbSet<Location> Locations { get; set; }
+        public IDbSet<Season> Seasons { get; set; }
     }
 }

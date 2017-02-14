@@ -1,11 +1,6 @@
 ﻿using AutoMapper;
 using MastersRacers.Data.Models;
 using MastersRacers.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MastersRacers.DataInterface.Startup
 {
@@ -18,6 +13,10 @@ namespace MastersRacers.DataInterface.Startup
 
             CreateMap<LocationDTO, Location>();
             CreateMap<Location, LocationDTO>();
+
+            CreateMap<SeasonDTO, Season>();
+            CreateMap<Season, SeasonDTO>();
+
         }
 
     }

@@ -7,6 +7,7 @@ using MastersRacers.DTOs;
 using MastersRacers.Data.CommandObjects.RacerCommands;
 using MastersRacers.Data.Models;
 using AutoMapper;
+using MastersRacers.Data.CommandObjects;
 
 namespace MastersRacers.DataInterface.CRUD
 {
@@ -23,15 +24,15 @@ namespace MastersRacers.DataInterface.CRUD
     public class RacerCRUD : IRacerCRUD
     {
         private readonly IGetRacerCommand _getRacerCmd;
-        private readonly IGetAllRacersCommand _getAllRacersCmd;
+        private readonly IGetAllCommand<Racer> _getAllRacersCmd;
         private readonly IRemoveRacerCommand _removeRacerCmd;
-        private readonly ISaveRacerCommand _saveRacerCmd;
+        private readonly ISaveCommand<Racer> _saveRacerCmd;
         private readonly IMapper _mapper;
 
         public RacerCRUD(IGetRacerCommand getRacerCmd, 
-                         IGetAllRacersCommand getAllRacersCmd, 
-                         IRemoveRacerCommand removeRacerCmd, 
-                         ISaveRacerCommand saveRacerCmd,
+                         IGetAllCommand<Racer> getAllRacersCmd, 
+                         IRemoveRacerCommand removeRacerCmd,
+                         ISaveCommand<Racer> saveRacerCmd,
                          IMapper mapper)
         {
             _getRacerCmd = getRacerCmd;
@@ -51,7 +52,7 @@ namespace MastersRacers.DataInterface.CRUD
 
         public async Task<ICollection<RacerDTO>> GetAll()
         {
-            ICollection<Racer> racers = await _getAllRacersCmd.GetAllRacers();
+            ICollection<Racer> racers = await _getAllRacersCmd.GetAll();
             ICollection<RacerDTO> racerDTOs = _mapper.Map<ICollection<RacerDTO>>(racers);
 
             return racerDTOs;
@@ -60,7 +61,7 @@ namespace MastersRacers.DataInterface.CRUD
         public async Task<RacerDTO> Put(RacerDTO racer)
         {
             Racer toSave = _mapper.Map<Racer>(racer);
-            Racer saved = await _saveRacerCmd.SaveRacer(toSave);
+            Racer saved = await _saveRacerCmd.Save(toSave);
             RacerDTO dtoRacer = _mapper.Map<RacerDTO>(saved);
 
             return dtoRacer;
