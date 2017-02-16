@@ -13,9 +13,9 @@
 </div>
 <div class="col-sm-9">
     <div id="AddRacer" class="horizontal-collapse" uib-collapse="rList.addRacerCollapsed">
-       <modify-racer modify-action="Add" modify-item="rList.racerToAdd" on-modify="rList.addRacer(rList.racerToAdd)" on-cancel="rList.toggleAddPanel()"></modify-racer>
+       <modify-racer modify-action="Add" modify-item="rList.racerToAdd" race-series-list="rList.raceSeries" on-modify="rList.addRacer(rList.racerToAdd)" on-cancel="rList.toggleAddPanel()"></modify-racer>
     </div>
     <div id="EditRacer" class="horizontal-collapse" uib-collapse="rList.editRacerCollapsed">
-        <modify-racer modify-action="Edit" modify-item="rList.racerToEdit" on-modify="rList.updateRacer(rList.racerToEdit)" on-cancel="rList.toggleEditPanel()"></modify-racer>
+        <modify-racer modify-action="Edit" modify-item="rList.racerToEdit" race-series-list="rList.raceSeries" on-modify="rList.updateRacer(rList.racerToEdit)" on-cancel="rList.toggleEditPanel()"></modify-racer>
     </div>
 </div>

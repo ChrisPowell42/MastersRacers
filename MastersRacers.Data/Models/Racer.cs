@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MastersRacers.Data.Models.RefData;
+using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MastersRacers.Data.Models
 {
@@ -7,6 +9,8 @@ namespace MastersRacers.Data.Models
     {
         [Key]
         public Guid Id { get; set; }
+        [Required]
+        public Guid RaceSeriesId { get; set; }
 
         [Required]
         [MaxLength(100)]
@@ -14,7 +18,7 @@ namespace MastersRacers.Data.Models
 
         public int BibNumber { get; set; }
 
-        [MaxLength(100)]
-        public string RaceSeries { get; set; }
+        [ForeignKey("RaceSeriesId")]
+        public virtual RaceSeries RaceSeries { get; set; }
     }
 }

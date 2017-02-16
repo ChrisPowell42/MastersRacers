@@ -4,7 +4,9 @@ function modifyRacerController($log) {
 
     var mv = this;
 
-    mv.modifyRacer = mv.modifyItem;
+    mv.seriesSelected = function () {
+
+    };
 
     mv.cancel = function () {
         mv.onCancel();
@@ -23,6 +25,7 @@ myApp.component("modifyRacer", {
     bindings: {
         modifyAction: '@',
         modifyItem: '<',
+        raceSeriesList: '<',
         onModify: '&',
         onCancel: '&'
     }

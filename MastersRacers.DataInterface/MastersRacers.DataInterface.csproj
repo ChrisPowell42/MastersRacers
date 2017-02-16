@@ -74,7 +74,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CRUD\LocationCRUD.cs" />
+    <Compile Include="CRUD\RaceEventCRUD.cs" />
     <Compile Include="CRUD\RacerCRUD.cs" />
+    <Compile Include="CRUD\RefDataReader.cs" />
     <Compile Include="CRUD\SeasonCRUD.cs" />
     <Compile Include="Startup\AutoMapperConfig.cs" />
     <Compile Include="Startup\DataUnityConfig.cs" />

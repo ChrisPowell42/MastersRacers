@@ -5,6 +5,8 @@ function racersController($scope, $log, $q, racerService) {
     var vm = this;
 
     vm.racers = [];
+    vm.raceSeries = [];
+
     vm.addRacerCollapsed = true;
     vm.editRacerCollapsed = true;
 
@@ -66,7 +68,23 @@ function racersController($scope, $log, $q, racerService) {
 
     }
 
-    vm.$onInit = vm.loadData;
+    vm.loadRefData = function () {
+
+        vm.raceSeries = null;
+
+        var promise = racerService.getRaceSeries();
+
+        $scope.combineResult = $q.all([promise]).then(function (resp) {
+            vm.raceSeries = resp[0].data;
+        });
+    }
+
+    vm.$onInit = function () {
+
+        vm.loadData();
+        vm.loadRefData();
+
+    }
 
     vm.addRacer = function (racer) {
 
@@ -175,7 +193,12 @@ function racerService($http) {
     rs.post = function (racer) {
         var response = $http.post('/racer/', racer);
         return response;
-    }
+    };
+
+    rs.getRaceSeries = function () {
+        var response = $http.get('/refdata/raceseries');
+        return response;
+    };
 
 };
 

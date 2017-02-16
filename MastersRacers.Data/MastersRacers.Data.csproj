@@ -74,6 +74,7 @@
     <Compile Include="CommandObjects\LocationCommands\RemoveLocationCommand.cs" />
     <Compile Include="CommandObjects\RacerCommands\GetRacerCommand.cs" />
     <Compile Include="CommandObjects\RacerCommands\RemoveRacerCommand.cs" />
+    <Compile Include="CommandObjects\RacerCommands\SaveRacerCommand.cs" />
     <Compile Include="CommandObjects\SaveCommand.cs" />
     <Compile Include="CommandObjects\SeasonCommands\CreateActiveSeasonCommand.cs" />
     <Compile Include="CommandObjects\SeasonCommands\GetAllSeasonsCommand.cs" />
@@ -94,11 +95,21 @@
     <Compile Include="Migrations\201702141706445_AddSeasons.Designer.cs">
       <DependentUpon>201702141706445_AddSeasons.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702142053302_AddRaceEvents.cs" />
+    <Compile Include="Migrations\201702142053302_AddRaceEvents.Designer.cs">
+      <DependentUpon>201702142053302_AddRaceEvents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702161714277_AddRefData.cs" />
+    <Compile Include="Migrations\201702161714277_AddRefData.Designer.cs">
+      <DependentUpon>201702161714277_AddRefData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IDBObject.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\RaceEvent.cs" />
+    <Compile Include="Models\RefData\RaceFormat.cs" />
     <Compile Include="Models\Racer.cs" />
+    <Compile Include="Models\RefData\RaceSeries.cs" />
     <Compile Include="Models\Season.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -118,6 +129,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702141706445_AddSeasons.resx">
       <DependentUpon>201702141706445_AddSeasons.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702142053302_AddRaceEvents.resx">
+      <DependentUpon>201702142053302_AddRaceEvents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702161714277_AddRefData.resx">
+      <DependentUpon>201702161714277_AddRefData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

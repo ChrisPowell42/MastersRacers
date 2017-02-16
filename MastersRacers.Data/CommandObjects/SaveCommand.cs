@@ -21,7 +21,7 @@ namespace MastersRacers.Data.CommandObjects
         {
         }
 
-        public async Task<T> Save(T toSave)
+        public virtual async Task<T> Save(T toSave)
         {
             if (toSave.Id.Equals(Guid.Empty))
             {
@@ -33,7 +33,7 @@ namespace MastersRacers.Data.CommandObjects
             }
         }
 
-        private async Task<T> Add(T toSave)
+        protected virtual async Task<T> Add(T toSave)
         {
             toSave.Id = Guid.NewGuid();
 
@@ -44,7 +44,7 @@ namespace MastersRacers.Data.CommandObjects
             return toSave;
         }
 
-        private async Task<T> Edit(T toEdit)
+        protected virtual async Task<T> Edit(T toEdit)
         {
             _dbContext.Entry(toEdit).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();

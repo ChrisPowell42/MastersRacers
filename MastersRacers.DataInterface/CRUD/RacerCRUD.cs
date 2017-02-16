@@ -26,13 +26,13 @@ namespace MastersRacers.DataInterface.CRUD
         private readonly IGetRacerCommand _getRacerCmd;
         private readonly IGetAllCommand<Racer> _getAllRacersCmd;
         private readonly IRemoveRacerCommand _removeRacerCmd;
-        private readonly ISaveCommand<Racer> _saveRacerCmd;
+        private readonly ISaveRacerCommand _saveRacerCmd;
         private readonly IMapper _mapper;
 
         public RacerCRUD(IGetRacerCommand getRacerCmd, 
                          IGetAllCommand<Racer> getAllRacersCmd, 
                          IRemoveRacerCommand removeRacerCmd,
-                         ISaveCommand<Racer> saveRacerCmd,
+                         ISaveRacerCommand saveRacerCmd,
                          IMapper mapper)
         {
             _getRacerCmd = getRacerCmd;

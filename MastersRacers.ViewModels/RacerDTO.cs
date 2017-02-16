@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MastersRacers.DTOs.RefData;
+using System;
 
 namespace MastersRacers.DTOs
 {
@@ -8,6 +9,6 @@ namespace MastersRacers.DTOs
 
         public string Name { get; set; }
         public int BibNumber { get; set; }
-        public string RaceSeries { get; set; }
+        public RaceSeriesDTO RaceSeries { get; set; }
     }
 }

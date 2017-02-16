@@ -14,7 +14,7 @@
             </div>
             <div class="form-group">
                 <label for="rSeries">Race Series:</label>
-                <input type="text" class="form-control" id="rSeries" ng-model="mrCtrl.modifyItem.raceSeries" />
+                <select class="form-control" name="rSeries" id="rSeries" ng-options="(series.gender+' '+series.name) for series in mrCtrl.raceSeriesList track by series.id" ng-model="mrCtrl.modifyItem.raceSeries"></select>
             </div>
             <button type="button" class="btn btn-primary" ng-click="mrCtrl.modify()">{{mrCtrl.modifyAction}}</button>
             <button type="button" class="btn btn-default" ng-click="mrCtrl.cancel()">Cancel</button>
