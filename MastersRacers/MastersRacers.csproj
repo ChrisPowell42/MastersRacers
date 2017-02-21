@@ -322,7 +322,7 @@
     <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\app\index.js" />
+    <Content Include="Scripts\app\module-racerApp.js" />
     <Content Include="Scripts\app\locationList.js" />
     <Content Include="Scripts\app\locationListItem.js" />
     <Content Include="Scripts\app\modifyLocation.js" />
@@ -332,8 +332,11 @@
     <Content Include="Scripts\app\racersList.js" />
     <Content Include="Scripts\app\seasonList.js" />
     <Content Include="Scripts\app\seasonListItem.js" />
+    <Content Include="Scripts\app\services\locationService.js" />
+    <Content Include="Scripts\app\services\raceEventService.js" />
     <Content Include="Scripts\app\services\racerService.js" />
     <Content Include="Scripts\app\services\refDataService.js" />
+    <Content Include="Scripts\app\services\seasonService.js" />
     <Content Include="Scripts\app\templates\locationList.html" />
     <Content Include="Scripts\app\templates\locationListItem.html" />
     <Content Include="Scripts\app\templates\modifyLocation.html" />

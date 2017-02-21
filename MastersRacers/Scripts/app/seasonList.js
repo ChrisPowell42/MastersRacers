@@ -8,11 +8,10 @@
             templateUrl: 'Scripts/app/templates/seasonList.html',
             controller: controller,
             controllerAs: 'sList'
-        })
-        .service("SeasonService", SeasonService);
+        });
 
-    controller.$inject = ['$scope', '$q', '$log', 'SeasonService']
-    function controller($scope, $q, $log, SeasonService) {
+    controller.$inject = ['$scope', '$q', '$log', 'seasonService']
+    function controller($scope, $q, $log, seasonService) {
 
         var vm = this;
 
@@ -75,36 +74,5 @@
         };
 
     };
-
-    SeasonService.$inject = ['$http'];
-    function SeasonService($http) {
-
-        var ss = this;
-
-        ss.get = function () {
-            var response = $http.get('/seasons');
-            return response;
-        };
-
-        ss.create = function () {
-            var response = $http.put('/season/{00000000-0000-0000-0000-000000000000}', null);
-            return response;
-        }
-
-        //ss.delete = function (id) {
-        //    var response = $http.delete('/location/' + id);
-        //    return response;
-        //};
-
-        //ss.put = function (location) {
-        //    var response = $http.put('/location/' + location.id, location);
-        //    return response;
-        //};
-
-        //ss.post = function (location) {
-        //    var response = $http.post('/location/', location);
-        //    return response;
-        //}
-    }
 
 }(this.angular));

@@ -11,7 +11,7 @@
         })
 
     controller.$inject = ['$scope', '$log', '$q', 'racerService', 'refDataService'];
-    function controller($scope, $log, $q, racerService) {
+    function controller($scope, $log, $q, racerService, refDataService) {
 
         var vm = this;
 

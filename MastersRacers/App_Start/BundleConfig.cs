@@ -25,11 +25,14 @@ namespace MastersRacers
                       "~/Scripts/angular-ui/ui-bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/MastersRacersServices").Include(
+                      "~/Scripts/app/module-racerApp.js",
                       "~/Scripts/app/services/refDataService.js",
+                      "~/Scripts/app/services/locationService.js",
+                      "~/Scripts/app/services/seasonService.js",
+                      "~/Scripts/app/services/raceEventService.js",
                       "~/Scripts/app/services/racerService.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/MastersRacers").Include(
-                      "~/Scripts/app/index.js",
                       "~/Scripts/app/seasonList.js",
                       "~/Scripts/app/seasonListItem.js",
                       "~/Scripts/app/racersList.js",
