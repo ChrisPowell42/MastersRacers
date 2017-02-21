@@ -11,8 +11,12 @@ namespace MastersRacers.Data.Models.RefData
     {
         [Key]
         public Guid Id { get; set; }
+
+        public int SortOrderIdx { get; set; }
+        [Required]
         [MaxLength(50)]
         public string Name { get; set; }
+        [Required]
         [MaxLength(20)]
         public string Gender { get; set; }
 

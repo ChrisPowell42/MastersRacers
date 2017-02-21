@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MastersRacers.DTOs.RefData;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,8 +17,11 @@ namespace MastersRacers.DTOs
         public int RunCount { get; set; }
         public string RaceName { get; set; }
         public DateTime ScheduledStartTime { get; set; }
-        public string RaceFormat { get; set; }
+        public RaceFormatDTO RaceFormat { get; set; }
         public string Notes { get; set; }
+
+        public SeasonDTO Season { get; set; }
+        public LocationDTO Location { get; set; }
 
     }
 }

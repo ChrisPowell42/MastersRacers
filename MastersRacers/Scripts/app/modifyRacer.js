@@ -1,32 +1,39 @@
-﻿var myApp = angular.module("racerApp");
+﻿(function (ng) {
 
-function modifyRacerController($log) {
+    'use strict';
 
-    var mv = this;
+    angular
+        .module("racerApp")
+        .component("modifyRacer", {
+            templateUrl: 'Scripts/app/templates/modifyRacer.html',
+            controller: controller,
+            controllerAs: 'mrCtrl',
+            bindings: {
+                modifyAction: '@',
+                modifyItem: '<',
+                raceSeriesList: '<',
+                onModify: '&',
+                onCancel: '&'
+            }
+        });
 
-    mv.seriesSelected = function () {
+    controller.$inject = ['$log'];
+    function controller($log) {
 
-    };
+        var mv = this;
 
-    mv.cancel = function () {
-        mv.onCancel();
-    };
+        mv.seriesSelected = function () {
 
-    mv.modify = function () {
-        mv.onModify(mv.modifyRacer);
-    };
+        };
 
-}
+        mv.cancel = function () {
+            mv.onCancel();
+        };
 
-myApp.component("modifyRacer", {
-    templateUrl: 'Scripts/app/templates/modifyRacer.html',
-    controller: modifyRacerController,
-    controllerAs: 'mrCtrl',
-    bindings: {
-        modifyAction: '@',
-        modifyItem: '<',
-        raceSeriesList: '<',
-        onModify: '&',
-        onCancel: '&'
+        mv.modify = function () {
+            mv.onModify(mv.modifyRacer);
+        };
+
     }
-});
+
+}(this.angular));

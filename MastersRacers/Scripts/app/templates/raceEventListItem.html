@@ -1,0 +1,15 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="text-left">{{reItem.listItem.season.startYear}}-{{reItem.listItem.season.endYear}}: {{reItem.listItem.raceName}}</div>
+        <div class="text-right">
+            <button class="btn btn-default" ng-click="reItem.editToggle()"><span class="glyphicon glyphicon-pencil"></span></button>
+            <button class="btn btn-default" ng-click="reItem.delete()"><span class="glyphicon glyphicon-trash"></span></button>
+        </div>
+    </div>
+    <div class="panel-body">
+        Location: {{reItem.listItem.location.name}}<br />
+        Start Time: {{reItem.listItem.scheduledStartTime | date:'medium'}}<br />
+        Number of Runs: {{reItem.listItem.runCount}}<br />
+        Race Format: {{reItem.listItem.raceFormat.code}} - {{reItem.listItem.raceFormat.name}}
+    </div>
+</div>

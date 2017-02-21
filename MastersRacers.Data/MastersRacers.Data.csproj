@@ -72,12 +72,14 @@
     <Compile Include="CommandObjects\CommandObjectBase.cs" />
     <Compile Include="CommandObjects\GetAllCommand.cs" />
     <Compile Include="CommandObjects\LocationCommands\RemoveLocationCommand.cs" />
+    <Compile Include="CommandObjects\RaceEventCommands\GetActiveSeasonRaceEventsCommand.cs" />
+    <Compile Include="CommandObjects\RacerCommands\GetAllRacersCommand.cs" />
     <Compile Include="CommandObjects\RacerCommands\GetRacerCommand.cs" />
     <Compile Include="CommandObjects\RacerCommands\RemoveRacerCommand.cs" />
     <Compile Include="CommandObjects\RacerCommands\SaveRacerCommand.cs" />
     <Compile Include="CommandObjects\SaveCommand.cs" />
     <Compile Include="CommandObjects\SeasonCommands\CreateActiveSeasonCommand.cs" />
-    <Compile Include="CommandObjects\SeasonCommands\GetAllSeasonsCommand.cs" />
+    <Compile Include="CommandObjects\SeasonCommands\GetActiveSeasonCommand.cs" />
     <Compile Include="Contexts\RaceContext.cs" />
     <Compile Include="Migrations\201702022030301_InitialMigration.cs" />
     <Compile Include="Migrations\201702022030301_InitialMigration.Designer.cs">
@@ -102,6 +104,10 @@
     <Compile Include="Migrations\201702161714277_AddRefData.cs" />
     <Compile Include="Migrations\201702161714277_AddRefData.Designer.cs">
       <DependentUpon>201702161714277_AddRefData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702171441031_AddSortOrderToRaceSeries.cs" />
+    <Compile Include="Migrations\201702171441031_AddSortOrderToRaceSeries.Designer.cs">
+      <DependentUpon>201702171441031_AddSortOrderToRaceSeries.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IDBObject.cs" />
@@ -135,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702161714277_AddRefData.resx">
       <DependentUpon>201702161714277_AddRefData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702171441031_AddSortOrderToRaceSeries.resx">
+      <DependentUpon>201702171441031_AddSortOrderToRaceSeries.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

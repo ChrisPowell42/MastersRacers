@@ -40,9 +40,23 @@ namespace MastersRacers.Controllers
         }
 
         // GET: api/Seasons/5
-        public string Get(int id)
+        [Route("seasons/active")]
+        [ResponseType(typeof(SeasonDTO))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetActive(int id)
         {
-            throw new NotImplementedException();
+            SeasonDTO returnValue = null;
+
+            try
+            {
+                returnValue = await _seasonCRUD.GetActiveSeason();
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+
+            return Ok(returnValue);
         }
 
         // POST: api/Seasons

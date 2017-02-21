@@ -57,14 +57,14 @@ namespace MastersRacers.Data.Migrations
 
             context.RaceFormats.AddOrUpdate(rf1, rf2);
 
-            RaceSeries rs1 = new RaceSeries { Id = rs1Id, Gender = "Women", Name = "Bronze" };
-            RaceSeries rs2 = new RaceSeries { Id = rs2Id, Gender = "Women", Name = "Silver" };
-            RaceSeries rs3 = new RaceSeries { Id = rs3Id, Gender = "Women", Name = "Gold" };
-            RaceSeries rs4 = new RaceSeries { Id = rs4Id, Gender = "Women", Name = "Platnium" };
-            RaceSeries rs5 = new RaceSeries { Id = rs5Id, Gender = "Men", Name = "Bronze" };
-            RaceSeries rs6 = new RaceSeries { Id = rs6Id, Gender = "Men", Name = "Silver" };
-            RaceSeries rs7 = new RaceSeries { Id = rs7Id, Gender = "Men", Name = "Gold" };
-            RaceSeries rs8 = new RaceSeries { Id = rs8Id, Gender = "Men", Name = "Platnium" };
+            RaceSeries rs1 = new RaceSeries { Id = rs1Id, SortOrderIdx = 1, Gender = "Women", Name = "Bronze" };
+            RaceSeries rs2 = new RaceSeries { Id = rs2Id, SortOrderIdx = 2, Gender = "Women", Name = "Silver" };
+            RaceSeries rs3 = new RaceSeries { Id = rs3Id, SortOrderIdx = 3, Gender = "Women", Name = "Gold" };
+            RaceSeries rs4 = new RaceSeries { Id = rs4Id, SortOrderIdx = 4, Gender = "Women", Name = "Platnium" };
+            RaceSeries rs5 = new RaceSeries { Id = rs5Id, SortOrderIdx = 5, Gender = "Men", Name = "Bronze" };
+            RaceSeries rs6 = new RaceSeries { Id = rs6Id, SortOrderIdx = 6, Gender = "Men", Name = "Silver" };
+            RaceSeries rs7 = new RaceSeries { Id = rs7Id, SortOrderIdx = 7, Gender = "Men", Name = "Gold" };
+            RaceSeries rs8 = new RaceSeries { Id = rs8Id, SortOrderIdx = 8, Gender = "Men", Name = "Platnium" };
 
             context.RaceSeries.AddOrUpdate(rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8);
 

@@ -21,8 +21,14 @@ namespace MastersRacers
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/angularjs").Include(
-                      "~/Scripts/angular.js",
-                      "~/Scripts/angular-ui/ui-bootstrap.js",
+                      "~/Scripts/angular.min.js",
+                      "~/Scripts/angular-ui/ui-bootstrap.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/MastersRacersServices").Include(
+                      "~/Scripts/app/services/refDataService.js",
+                      "~/Scripts/app/services/racerService.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/MastersRacers").Include(
                       "~/Scripts/app/index.js",
                       "~/Scripts/app/seasonList.js",
                       "~/Scripts/app/seasonListItem.js",
@@ -31,7 +37,10 @@ namespace MastersRacers
                       "~/Scripts/app/modifyRacer.js",
                       "~/Scripts/app/locationListItem.js",
                       "~/Scripts/app/locationList.js",
-                      "~/Scripts/app/modifyLocation.js"));
+                      "~/Scripts/app/modifyLocation.js",
+                      "~/Scripts/app/raceEventList.js",
+                      "~/Scripts/app/raceEventListItem.js"
+                      ));
         }
     }
 }

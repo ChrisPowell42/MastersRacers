@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using MastersRacers.Data.CommandObjects;
+using MastersRacers.Data.CommandObjects.RaceEventCommands;
+using MastersRacers.Data.Models;
 using MastersRacers.DTOs;
 using System;
 using System.Collections.Generic;
@@ -12,6 +15,7 @@ namespace MastersRacers.DataInterface.CRUD
     public interface IRaceEventCRUD:IDisposable
     {
         Task<ICollection<RaceEventDTO>> GetAll();
+        Task<ICollection<RaceEventDTO>> GetAllActiveSeasonRaces();
         Task<RaceEventDTO> Get(Guid id);
         Task<bool> Remove(Guid id);
         Task<RaceEventDTO> Put(RaceEventDTO racer);
@@ -20,10 +24,17 @@ namespace MastersRacers.DataInterface.CRUD
     public class RaceEventCRUD : IRaceEventCRUD
     {
 
+        private readonly IGetAllCommand<RaceEvent> _getAllRaceEventCmd;
+        private readonly IGetActiveSeasonRaceEventsCommand _getActiveSeasonRaceEventsCmd;
         private readonly IMapper _mapper;
 
-        public RaceEventCRUD(IMapper mapper)
+        public RaceEventCRUD(IGetAllCommand<RaceEvent> getAllRaceEventCmd,
+                             IGetActiveSeasonRaceEventsCommand getActiveSeasonRaceEventsCmd,
+                             IMapper mapper)
         {
+            _getAllRaceEventCmd = getAllRaceEventCmd;
+            _getActiveSeasonRaceEventsCmd = getActiveSeasonRaceEventsCmd;
+
             _mapper = mapper;
         }
 
@@ -32,9 +43,12 @@ namespace MastersRacers.DataInterface.CRUD
             throw new NotImplementedException();
         }
 
-        public Task<ICollection<RaceEventDTO>> GetAll()
+        public async Task<ICollection<RaceEventDTO>> GetAll()
         {
-            throw new NotImplementedException();
+            ICollection<RaceEvent> allRaceEvents = await _getAllRaceEventCmd.GetAll();
+            ICollection<RaceEventDTO> returnValues = _mapper.Map<ICollection<RaceEventDTO>>(allRaceEvents);
+
+            return returnValues;
         }
 
         public Task<RaceEventDTO> Put(RaceEventDTO racer)
@@ -45,6 +59,14 @@ namespace MastersRacers.DataInterface.CRUD
         public Task<bool> Remove(Guid id)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<ICollection<RaceEventDTO>> GetAllActiveSeasonRaces()
+        {
+            ICollection<RaceEvent> activeRaces = await _getActiveSeasonRaceEventsCmd.GetAll();
+            ICollection<RaceEventDTO> returnValues = _mapper.Map<ICollection<RaceEventDTO>>(activeRaces);
+
+            return returnValues;
         }
 
         #region IDisposable Support
@@ -80,6 +102,7 @@ namespace MastersRacers.DataInterface.CRUD
             // TODO: uncomment the following line if the finalizer is overridden above.
             // GC.SuppressFinalize(this);
         }
+
         #endregion
     }
 }

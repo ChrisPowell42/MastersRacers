@@ -1,26 +1,33 @@
-﻿var myApp = angular.module("racerApp");
+﻿(function (ng) {
 
-function locationItemController($log) {
+    'use strict';
 
-    var vm = this;
+    angular
+        .module("racerApp")
+        .component("locationListItem", {
+            templateUrl: 'Scripts/app/templates/locationListItem.html',
+            controller: controller,
+            controllerAs: 'lItem',
+            bindings: {
+                listItem: '<',
+                onEditToggle: '&',
+                onDelete: '&'
+            }
+        });
 
-    vm.delete = function () {
-        vm.onDelete({ location: vm.listItem });
+    controller.$inject = ['$log'];
+    function controller($log) {
+
+        var vm = this;
+
+        vm.delete = function () {
+            vm.onDelete({ location: vm.listItem });
+        };
+
+        vm.editToggle = function () {
+            vm.onEditToggle({ location: vm.listItem });
+        }
+
     };
 
-    vm.editToggle = function () {
-        vm.onEditToggle({ location: vm.listItem });
-    }
-
-};
-
-myApp.component("locationListItem", {
-    templateUrl: 'Scripts/app/templates/locationListItem.html',
-    controller: locationItemController,
-    controllerAs: 'lItem',
-    bindings: {
-        listItem: '<',
-        onEditToggle: '&',
-        onDelete: '&'
-    }
-});
+}(this.angular));

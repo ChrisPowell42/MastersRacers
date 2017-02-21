@@ -14,8 +14,11 @@ namespace MastersRacers.Data.Models
         [Key]
         public Guid Id { get; set; }
 
+        [Required]
         public Guid LocationId { get; set; }
+        [Required]
         public Guid SeasonId { get; set; }
+        [Required]
         public Guid RaceFormatId { get; set; }
 
         public int RunCount { get; set; }
@@ -25,8 +28,11 @@ namespace MastersRacers.Data.Models
         [MaxLength(8000)]
         public string Notes { get; set; }
 
+        [ForeignKey("LocationId")]
         public virtual Location Location { get; set; }
+        [ForeignKey("SeasonId")]
         public virtual Season Season { get; set; }
+        [ForeignKey("RaceFormatId")]
         public virtual RaceFormat RaceFormat { get; set; }
 
     }

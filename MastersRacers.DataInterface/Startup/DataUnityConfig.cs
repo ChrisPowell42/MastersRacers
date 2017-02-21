@@ -1,5 +1,6 @@
 ﻿using MastersRacers.Data.CommandObjects;
 using MastersRacers.Data.CommandObjects.LocationCommands;
+using MastersRacers.Data.CommandObjects.RaceEventCommands;
 using MastersRacers.Data.CommandObjects.RacerCommands;
 using MastersRacers.Data.CommandObjects.SeasonCommands;
 using MastersRacers.Data.Contexts;
@@ -22,7 +23,7 @@ namespace MastersRacers.DataInterface.Startup
             container.RegisterType<IRaceContext, RaceContext>();
 
             container.RegisterType<IRemoveRacerCommand, RemoveRacerCommand>();
-            container.RegisterType<IGetAllCommand<Racer>, GetAllCommand<Racer>>();
+            container.RegisterType<IGetAllCommand<Racer>, GetAllRacersCommand>();
             container.RegisterType<ISaveRacerCommand, SaveRacerCommand>();
             container.RegisterType<IGetRacerCommand, GetRacerCommand>();
 
@@ -34,19 +35,21 @@ namespace MastersRacers.DataInterface.Startup
 
             container.RegisterType<ILocationCRUD, LocationCRUD>();
 
-            container.RegisterType<IGetAllCommand<Season>, GetAllSeasonsCommand>();
+            container.RegisterType<IGetAllCommand<Season>, GetAllCommand<Season>>();
             container.RegisterType<ISaveCommand<Season>, SaveCommand<Season>>();
             container.RegisterType<ICreateActiveSeasonCommand, CreateActiveSeasonCommand>();
+            container.RegisterType<IGetActiveSeasonCommand, GetActiveSeasonCommand>();
 
             container.RegisterType<ISeasonCRUD, SeasonCRUD>();
 
+            container.RegisterType<IGetAllCommand<RaceEvent>, GetAllCommand<RaceEvent>>();
+            container.RegisterType<IGetActiveSeasonRaceEventsCommand, GetActiveSeasonRaceEventsCommand>();
             container.RegisterType<IRaceEventCRUD, RaceEventCRUD>();
 
             container.RegisterType<IGetAllCommand<RaceFormat>, GetAllCommand<RaceFormat>>();
             container.RegisterType<IGetAllCommand<RaceSeries>, GetAllCommand<RaceSeries>>();
 
             container.RegisterType<IRefDataReader, RefDataReader>();
-
 
         }
 

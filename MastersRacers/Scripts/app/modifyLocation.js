@@ -1,31 +1,38 @@
-﻿var myApp = angular.module("racerApp");
+﻿(function (ng) {
 
-function modifyLocationController($log) {
+    'use strict';
 
-    var mv = this;
+    angular
+        .module("racerApp")
+        .component("modifyLocation", {
+            templateUrl: 'Scripts/app/templates/modifyLocation.html',
+            controller: controller,
+            controllerAs: 'mlCtrl',
+            bindings: {
+                modifyAction: '@',
+                modifyItem: '<',
+                onModify: '&',
+                onCancel: '&'
+            }
+        });
 
-    mv.modifyLocation = mv.modifyItem;
+    controller.$inject = ['$log'];
+    function controller($log) {
 
-    mv.cancel = function () {
-        $log.log("Cancel method called in modifyLocation");
-        mv.onCancel();
-    };
+        var mv = this;
 
-    mv.modify = function () {
-        $log.log("Modify method called in modifyLocation");
-        mv.onModify(mv.modifyLocation);
-    };
+        mv.modifyLocation = mv.modifyItem;
 
-}
+        mv.cancel = function () {
+            $log.log("Cancel method called in modifyLocation");
+            mv.onCancel();
+        };
 
-myApp.component("modifyLocation", {
-    templateUrl: 'Scripts/app/templates/modifyLocation.html',
-    controller: modifyLocationController,
-    controllerAs: 'mlCtrl',
-    bindings: {
-        modifyAction: '@',
-        modifyItem: '<',
-        onModify: '&',
-        onCancel: '&'
+        mv.modify = function () {
+            $log.log("Modify method called in modifyLocation");
+            mv.onModify(mv.modifyLocation);
+        };
+
     }
-});
+
+}(this.angular));

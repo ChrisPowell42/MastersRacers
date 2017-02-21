@@ -1,26 +1,33 @@
-﻿var myApp = angular.module("racerApp");
+﻿(function (ng) {
 
-function racerItemController($log) {
+    'use strict';
 
-    var vm = this;
+    angular
+        .module("racerApp")
+        .component("racerListItem", {
+            templateUrl: 'Scripts/app/templates/racerListItem.html',
+            controller: controller,
+            controllerAs: 'rItem',
+            bindings: {
+                listItem: '<',
+                onEditToggle: '&',
+                onDelete: '&'
+            }
+        });
 
-    vm.delete = function () {
-        vm.onDelete({ racer: vm.listItem });
+    controller.$inject = ['$log'];
+    function controller($log) {
+
+        var vm = this;
+
+        vm.delete = function () {
+            vm.onDelete({ racer: vm.listItem });
+        };
+
+        vm.editToggle = function () {
+            vm.onEditToggle({ racer: vm.listItem });
+        }
+
     };
 
-    vm.editToggle = function () {
-        vm.onEditToggle({ racer: vm.listItem });
-    }
-
-};
-
-myApp.component("racerListItem", {
-    templateUrl: 'Scripts/app/templates/racerListItem.html',
-    controller: racerItemController,
-    controllerAs: 'rItem',
-    bindings: {
-        listItem: '<',
-        onEditToggle: '&',
-        onDelete: '&'
-    }
-});
+}(this.angular));

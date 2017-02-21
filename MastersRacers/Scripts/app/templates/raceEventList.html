@@ -1,0 +1,21 @@
+﻿<div class="col-sm-3">
+    <div class="panel panel-default">
+        <div class="panel-heading text-right">
+            <button class="btn btn-default btn-sm" ng-click="reList.loadData()"><span class="glyphicon glyphicon-refresh"></span></button>
+            <button class="btn btn-default btn-sm" ng-click="reList.toggleAddPanel()"><span class="glyphicon glyphicon-plus"></span></button>
+        </div>
+        <div class="panel-body">
+            <div class="panel-group">
+                <race-event-list-item ng-repeat="race in reList.raceEvents" list-item="race" on-delete="reList.deleteRaceEvent(race)" on-edit-toggle="reList.toggleEditPanel(race)"></race-event-list-item>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-9">
+    <div id="AddRaceEvent" class="horizontal-collapse" uib-collapse="reList.addRaceEventCollapsed">
+        <div class="well">Place holder for RaceEvent editor for addition</div>
+    </div>
+    <div id="EditRaceEvent" class="horizontal-collapse" uib-collapse="reList.editRaceEventCollapsed">
+        <div class="well">Place holder for RaceEvent editor for editing</div>
+    </div>
+</div>

@@ -9,6 +9,8 @@ namespace MastersRacers.DTOs.RefData
     public class RaceSeriesDTO
     {
         public Guid Id { get; set; }
+
+        public int SortOrderIdx { get; set; }
         public string Name { get; set; }
         public string Gender { get; set; }
 

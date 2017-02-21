@@ -44,7 +44,7 @@ namespace MastersRacers.DataInterface.CRUD
         public async Task<ICollection<RaceSeriesDTO>> GetAllRaceSeries()
         {
             ICollection<RaceSeries> allRaceSeries = await _getAllRaceSeriesCmd.GetAll();
-            ICollection<RaceSeriesDTO> returnValues = _mapper.Map<ICollection<RaceSeriesDTO>>(allRaceSeries);
+            ICollection<RaceSeriesDTO> returnValues = _mapper.Map<ICollection<RaceSeriesDTO>>(allRaceSeries.OrderBy(x=>x.SortOrderIdx));
 
             return returnValues;
         }

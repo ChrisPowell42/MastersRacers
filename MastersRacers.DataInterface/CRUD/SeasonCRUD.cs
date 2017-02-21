@@ -20,6 +20,8 @@ namespace MastersRacers.DataInterface.CRUD
 
         Task<SeasonDTO> CreateActiveSeason();
 
+        Task<SeasonDTO> GetActiveSeason();
+
     }
 
     public class SeasonCRUD : ISeasonCRUD
@@ -27,17 +29,20 @@ namespace MastersRacers.DataInterface.CRUD
         private readonly IGetAllCommand<Season> _getAllSeasonsCmd;
         private readonly ISaveCommand<Season> _saveSeasonCmd;
         private readonly ICreateActiveSeasonCommand _createActiveSeasonCmd;
+        private readonly IGetActiveSeasonCommand _getActiveSeasonCmd;
 
         private readonly IMapper _mapper;
 
         public SeasonCRUD(IGetAllCommand<Season> getAllSeasonsCmd,
                           ISaveCommand<Season> saveSeasonCmd,
                           ICreateActiveSeasonCommand createActiveSeasonCmd,
+                          IGetActiveSeasonCommand getActiveSeasonCmd,
                           IMapper mapper)
         {
             _getAllSeasonsCmd = getAllSeasonsCmd;
             _saveSeasonCmd = saveSeasonCmd;
             _createActiveSeasonCmd = createActiveSeasonCmd;
+            _getActiveSeasonCmd = getActiveSeasonCmd;
 
             _mapper = mapper;
         }
@@ -50,7 +55,7 @@ namespace MastersRacers.DataInterface.CRUD
         public async Task<ICollection<SeasonDTO>> GetAll()
         {
             ICollection<Season> seasons = await _getAllSeasonsCmd.GetAll();
-            ICollection<SeasonDTO> seasonDTOs = _mapper.Map<ICollection<SeasonDTO>>(seasons);
+            ICollection<SeasonDTO> seasonDTOs = _mapper.Map<ICollection<SeasonDTO>>(seasons.OrderByDescending(x=>x.StartYear));
 
             return seasonDTOs;
 
@@ -79,6 +84,13 @@ namespace MastersRacers.DataInterface.CRUD
             SeasonDTO createdSeason = _mapper.Map<SeasonDTO>(newSeason);
 
             return createdSeason;
+        }
+        public async Task<SeasonDTO> GetActiveSeason()
+        {
+            Season activeSeason = await _getActiveSeasonCmd.GetActiveSeason();
+            SeasonDTO returnValue = _mapper.Map<SeasonDTO>(activeSeason);
+
+            return returnValue;
         }
 
         #region IDisposable Support

@@ -1,22 +1,28 @@
-﻿var myApp = angular.module("racerApp");
+﻿(function (ng) {
 
-function seasonItemController($log) {
+    'use strict';
 
-    var vm = this;
+    angular
+        .module("racerApp")
+        .component("seasonListItem", {
+            templateUrl: 'Scripts/app/templates/seasonListItem.html',
+            controller: controller,
+            controllerAs: 'sItem',
+            bindings: {
+                listItem: '<',
+                onEditToggle: '&'
+            }
+        });
 
-    vm.editToggle = function () {
-        $log.log("editToggle clicked.");
-        vm.onEditToggle({ season: vm.listItem });
-    }
+    controller.$inject = ['$log'];
+    function controller($log) {
 
-};
+        var vm = this;
 
-myApp.component("seasonListItem", {
-    templateUrl: 'Scripts/app/templates/seasonListItem.html',
-    controller: seasonItemController,
-    controllerAs: 'sItem',
-    bindings: {
-        listItem: '<',
-        onEditToggle: '&'
-    }
-});
+        vm.editToggle = function () {
+            vm.onEditToggle({ season: vm.listItem });
+        }
+
+    };
+
+}(this.angular));
