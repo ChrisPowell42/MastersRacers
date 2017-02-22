@@ -40,10 +40,10 @@ namespace MastersRacers.Controllers
         }
 
         // GET: api/Seasons/5
-        [Route("seasons/active")]
+        [Route("season/active")]
         [ResponseType(typeof(SeasonDTO))]
         [HttpGet]
-        public async Task<IHttpActionResult> GetActive(int id)
+        public async Task<IHttpActionResult> GetActive()
         {
             SeasonDTO returnValue = null;
 
@@ -57,11 +57,6 @@ namespace MastersRacers.Controllers
             }
 
             return Ok(returnValue);
-        }
-
-        // POST: api/Seasons
-        public void Post([FromBody]string value)
-        {
         }
 
         // PUT: api/Seasons/5

@@ -1,1 +1,31 @@
-﻿
+﻿<div class="panel panel-default">
+    <div class="panel-heading">
+        {{mreCtrl.modifyAction}} Race for {{mreCtrl.modifyItem.season.startYear}} - {{mreCtrl.modifyItem.season.endYear}} Season
+    </div>
+    <div class="panel-body">
+        <form>
+            <div class="form-group">
+                <label for="rName">Race:</label>
+                <input type="text" class="form-control" id="rName" ng-model="mreCtrl.modifyItem.raceName" />
+            </div>
+            <div class="form-group">
+                <label for="rNumRuns">Run Count:</label>
+                <input type="number" class="form-control" id="rNumRuns" ng-model="mreCtrl.modifyItem.runCount" />
+            </div>
+            <div class="form-group">
+                <label for="rFormat">Race Format:</label>
+                <select class="form-control" name="rFormat" id="rFormat" ng-options="format.code for format in mreCtrl.formatList track by format.id" ng-model="mreCtrl.modifyItem.raceFormat"></select>
+            </div>
+            <div class="form-group">
+                <label for="rLocation">Race Location:</label>
+                <select class="form-control" name="rLocation" id="rLocation" ng-options="location.name for location in mreCtrl.locationList track by location.id" ng-model="mreCtrl.modifyItem.location"></select>
+            </div>
+            <div class="form-group">
+                <label for="rNotes">Race Notes:</label>
+                <textarea class="form-control" rows="7" id="rNotes"></textarea>
+            </div>
+            <button type="button" class="btn btn-primary" ng-click="mreCtrl.modify()">{{mreCtrl.modifyAction}}</button>
+            <button type="button" class="btn btn-default" ng-click="mreCtrl.cancel()">Cancel</button>
+        </form>
+    </div>
+</div>

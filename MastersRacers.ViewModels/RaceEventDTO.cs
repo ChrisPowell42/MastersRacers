@@ -13,15 +13,16 @@ namespace MastersRacers.DTOs
 
         public Guid LocationId { get; set; }
         public Guid SeasonId { get; set; }
+        public Guid RaceFormatId { get; set; }
 
         public int RunCount { get; set; }
         public string RaceName { get; set; }
         public DateTime ScheduledStartTime { get; set; }
-        public RaceFormatDTO RaceFormat { get; set; }
         public string Notes { get; set; }
 
         public SeasonDTO Season { get; set; }
         public LocationDTO Location { get; set; }
+        public RaceFormatDTO RaceFormat { get; set; }
 
     }
 }

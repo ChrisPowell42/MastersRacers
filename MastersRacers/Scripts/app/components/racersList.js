@@ -29,7 +29,7 @@
                 id: null,
                 name: 'New Racer',
                 bibNumber: 0,
-                raceSeries: ""
+                raceSeries: null
             };
         };
 

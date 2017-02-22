@@ -10,8 +10,8 @@
             controllerAs: 'locList'
         });
 
-    controller.$inject = ['$scope', '$q', '$log', 'LocationService'];
-    function controller($scope, $q, $log, LocationService) {
+    controller.$inject = ['$scope', '$q', '$log', 'locationService'];
+    function controller($scope, $q, $log, locationService) {
 
         var vm = this;
 
@@ -78,7 +78,7 @@
 
             vm.locations = null;
 
-            var promiseLoc = LocationService.get();
+            var promiseLoc = locationService.get();
 
             $scope.combineResult = $q.all([promiseLoc]).then(function (resp) {
                 vm.locations = resp[0].data;
@@ -89,7 +89,7 @@
 
         vm.addLocation = function (location) {
 
-            var promise = LocationService.post(location);
+            var promise = locationService.post(location);
             var addedLocation = null;
 
             $scope.combineResult = $q.all([promise]).then(function (resp) {
@@ -119,7 +119,7 @@
 
         vm.updateLocation = function (location) {
 
-            var promise = LocationService.post(location);
+            var promise = locationService.post(location);
             var updatedLocation = null;
 
             $scope.combineResult = $q.all([promise]).then(function (resp) {
@@ -149,7 +149,7 @@
 
             if (proceed) {
 
-                var promise = LocationService.delete(location.id);
+                var promise = locationService.delete(location.id);
                 var successful = false;
 
                 $scope.combineResult = $q.all([promise]).then(function (resp) {

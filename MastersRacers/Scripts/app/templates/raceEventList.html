@@ -13,9 +13,9 @@
 </div>
 <div class="col-sm-9">
     <div id="AddRaceEvent" class="horizontal-collapse" uib-collapse="reList.addRaceEventCollapsed">
-        <div class="well">Place holder for RaceEvent editor for addition</div>
+        <modify-race-event modify-action="Add" modify-item="reList.raceEventToAdd" location-list="reList.locations" format-list="reList.raceFormats" on-modify="reList.addRaceEvent(reList.raceEventToAdd)" on-cancel="reList.toggleAddPanel()"></modify-race-event>
     </div>
     <div id="EditRaceEvent" class="horizontal-collapse" uib-collapse="reList.editRaceEventCollapsed">
-        <div class="well">Place holder for RaceEvent editor for editing</div>
+        <modify-race-event modify-action="Edit" modify-item="reList.raceEventToEdit" location-list="reList.locations" format-list="reList.raceFormats" on-modify="reList.updateRaceEvent(reList.raceEventToEdit)" on-cancel="reList.toggleEditPanel()"></modify-race-event>
     </div>
 </div>

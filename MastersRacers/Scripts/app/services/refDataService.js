@@ -16,6 +16,11 @@
             return response;
         };
 
+        rs.getRaceFormats = function () {
+            var response = $http.get('/refdata/raceformats');
+            return response;
+        };
+
     };
 
 }(this.angular));

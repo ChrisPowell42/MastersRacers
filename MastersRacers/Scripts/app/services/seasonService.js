@@ -19,7 +19,12 @@
         ss.create = function () {
             var response = $http.put('/season/{00000000-0000-0000-0000-000000000000}', null);
             return response;
-        }
+        };
+
+        ss.getActive = function () {
+            var response = $http.get('/season/active');
+            return response;
+        };
 
         //ss.delete = function (id) {
         //    var response = $http.delete('/location/' + id);

@@ -53,7 +53,7 @@
 
             vm.seasons = null;
 
-            var promiseLoc = SeasonService.get();
+            var promiseLoc = seasonService.get();
 
             $scope.combineResult = $q.all([promiseLoc]).then(function (resp) {
                 vm.seasons = resp[0].data;
@@ -65,7 +65,7 @@
 
         vm.createSeason = function () {
 
-            var promise = SeasonService.create();
+            var promise = seasonService.create();
 
             $scope.combineResult = $q.all([promise]).then(function (resp) {
                 var newSeason = resp[0].data;

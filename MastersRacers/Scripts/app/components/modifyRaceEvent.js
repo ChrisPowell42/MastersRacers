@@ -4,14 +4,15 @@
 
     angular
         .module("racerApp")
-        .component("modifyRacer", {
-            templateUrl: 'Scripts/app/templates/modifyRacer.html',
+        .component("modifyRaceEvent", {
+            templateUrl: 'Scripts/app/templates/modifyRaceEvent.html',
             controller: controller,
-            controllerAs: 'mrCtrl',
+            controllerAs: 'mreCtrl',
             bindings: {
                 modifyAction: '@',
                 modifyItem: '<',
-                raceSeriesList: '<',
+                locationList: '<',
+                formatList: '<',
                 onModify: '&',
                 onCancel: '&'
             }
@@ -21,10 +22,6 @@
     function controller($log) {
 
         var mv = this;
-
-        mv.seriesSelected = function () {
-
-        };
 
         mv.cancel = function () {
             mv.onCancel();

@@ -33,16 +33,17 @@ namespace MastersRacers
                       "~/Scripts/app/services/racerService.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/MastersRacers").Include(
-                      "~/Scripts/app/seasonList.js",
-                      "~/Scripts/app/seasonListItem.js",
-                      "~/Scripts/app/racersList.js",
-                      "~/Scripts/app/racerListItem.js",
-                      "~/Scripts/app/modifyRacer.js",
-                      "~/Scripts/app/locationListItem.js",
-                      "~/Scripts/app/locationList.js",
-                      "~/Scripts/app/modifyLocation.js",
-                      "~/Scripts/app/raceEventList.js",
-                      "~/Scripts/app/raceEventListItem.js"
+                      "~/Scripts/app/components/seasonList.js",
+                      "~/Scripts/app/components/seasonListItem.js",
+                      "~/Scripts/app/components/racersList.js",
+                      "~/Scripts/app/components/racerListItem.js",
+                      "~/Scripts/app/components/modifyRacer.js",
+                      "~/Scripts/app/components/locationListItem.js",
+                      "~/Scripts/app/components/locationList.js",
+                      "~/Scripts/app/components/modifyLocation.js",
+                      "~/Scripts/app/components/raceEventList.js",
+                      "~/Scripts/app/components/raceEventListItem.js",
+                      "~/Scripts/app/components/modifyRaceEvent.js"
                       ));
         }
     }
