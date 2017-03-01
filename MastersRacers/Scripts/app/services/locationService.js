@@ -11,7 +11,7 @@
 
         var ls = this;
 
-        ls.get = function () {
+        ls.get = function (success, fail) {
             var response = $http.get('/locations');
             return response;
         };

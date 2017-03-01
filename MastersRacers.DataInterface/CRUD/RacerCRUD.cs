@@ -25,13 +25,13 @@ namespace MastersRacers.DataInterface.CRUD
     {
         private readonly IGetRacerCommand _getRacerCmd;
         private readonly IGetAllCommand<Racer> _getAllRacersCmd;
-        private readonly IRemoveRacerCommand _removeRacerCmd;
+        private readonly IRemoveCommand<Racer> _removeRacerCmd;
         private readonly ISaveRacerCommand _saveRacerCmd;
         private readonly IMapper _mapper;
 
         public RacerCRUD(IGetRacerCommand getRacerCmd, 
                          IGetAllCommand<Racer> getAllRacersCmd, 
-                         IRemoveRacerCommand removeRacerCmd,
+                         IRemoveCommand<Racer> removeRacerCmd,
                          ISaveRacerCommand saveRacerCmd,
                          IMapper mapper)
         {
@@ -69,7 +69,7 @@ namespace MastersRacers.DataInterface.CRUD
 
         public async Task<bool> Remove(Guid id)
         {
-            return await _removeRacerCmd.RemoveRacer(id);
+            return await _removeRacerCmd.RemoveItem(id);
         }
 
         #region IDisposable Support

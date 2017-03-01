@@ -15,8 +15,8 @@
             }
         });
 
-    controller.$inject = ['$log'];
-    function controller($log) {
+    controller.$inject = ['$log', '$mdDialog'];
+    function controller($log, $mdDialog) {
 
         var vm = this;
 
@@ -27,6 +27,19 @@
         vm.editToggle = function () {
             vm.onEditToggle({ racer: vm.listItem });
         }
+
+        vm.deleteToggle = function (event) {
+
+            var confirm = $mdDialog.confirm()
+                            .title('Confirm Deletion')
+                            .textContent('Please confirm that you wish to delete this racer.<br/>Cannot be undone.')
+                            .targetEvent(event)
+                            .ok('Delete')
+                            .cancel('Cancel');
+
+            $mdDialog.show(confirm).then(vm.delete, function () { /*nop*/ });
+
+        };
 
     };
 

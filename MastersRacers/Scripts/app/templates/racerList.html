@@ -1,0 +1,18 @@
+﻿<div layout="row" layout-fill>
+    <md-sidenav flex layout-padding class="md-sidenav-left md-whiteframe-z2" md-component_id="listRacerLeft" md-disable-backdrop md-is-locked-open="true">
+        <md-content layout="column">
+            <md-toolbar class="md-warn" layout-align="center start" layout="row">
+                <p>Racers</p>
+                <md-button class="md-primary" ng-click="rList.loadData()">Refresh</md-button>
+                <md-button class="md-primary" ng-click="rList.toggleAddPanel()">Add</md-button>
+            </md-toolbar>
+            <racer-list-item list-item="racer" ng-repeat="racer in rList.racers" on-delete="rList.deleteRacer(racer)" on-edit-toggle="rList.toggleEditPanel(racer)"></racer-list-item>
+        </md-content>
+    </md-sidenav>
+    <md-content id="AddRacer" class="horizontal-collapse" ng-hide="rList.addRacerCollapsed" flex>
+        <modify-racer modify-action="Add" modify-item="rList.racerToAdd" on-modify="rList.addRacer(rList.racerToAdd)" on-cancel="rList.toggleAddPanel()" race-series-list="rList.raceSeries"></modify-racer>
+    </md-content>
+    <md-content id="EditRacer" class="horizontal-collapse" ng-hide="rList.editRacerCollapsed" flex>
+        <modify-racer modify-action="Edit" modify-item="rList.racerToEdit" on-modify="rList.updateRacer(rList.racerToEdit)" on-cancel="rList.toggleEditPanel(null)" race-series-list="rList.raceSeries"></modify-racer>
+    </md-content>
+</div>

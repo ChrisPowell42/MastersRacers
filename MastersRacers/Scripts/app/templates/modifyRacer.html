@@ -1,23 +1,32 @@
-﻿<div class="panel panel-default">
-    <div class="panel-heading">
+﻿<div layout="column">
+    <md-toolbar flex="5" class="md-warn" layout-padding>
         {{mrCtrl.modifyAction}}
-    </div>
-    <div class="panel-body">
-        <form>
-            <div class="form-group">
-                <label for="rName">Name:</label>
-                <input type="text" class="form-control" id="rName" ng-model="mrCtrl.modifyItem.name" />
+    </md-toolbar>
+    <div flex="90">
+        <form layout="column" layout-padding layout-fill>
+            <md-input-container class="md-block">
+                <label>Name:</label>
+                <input required id="rName" ng-model="mrCtrl.modifyItem.name" />
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Bib Number:</label>
+                <input required type="number" id="rBibN" ng-model="mrCtrl.modifyItem.bibNumber" />
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Race Series:</label>
+                <md-select id="rRaceSeries" ng-model-options="{trackBy: '$value.id'}" ng-model="mrCtrl.modifyItem.raceSeries" placeholder="Select a race series">
+                    <md-option ng-value="series" ng-repeat="series in mrCtrl.raceSeriesList">{{series.gender}} {{series.name}}</md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <md-checkbox ng-model="mrCtrl.modifyItem.active">
+                    Active
+                </md-checkbox>
+            </md-input-container>
+            <div layout="row" layout-align="center end">
+                <md-button class="md-raised md-primary" ng-click="mrCtrl.modifyTrigger($event)">{{mrCtrl.modifyAction}}</md-button>
+                <md-button class="md-raised md-warn" ng-click="mrCtrl.cancel()">Cancel</md-button>
             </div>
-            <div class="form-group">
-                <label for="rBibN">Bib Number:</label>
-                <input type="number" class="form-control" id="rBibN" ng-model="mrCtrl.modifyItem.bibNumber" />
-            </div>
-            <div class="form-group">
-                <label for="rSeries">Race Series:</label>
-                <select class="form-control" name="rSeries" id="rSeries" ng-options="(series.gender+' '+series.name) for series in mrCtrl.raceSeriesList track by series.id" ng-model="mrCtrl.modifyItem.raceSeries"></select>
-            </div>
-            <button type="button" class="btn btn-primary" ng-click="mrCtrl.modify()">{{mrCtrl.modifyAction}}</button>
-            <button type="button" class="btn btn-default" ng-click="mrCtrl.cancel()">Cancel</button>
         </form>
     </div>
 </div>

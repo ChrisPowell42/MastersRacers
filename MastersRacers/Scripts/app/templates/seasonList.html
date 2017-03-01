@@ -1,17 +1,30 @@
-﻿<div class="col-sm-3">
-    <div class="panel panel-default">
-        <div class="panel-heading text-right">
-            <button class="btn btn-default btn-sm" ng-click="sList.loadData()"><span class="glyphicon glyphicon-refresh"></span></button>
-            <button class="btn btn-default btn-sm" ng-click="sList.createSeason()"><span class="glyphicon glyphicon-plus"></span></button>
+﻿<div layout="row" layout-fill>
+    <md-sidenav flex layout-padding class="md-sidenav-left md-whiteframe-z2" md-component_id="listSeasonLeft" md-disable-backdrop md-is-locked-open="true">
+        <md-content layout="column">
+            <md-toolbar class="md-warn" layout-align="center start" layout="row">
+                <p>{{sList.title}}</p>
+                <md-button class="md-primary" ng-click="sList.loadData()">Refresh</md-button>
+                <md-button class="md-primary" ng-click="sList.triggerCreateSeason($event)">Add</md-button>
+            </md-toolbar>
+            <md-button class="md-raised" ng-repeat="season in sList.seasons" ng-click="sList.toggleEditPanel(season)">{{season.startYear}}-{{season.endYear}} <span ng-if="season.isCurrentSeason"><strong>*</strong></span></md-button>
+        </md-content>
+    </md-sidenav>
+    <md-content id="seasonDetail" ng-hide="!sList.editSeasonOpen" flex>
+        <div layout="column">
+            <md-toolbar flex="5" layout-padding class="md-primary">
+                <span>{{sList.selectedSeason.startYear}}-{{sList.selectedSeason.endYear}}  <span ng-if="sList.selectedSeason.isCurrentSeason"><strong>*</strong></span></span>
+            </md-toolbar>
+            <div flex="80" layout-fill layout-padding>Notes: {{sList.selectedSeason.notes}}</div>
+            <div flex="5">
+                <div layout="row" layout-align="center end">
+                    <span ng-if="!sList.selectedSeason.isCurrentSeason"><md-button class="md-raised md-warn md-mini" ng-click="sList.triggerActivateSeason($event)">Make Active</md-button></span>
+                    <md-button class="md-raised md-primary md-mini" ng-click="sList.toggleEditPanel()">Close</md-button>
+                </div>
+            </div>
         </div>
-        <ul class="list-group">
-            <season-list-item ng-repeat="season in sList.seasons" list-item="season" on-edit-toggle="sList.toggleEditPanel(season)"></season-list-item>
-        </ul>
-    </div>
-</div>
-<div class="col-sm-9">
-    <div id="EditSeason" class="horizontal-collapse" uib-collapse="sList.editSeasonCollapsed">
-        <div class="well">Place holder for Edit Season.</div>
-        <!--<modify-location modify-action="Edit" modify-item="locList.locationToEdit" on-modify="locList.updateLocation(locList.locationToEdit)" on-cancel="locList.toggleEditPanel(null)"></modify-location>-->
-    </div>
+    </md-content>
+    <md-content id="seasonInfo" ng-hide="sList.editSeasonOpen" flex layout-padding>
+        <p>Season's define the time period for a race.</p>
+        <p>When a season is active, all new races will be added to that season.</p>
+    </md-content>
 </div>

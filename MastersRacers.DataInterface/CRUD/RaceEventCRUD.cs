@@ -26,14 +26,20 @@ namespace MastersRacers.DataInterface.CRUD
 
         private readonly IGetAllCommand<RaceEvent> _getAllRaceEventCmd;
         private readonly IGetActiveSeasonRaceEventsCommand _getActiveSeasonRaceEventsCmd;
+        private readonly ISaveRaceEventCommand _saveRaceEventCmd;
+        private readonly IRemoveCommand<RaceEvent> _removeRaceEventCmd;
         private readonly IMapper _mapper;
 
         public RaceEventCRUD(IGetAllCommand<RaceEvent> getAllRaceEventCmd,
                              IGetActiveSeasonRaceEventsCommand getActiveSeasonRaceEventsCmd,
+                             ISaveRaceEventCommand saveRaceEventCmd,
+                             IRemoveCommand<RaceEvent> removeRaceEventCmd,
                              IMapper mapper)
         {
             _getAllRaceEventCmd = getAllRaceEventCmd;
             _getActiveSeasonRaceEventsCmd = getActiveSeasonRaceEventsCmd;
+            _saveRaceEventCmd = saveRaceEventCmd;
+            _removeRaceEventCmd = removeRaceEventCmd;
 
             _mapper = mapper;
         }
@@ -51,14 +57,19 @@ namespace MastersRacers.DataInterface.CRUD
             return returnValues;
         }
 
-        public Task<RaceEventDTO> Put(RaceEventDTO racer)
+        public async Task<RaceEventDTO> Put(RaceEventDTO raceEvent)
         {
-            throw new NotImplementedException();
+            RaceEvent toSave = _mapper.Map<RaceEvent>(raceEvent);
+            RaceEvent saved = await _saveRaceEventCmd.Save(toSave);
+            RaceEventDTO dtoRaceEvent = _mapper.Map<RaceEventDTO>(saved);
+
+            return dtoRaceEvent;
+
         }
 
-        public Task<bool> Remove(Guid id)
+        public async Task<bool> Remove(Guid id)
         {
-            throw new NotImplementedException();
+            return await _removeRaceEventCmd.RemoveItem(id);
         }
 
         public async Task<ICollection<RaceEventDTO>> GetAllActiveSeasonRaces()
@@ -66,7 +77,7 @@ namespace MastersRacers.DataInterface.CRUD
             ICollection<RaceEvent> activeRaces = await _getActiveSeasonRaceEventsCmd.GetAll();
             ICollection<RaceEventDTO> returnValues = _mapper.Map<ICollection<RaceEventDTO>>(activeRaces);
 
-            return returnValues;
+            return returnValues.OrderBy(x=>x.ScheduledStartTime).ToList();
         }
 
         #region IDisposable Support

@@ -1,21 +1,18 @@
-﻿<div class="col-sm-3">
-    <div class="panel panel-default">
-        <div class="panel-heading text-right">
-            <button class="btn btn-default btn-sm" ng-click="locList.dataLoad()"><span class="glyphicon glyphicon-refresh"></span></button>
-            <button class="btn btn-default btn-sm" ng-click="locList.toggleAddPanel()"><span class="glyphicon glyphicon-plus"></span></button>
-        </div>
-        <div class="panel-body">
-            <div class="panel-group">
-                <location-list-item ng-repeat="loc in locList.locations" list-item="loc" on-delete="locList.deleteLocation(loc)" on-edit-toggle="locList.toggleEditPanel(loc)"></location-list-item>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="col-sm-9">
-    <div id="AddLocation" class="horizontal-collapse" uib-collapse="locList.addLocationCollapsed">
+﻿<div layout="row" layout-fill>
+    <md-sidenav flex layout-padding class="md-sidenav-left md-whiteframe-z2" md-component_id="listLocationLeft" md-disable-backdrop md-is-locked-open="true">
+        <md-content layout="column">
+            <md-toolbar class="md-warn" layout-align="center start" layout="row">
+                <p>Locations</p>
+                <md-button class="md-primary" ng-click="locList.dataLoad()">Refresh</md-button>
+                <md-button class="md-primary" ng-click="locList.toggleAddPanel()">Add</md-button>
+            </md-toolbar>
+            <location-list-item list-item="loc" ng-repeat="loc in locList.locations" on-delete="locList.deleteLocation(loc)" on-edit-toggle="locList.toggleEditPanel(loc)"></location-list-item>
+        </md-content>
+    </md-sidenav>
+    <md-content id="AddLocation" class="horizontal-collapse" ng-hide="locList.addLocationCollapsed" flex>
         <modify-location modify-action="Add" modify-item="locList.locationToAdd" on-modify="locList.addLocation(locList.locationToAdd)" on-cancel="locList.toggleAddPanel()"></modify-location>
-    </div>
-    <div id="EditLocation" class="horizontal-collapse" uib-collapse="locList.editLocationCollapsed">
+    </md-content>
+    <md-content id="EditLocation" class="horizontal-collapse" ng-hide="locList.editLocationCollapsed" flex>
         <modify-location modify-action="Edit" modify-item="locList.locationToEdit" on-modify="locList.updateLocation(locList.locationToEdit)" on-cancel="locList.toggleEditPanel(null)"></modify-location>
-    </div>
+    </md-content>
 </div>

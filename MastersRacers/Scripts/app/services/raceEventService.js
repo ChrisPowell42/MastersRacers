@@ -21,6 +21,21 @@
             return response;
         };
 
+        rs.delete = function (id) {
+            var response = $http.delete('/raceevent/'+id);
+            return response;
+        }
+
+        rs.put = function (raceEvent) {
+            var response = $http.put('/raceevent/' + raceEvent.id, raceEvent);
+            return response;
+        };
+
+        rs.post = function (raceEvent) {
+            var response = $http.post('/raceevent/', raceEvent);
+            return response;
+        }
+
     }
 
 }(this.angular));

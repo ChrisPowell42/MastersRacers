@@ -10,67 +10,140 @@
             controllerAs: 'sList'
         });
 
-    controller.$inject = ['$scope', '$q', '$log', 'seasonService']
-    function controller($scope, $q, $log, seasonService) {
+    controller.$inject = ['$log', '$mdDialog', '$mdToast', 'seasonService']
+    function controller( $log, $mdDialog, $mdToast, seasonService) {
 
         var vm = this;
 
+        vm.title = "Seasons";
         vm.seasons = [];
 
-        vm.editSeasonCollapsed = true;
-        vm.seasonToEdit = null;
+        vm.editSeasonOpen = false;
+        vm.selectedSeason = null;
+        vm.selectedId = null;
 
-        vm.cloneSeason = function (season) {
-            return {
-                id: season.id,
-                startYear: season.startYear,
-                endYear: season.endYear,
-                notes: season.notes
-            };
-        };
 
-        vm.toggleEditPanel = function (season) {
+        vm.toggleEditPanel = function(season) {
 
             if (season != null) {
-                $log.log("Season:" + season.startYear);
-            }
-            else
-            {
-                $log.log("toggleEditPanel clicked, no season.");
-            }
-
-            vm.editSeasonCollapsed = (season == null);
-            if (season != null) {
-                vm.seasonToEdit = vm.cloneSeason(season);
+                vm.selectedSeason = season;
+                vm.editSeasonOpen = true;
             }
             else {
-                vm.seasonToEdit = null;
+                vm.selectedSeason = null;
+                vm.editSeasonOpen = false;
             }
 
         };
 
-        vm.loadData = function () {
+        vm.triggerActivateSeason = function (event) {
+
+            var confirm = $mdDialog.confirm()
+                          .title("Are you sure you want to activate this Season?")
+                          .textContent("All new races will be added to this season.")
+                          .targetEvent(event)
+                          .ok("Activate")
+                          .cancel("Cancel");
+            
+            $mdDialog.show(confirm).then(function () {
+                vm.activateSeason();
+            }, function () { /*nop*/ });
+
+        };
+
+        vm.onError = function (httpError) {
+
+            $log.log(httpError.data);
+
+            var errorToast = $mdToast.simple()
+                                     .textContent('Season Error has occured: ' + httpError.status + ' - ' + httpError.statusText + ' (' + httpError.config.url + ')')
+                                     .hideDelay(0)
+                                     .action('Ok');
+
+            $mdToast.show(errorToast).then(function (response) {
+                $mdToast.hide(errorToast);
+            });
+
+        };
+
+        vm.activateSeason = function () {
+
+            seasonService.setActive(vm.selectedSeason.id).then(vm.doSeasonActivated, vm.onError);
+
+        };
+
+        vm.doSeasonActivated = function (resp) {
+
+            if (resp.data) {
+                vm.loadData(vm.selectedSeason.id);
+            };
+
+        };
+
+        vm.findById = function (id, seasonList) {
+
+            for (var i = 0; i < seasonList.length; i++) {
+                if (seasonList[i].id === id) {
+                    return seasonList[i];
+                }
+            }
+
+            return null;
+
+        };
+
+        vm.loadData = function(id) {
+
+            $log.log("Starting Season Load Data");
 
             vm.seasons = null;
+            vm.selectedId = id;
 
-            var promiseLoc = seasonService.get();
+            seasonService.get().then(vm.afterDataLoad, vm.onError);
 
-            $scope.combineResult = $q.all([promiseLoc]).then(function (resp) {
-                vm.seasons = resp[0].data;
-            });
+        };
+
+        vm.afterDataLoad = function (resp) {
+
+            vm.seasons = resp.data;
+
+            if (vm.selectedId != null) {
+                vm.selectedSeason = null;
+                vm.toggleEditPanel(vm.findById(vm.selectedId, vm.seasons));
+                vm.selectedId = null;
+            }
+
+            $log.log("After Season Data Load finished.");
 
         };
 
         vm.$onInit = vm.loadData;
 
-        vm.createSeason = function () {
+        vm.triggerCreateSeason = function (event) {
 
-            var promise = seasonService.create();
+            var confirm = $mdDialog.confirm()
+                          .title("Are you sure you want to create a new Season?")
+                          .textContent("All new races will be added to this season.")
+                          .targetEvent(event)
+                          .ok("Create")
+                          .cancel("Cancel");
 
-            $scope.combineResult = $q.all([promise]).then(function (resp) {
-                var newSeason = resp[0].data;
-                vm.seasons.push(newSeason);
-            });
+            $mdDialog.show(confirm).then(function () {
+                vm.createSeason();
+            }, function () { /*nop*/ });
+
+        };
+
+        vm.createSeason = function() {
+
+            seasonService.create().then(vm.afterCreateSeason, vm.onError);
+
+        };
+
+        vm.afterCreateSeason = function (resp) {
+
+            vm.loadData();
+
         };
 
     };

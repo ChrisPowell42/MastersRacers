@@ -17,8 +17,8 @@
             }
         });
 
-    controller.$inject = ['$log'];
-    function controller($log) {
+    controller.$inject = ['$log', '$mdDialog'];
+    function controller($log, $mdDialog) {
 
         var mv = this;
 
@@ -30,6 +30,19 @@
 
         mv.modify = function () {
             mv.onModify(mv.modifyRacer);
+        };
+
+        mv.modifyTrigger = function (event) {
+
+            var confirm = $mdDialog.confirm()
+                            .title(mv.modifyAction + ' confirmation')
+                            .textContent('Please confirm that you wish to ' + mv.modifyAction + ' this racer.')
+                            .targetEvent(event)
+                            .ok(mv.modifyAction)
+                            .cancel('Cancel');
+
+            $mdDialog.show(confirm).then(mv.modify, function () {/*Nop*/ });
+
         };
 
     }

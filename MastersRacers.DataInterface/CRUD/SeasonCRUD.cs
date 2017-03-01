@@ -19,6 +19,7 @@ namespace MastersRacers.DataInterface.CRUD
         Task<SeasonDTO> Put(SeasonDTO toSave);
 
         Task<SeasonDTO> CreateActiveSeason();
+        Task<Boolean> SetActiveSeason(Guid id);
 
         Task<SeasonDTO> GetActiveSeason();
 
@@ -30,6 +31,7 @@ namespace MastersRacers.DataInterface.CRUD
         private readonly ISaveCommand<Season> _saveSeasonCmd;
         private readonly ICreateActiveSeasonCommand _createActiveSeasonCmd;
         private readonly IGetActiveSeasonCommand _getActiveSeasonCmd;
+        private readonly ISetActiveSeasonCommand _setActiveSeasonCmd;
 
         private readonly IMapper _mapper;
 
@@ -37,12 +39,14 @@ namespace MastersRacers.DataInterface.CRUD
                           ISaveCommand<Season> saveSeasonCmd,
                           ICreateActiveSeasonCommand createActiveSeasonCmd,
                           IGetActiveSeasonCommand getActiveSeasonCmd,
+                          ISetActiveSeasonCommand setActiveSeasonCmd,
                           IMapper mapper)
         {
             _getAllSeasonsCmd = getAllSeasonsCmd;
             _saveSeasonCmd = saveSeasonCmd;
             _createActiveSeasonCmd = createActiveSeasonCmd;
             _getActiveSeasonCmd = getActiveSeasonCmd;
+            _setActiveSeasonCmd = setActiveSeasonCmd;
 
             _mapper = mapper;
         }
@@ -91,6 +95,11 @@ namespace MastersRacers.DataInterface.CRUD
             SeasonDTO returnValue = _mapper.Map<SeasonDTO>(activeSeason);
 
             return returnValue;
+        }
+
+        public async Task<bool> SetActiveSeason(Guid id)
+        {
+            return await _setActiveSeasonCmd.SetActiveSeason(id);
         }
 
         #region IDisposable Support

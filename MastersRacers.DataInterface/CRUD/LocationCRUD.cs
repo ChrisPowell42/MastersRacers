@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MastersRacers.Data.CommandObjects;
-using MastersRacers.Data.CommandObjects.LocationCommands;
 using MastersRacers.Data.Models;
 using MastersRacers.DTOs;
 using System;
@@ -23,13 +22,13 @@ namespace MastersRacers.DataInterface.CRUD
     public class LocationCRUD : ILocationCRUD
     {
         private readonly IGetAllCommand<Location> _getAllLocationsCmd;
-        private readonly IRemoveLocationCommand _removeLocationCmd;
+        private readonly IRemoveCommand<Location> _removeLocationCmd;
         private readonly ISaveCommand<Location> _saveLocationCmd;
 
         private readonly IMapper _mapper;
 
         public LocationCRUD(IGetAllCommand<Location> getAllLocationsCmd,
-                            IRemoveLocationCommand removeLocationCmd,
+                            IRemoveCommand<Location> removeLocationCmd,
                             ISaveCommand<Location> saveLocationCmd,
                             IMapper mapper)
         {
@@ -64,7 +63,7 @@ namespace MastersRacers.DataInterface.CRUD
 
         public async Task<bool> Remove(Guid id)
         {
-            return await _removeLocationCmd.RemoveLocation(id);
+            return await _removeLocationCmd.RemoveItem(id);
         }
 
         #region IDisposable Support

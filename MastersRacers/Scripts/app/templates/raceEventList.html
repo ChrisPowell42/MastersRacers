@@ -1,21 +1,18 @@
-﻿<div class="col-sm-3">
-    <div class="panel panel-default">
-        <div class="panel-heading text-right">
-            <button class="btn btn-default btn-sm" ng-click="reList.loadData()"><span class="glyphicon glyphicon-refresh"></span></button>
-            <button class="btn btn-default btn-sm" ng-click="reList.toggleAddPanel()"><span class="glyphicon glyphicon-plus"></span></button>
-        </div>
-        <div class="panel-body">
-            <div class="panel-group">
-                <race-event-list-item ng-repeat="race in reList.raceEvents" list-item="race" on-delete="reList.deleteRaceEvent(race)" on-edit-toggle="reList.toggleEditPanel(race)"></race-event-list-item>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="col-sm-9">
-    <div id="AddRaceEvent" class="horizontal-collapse" uib-collapse="reList.addRaceEventCollapsed">
+﻿<div layout="row" layout-fill>
+    <md-sidenav flex layout-padding class="md-sidenav-left md-whiteframe-z2" md-component_id="listRaceEventLeft" md-disable-backdrop md-is-locked-open="true">
+        <md-content layout="column">
+            <md-toolbar class="md-warn" layout-align="center start" layout="row">
+                <p>Race Events</p>
+                <md-button class="md-primary" ng-click="reList.loadActiveData()">Refresh</md-button>
+                <md-button class="md-primary" ng-click="reList.toggleAddPanel()">Add</md-button>
+            </md-toolbar>
+            <race-event-list-item list-item="race" ng-repeat="race in reList.raceEvents" on-delete="reList.deleteRaceEvent(race)" on-edit-toggle="reList.toggleEditPanel(race)"></race-event-list-item>
+        </md-content>
+    </md-sidenav>
+    <md-content id="AddRaceEvent" class="horizontal-collapse" ng-hide="reList.addRaceEventCollapsed" flex>
         <modify-race-event modify-action="Add" modify-item="reList.raceEventToAdd" location-list="reList.locations" format-list="reList.raceFormats" on-modify="reList.addRaceEvent(reList.raceEventToAdd)" on-cancel="reList.toggleAddPanel()"></modify-race-event>
-    </div>
-    <div id="EditRaceEvent" class="horizontal-collapse" uib-collapse="reList.editRaceEventCollapsed">
+    </md-content>
+    <md-content id="EditRaceEvent" class="horizontal-collapse" ng-hide="reList.editRaceEventCollapsed" flex>
         <modify-race-event modify-action="Edit" modify-item="reList.raceEventToEdit" location-list="reList.locations" format-list="reList.raceFormats" on-modify="reList.updateRaceEvent(reList.raceEventToEdit)" on-cancel="reList.toggleEditPanel()"></modify-race-event>
-    </div>
+    </md-content>
 </div>

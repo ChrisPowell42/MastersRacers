@@ -1,12 +1,14 @@
-﻿<div class="panel panel-default">
-    <div class="panel-heading">
-        <div class="text-left">{{lItem.listItem.name}}</div>
-        <div class="text-right">
-            <button class="btn btn-default" ng-click="lItem.editToggle()"><span class="glyphicon glyphicon-pencil"></span></button>
-            <button class="btn btn-default" ng-click="lItem.delete()"><span class="glyphicon glyphicon-trash"></span></button>
-        </div>
-    </div>
-    <div class="panel-body">
-        Description: {{lItem.listItem.description}}
-    </div>
-</div>
+﻿<md-card>
+    <md-card-title>
+        <md-card-title-text>
+            {{lItem.listItem.name}}
+        </md-card-title-text>
+    </md-card-title>
+    <md-card-actions layout="row" layout-align="start center">
+        <md-button ng-click="lItem.editToggle()">Edit</md-button>
+        <md-button ng-click="lItem.deleteToggle($event)">Delete</md-button>
+    </md-card-actions>
+    <md-card-content>
+        <p>{{lItem.listItem.description}}</p>
+    </md-card-content>
+</md-card>

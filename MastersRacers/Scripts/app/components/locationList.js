@@ -10,8 +10,8 @@
             controllerAs: 'locList'
         });
 
-    controller.$inject = ['$scope', '$q', '$log', 'locationService'];
-    function controller($scope, $q, $log, locationService) {
+    controller.$inject = ['$mdToast', '$log', 'locationService'];
+    function controller($mdToast, $log, locationService) {
 
         var vm = this;
 
@@ -21,6 +21,7 @@
 
         vm.locationToEdit = null;
         vm.locationToAdd = null;
+        vm.locationToDelete = null;
 
         vm.newLocation = function () {
             return {
@@ -74,34 +75,57 @@
             }
         };
 
+        vm.onError = function (httpError) {
+
+            $log.log(httpError.data);
+
+            var errorToast = $mdToast.simple()
+                                     .textContent('Location Error has occured: ' + httpError.status + ' - ' + httpError.statusText + ' (' + httpError.config.url + ')')
+                                     .hideDelay(0)
+                                     .action('Ok');
+
+            $mdToast.show(errorToast).then(function (response) {
+                $mdToast.hide(errorToast);
+                vm.locationToDelete = null;
+            });
+
+        };
+
+        vm.setData = function (resp) {
+
+            if (resp != undefined)
+                vm.locations = resp.data;
+
+        };
+
         vm.dataLoad = function () {
 
             vm.locations = null;
 
-            var promiseLoc = locationService.get();
+            locationService.get()
+                           .then(vm.setData, vm.onError);
 
-            $scope.combineResult = $q.all([promiseLoc]).then(function (resp) {
-                vm.locations = resp[0].data;
-            });
         }
 
         vm.$onInit = vm.dataLoad;
 
         vm.addLocation = function (location) {
 
-            var promise = locationService.post(location);
-            var addedLocation = null;
+            locationService.post(location).then(vm.postAddLocation, vm.onError);
 
-            $scope.combineResult = $q.all([promise]).then(function (resp) {
+        };
 
-                addedLocation = resp[0].data;
-                if (addedLocation != null) {
-                    vm.locations.push(addedLocation);
-                }
+        vm.postAddLocation = function (resp) {
 
-                vm.addLocationCollapsed = true;
+            var addedLocation = resp.data;
 
-            });
+            if (addedLocation != null) {
+                vm.locations.push(addedLocation);
+            }
+            else
+                $log.log('Could not find added location in response.');
+
+            vm.addLocationCollapsed = true;
 
         };
 
@@ -119,49 +143,49 @@
 
         vm.updateLocation = function (location) {
 
-            var promise = locationService.post(location);
-            var updatedLocation = null;
+            $log.log("Update Location started");
 
-            $scope.combineResult = $q.all([promise]).then(function (resp) {
+            locationService.post(location).then(vm.postUpdateLocation, vm.onError);
 
-                $log.log("Returned from Post location call.");
-                updatedLocation = resp[0].data;
-                if (updatedLocation != null) {
-                    var idx = vm.findIdxById(updatedLocation, vm.locations);
-                    if (idx != null) {
-                        vm.locations[idx] = updatedLocation;
-                        vm.editLocationCollapsed = true;
-                    }
-                    else
-                    {
-                        $log.log("Could not find updated location.");
-                    }
+        };
+
+        vm.postUpdateLocation = function (resp) {
+
+            $log.log("Returned from Post location call.");
+
+            var updatedLocation = resp.data;
+            if (updatedLocation != null) {
+                var idx = vm.findIdxById(updatedLocation, vm.locations);
+                if (idx != null) {
+                    vm.locations[idx] = updatedLocation;
+                    vm.editLocationCollapsed = true;
                 }
-
-            });
+                else {
+                    $log.log("Could not find updated location in response.");
+                }
+            }
 
         };
 
         vm.deleteLocation = function (location) {
 
-            //This probably isn't best practice.  Will fix up later.
-            var proceed = confirm("Delete location " + location.name + " ?");
+            vm.locationToDelete = location;
 
-            if (proceed) {
+            locationService.delete(location.id).then(vm.postDeleteLocation, vm.onError);
 
-                var promise = locationService.delete(location.id);
-                var successful = false;
+        };
 
-                $scope.combineResult = $q.all([promise]).then(function (resp) {
-                    successful = resp[0].data;
-                    if (successful) {
-                        var idx = vm.locations.indexOf(location);
-                        if (idx >= 0) {
-                            vm.locations.splice(idx, 1);
-                        }
-                    };
-                });
+        vm.postDeleteLocation = function (resp) {
+
+            var successful = resp.data;
+            if (successful) {
+                var idx = vm.locations.indexOf(vm.locationToDelete);
+                if (idx >= 0) {
+                    vm.locations.splice(idx, 1);
+                    vm.locationToDelete = null
+                }
             };
+
 
         };
 

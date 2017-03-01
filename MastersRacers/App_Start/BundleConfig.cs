@@ -14,15 +14,16 @@ namespace MastersRacers
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Scripts/bootstrap.js","~/Scripts/respond.js"));
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/angular-material.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/angularjs").Include(
-                      "~/Scripts/angular.min.js",
-                      "~/Scripts/angular-ui/ui-bootstrap.js"));
+                      "~/Scripts/angular.js",
+                      "~/Scripts/angular-animate.js",
+                      "~/Scripts/angular-aria.js",
+                      "~/Scripts/angular-messages.js",
+                      "~/Scripts/angular-material/angular-material.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/MastersRacersServices").Include(
                       "~/Scripts/app/module-racerApp.js",
@@ -32,10 +33,13 @@ namespace MastersRacers
                       "~/Scripts/app/services/raceEventService.js",
                       "~/Scripts/app/services/racerService.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/MastersRacersControllers").Include(
+                      "~/Scripts/app/controllers/mainTabController.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/MastersRacers").Include(
                       "~/Scripts/app/components/seasonList.js",
                       "~/Scripts/app/components/seasonListItem.js",
-                      "~/Scripts/app/components/racersList.js",
+                      "~/Scripts/app/components/racerList.js",
                       "~/Scripts/app/components/racerListItem.js",
                       "~/Scripts/app/components/modifyRacer.js",
                       "~/Scripts/app/components/locationListItem.js",
@@ -43,8 +47,7 @@ namespace MastersRacers
                       "~/Scripts/app/components/modifyLocation.js",
                       "~/Scripts/app/components/raceEventList.js",
                       "~/Scripts/app/components/raceEventListItem.js",
-                      "~/Scripts/app/components/modifyRaceEvent.js"
-                      ));
+                      "~/Scripts/app/components/modifyRaceEvent.js"));
         }
     }
 }

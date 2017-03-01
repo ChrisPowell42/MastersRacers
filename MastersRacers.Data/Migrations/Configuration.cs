@@ -100,40 +100,40 @@ namespace MastersRacers.Data.Migrations
         private void RacerSeed(RaceContext context)
         {
             Guid r2Id = Guid.Parse("BFCD44A5-4AE8-4206-AAD8-BD28AE8F73F9");
-            Racer r1 = new Racer { Id = r2Id, BibNumber = 2, Name = "Test Two", RaceSeriesId = rs3Id };
+            Racer r1 = new Racer { Id = r2Id, BibNumber = 2, Name = "Test Two", Active=true, RaceSeriesId = rs3Id };
 
             Guid r3Id = Guid.Parse("9FB23EF7-B2FA-4274-978A-D3B94068958F");
-            Racer r2 = new Racer { Id = r3Id, BibNumber = 3, Name = "Three Test", RaceSeriesId = rs5Id };
+            Racer r2 = new Racer { Id = r3Id, BibNumber = 3, Name = "Three Test", Active = true, RaceSeriesId = rs5Id };
         
             Guid r4Id = Guid.Parse("{EF549E12-F7E6-4E46-BE31-6A7ABDC421A1}");
-            Racer r3 = new Racer { Id = r4Id, BibNumber = 55, Name = "Jane Doe", RaceSeriesId = rs4Id };
+            Racer r3 = new Racer { Id = r4Id, BibNumber = 55, Name = "Jane Doe", Active = true, RaceSeriesId = rs4Id };
 
             Guid r5Id = Guid.Parse("{09306A34-DA76-4122-98F0-F9B54F7344F0}");
-            Racer r4 = new Racer { Id = r5Id, BibNumber = 66, Name = "Joe Blow", RaceSeriesId = rs7Id };
+            Racer r4 = new Racer { Id = r5Id, BibNumber = 66, Name = "Joe Blow", Active = true, RaceSeriesId = rs7Id };
 
             Guid r6Id = Guid.Parse("{C237F026-D2DC-4848-9016-88D45E583066}");
-            Racer r5 = new Racer { Id = r6Id, BibNumber = 99, Name = "Great One", RaceSeriesId = rs3Id };
+            Racer r5 = new Racer { Id = r6Id, BibNumber = 99, Name = "Great One", Active = true, RaceSeriesId = rs3Id };
 
             Guid r7Id = Guid.Parse("{92595F10-442E-405D-9B50-D0B6DEF58AAC}");
-            Racer r6 = new Racer { Id = r7Id, BibNumber = 154, Name = "Hugh McGregor", RaceSeriesId = rs7Id };
+            Racer r6 = new Racer { Id = r7Id, BibNumber = 154, Name = "Hugh McGregor", Active = true, RaceSeriesId = rs7Id };
 
             Guid r8Id = Guid.Parse("{57E86A58-6735-4BC2-ADE1-BF089CF69143}");
-            Racer r7 = new Racer { Id = r8Id, BibNumber = 69, Name = "Ski Racer", RaceSeriesId = rs2Id };
+            Racer r7 = new Racer { Id = r8Id, BibNumber = 69, Name = "Ski Racer", Active = true, RaceSeriesId = rs2Id };
 
             Guid r9Id = Guid.Parse("{1AE6068B-B907-4936-86E9-B455CE3BB04A}");
-            Racer r8 = new Racer { Id = r9Id, BibNumber = 53, Name = "Speed Racer", RaceSeriesId = rs5Id };
+            Racer r8 = new Racer { Id = r9Id, BibNumber = 53, Name = "Speed Racer", Active = true, RaceSeriesId = rs5Id };
 
             Guid r10Id = Guid.Parse("{66D4C448-BCDB-4F06-98A3-01187939D11F}");
-            Racer r9 = new Racer { Id = r10Id, BibNumber = 12, Name = "Powder Skier", RaceSeriesId = rs4Id };
+            Racer r9 = new Racer { Id = r10Id, BibNumber = 12, Name = "Powder Skier", Active = true, RaceSeriesId = rs4Id };
 
             Guid r11Id = Guid.Parse("{D69CAE4E-E569-45D5-B471-6813FE3287F1}");
-            Racer r10 = new Racer { Id = r11Id, BibNumber = 33, Name = "Slalom Racer", RaceSeriesId = rs8Id };
+            Racer r10 = new Racer { Id = r11Id, BibNumber = 33, Name = "Slalom Racer", Active = true, RaceSeriesId = rs8Id };
 
             Guid r12Id = Guid.Parse("{EDDD30B5-23CA-4BD7-8428-2CBA7214A4AA}");
-            Racer r11 = new Racer { Id = r12Id, BibNumber = 21, Name = "Joe Hills", RaceSeriesId = rs6Id };
+            Racer r11 = new Racer { Id = r12Id, BibNumber = 21, Name = "Joe Hills", Active = false, RaceSeriesId = rs6Id };
 
             Guid r13Id = Guid.Parse("{9FC80606-8C5D-4158-A4E1-8EFDAD6FECF7}");
-            Racer r12 = new Racer { Id = r13Id, BibNumber = 73, Name = "Flo Hills", RaceSeriesId = rs1Id };
+            Racer r12 = new Racer { Id = r13Id, BibNumber = 73, Name = "Flo Hills", Active = false, RaceSeriesId = rs1Id };
 
             context.Racers.AddOrUpdate(r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12);
 

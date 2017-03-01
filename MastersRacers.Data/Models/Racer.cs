@@ -18,6 +18,8 @@ namespace MastersRacers.Data.Models
 
         public int BibNumber { get; set; }
 
+        public bool Active { get; set; }
+
         [ForeignKey("RaceSeriesId")]
         public virtual RaceSeries RaceSeries { get; set; }
     }

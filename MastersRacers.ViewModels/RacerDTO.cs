@@ -9,6 +9,7 @@ namespace MastersRacers.DTOs
 
         public string Name { get; set; }
         public int BibNumber { get; set; }
+        public bool Active { get; set; }
         public RaceSeriesDTO RaceSeries { get; set; }
     }
 }

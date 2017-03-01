@@ -1,25 +1,28 @@
-﻿<ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#raceEventsPanel">Races</a></li>
-    <li><a data-toggle="tab" href="#racersPanel">Racers</a></li>
-    <li><a data-toggle="tab" href="#locationsPanel">Locations</a></li>
-    <li><a data-toggle="tab" href="#seasonsPanel">Seasons</a></li>
-</ul>
-
-<div class="tab-content">
-    <div id="raceEventsPanel" class="tab-pane fade in active">
-        <race-event-list></race-event-list>
-    </div>
-    <div id="racersPanel" class="tab-pane fade">
-        <racers-list></racers-list>
-    </div>
-    <div id="locationsPanel" class="tab-pane fade">
-        <div class="row">
-            <location-list></location-list>
-        </div>    
-    </div>
-    <div id="seasonsPanel" class="tab-pane fade">
-        <season-list></season-list>
-    </div>
+﻿<div layout="column" layout-fill id="tabContainer" ng-controller="mainTabController as ctrl" ng-cloak>
+    <md-tabs layout-fill class="md-primary" md-selected="ctrl.selectedIndex">
+        <md-tab id="raceEventsTab">
+            <md-tab-label>Races</md-tab-label>
+            <md-tab-body layout-fill>
+                <race-event-list></race-event-list>
+            </md-tab-body>
+        </md-tab>
+        <md-tab id="racersTab">
+            <md-tab-label>Racers</md-tab-label>
+            <md-tab-body layout-fill>
+                <racer-list></racer-list>
+            </md-tab-body>
+        </md-tab>
+        <md-tab id="locationsTab">
+            <md-tab-label>Locations</md-tab-label>
+            <md-tab-body layout-fill>
+                <location-list></location-list>
+            </md-tab-body>
+        </md-tab>
+        <md-tab id="seasonsTab">
+            <md-tab-label>Seasons</md-tab-label>
+            <md-tab-body layout-fill>
+                <season-list></season-list>
+            </md-tab-body>
+        </md-tab>
+    </md-tabs>
 </div>
-
-

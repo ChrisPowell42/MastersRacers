@@ -1,27 +1,29 @@
-﻿<div class="panel panel-default">
-    <div class="panel-heading">
+﻿<div layout="column">
+    <md-toolbar flex="5" class="md-warn" layout-padding>
         {{mlCtrl.modifyAction}}
-    </div>
-    <div class="panel-body">
-        <form>
-            <div class="form-group">
-                <label for="lName">Name:</label>
-                <input type="text" class="form-control" id="lName" ng-model="mlCtrl.modifyItem.name" />
+    </md-toolbar>
+    <div flex="90">
+        <form layout="column" layout-padding layout-fill>
+            <md-input-container class="md-block">
+                <label>Name:</label>
+                <input required id="lName" ng-model="mlCtrl.modifyItem.name" />
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Description:</label>
+                <textarea rows="5" id="lDesc" ng-model="mlCtrl.modifyItem.description"></textarea>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Latitude:</label>
+                <input id="lLat" ng-model="mlCtrl.modifyItem.latPos" />
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Longitude:</label>
+                <input id="lLong" ng-model="mlCtrl.modifyItem.longPos" />
+            </md-input-container>
+            <div layout="row" layout-align="center end">
+                <md-button class="md-raised md-primary" ng-click="mlCtrl.modifyTrigger($event)">{{mlCtrl.modifyAction}}</md-button>
+                <md-button class="md-raised md-warn" ng-click="mlCtrl.cancel()">Cancel</md-button>
             </div>
-            <div class="form-group">
-                <label for="lDesc">Description:</label>
-                <textarea class="form-control" rows="10" id="lDesc" ng-model="mlCtrl.modifyItem.description"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="lLat">Latitude:</label>
-                <input type="number" class="form-control" id="lLat" ng-model="mlCtrl.modifyItem.latPos" />
-            </div>
-            <div class="form-group">
-                <label for="lLong">Longitude:</label>
-                <input type="number" class="form-control" id="lLong" ng-model="mlCtrl.modifyItem.longPos" />
-            </div>
-            <button type="button" class="btn btn-primary" ng-click="mlCtrl.modify()">{{mlCtrl.modifyAction}}</button>
-            <button type="button" class="btn btn-default" ng-click="mlCtrl.cancel()">Cancel</button>
         </form>
     </div>
 </div>

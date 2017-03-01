@@ -26,6 +26,11 @@
             return response;
         };
 
+        ss.setActive = function (id) {
+            var response = $http.put('/season/' + id + '/active', null);
+            return response;
+        }
+
         //ss.delete = function (id) {
         //    var response = $http.delete('/location/' + id);
         //    return response;

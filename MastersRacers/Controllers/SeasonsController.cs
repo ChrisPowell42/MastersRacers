@@ -59,6 +59,27 @@ namespace MastersRacers.Controllers
             return Ok(returnValue);
         }
 
+        [Route("season/{id:Guid}/active")]
+        [ResponseType(typeof(Boolean))]
+        [HttpPut]
+        public async Task<IHttpActionResult> MakeActive(Guid id, [FromBody]SeasonDTO value)
+        {
+
+            Boolean response = false;
+
+            try
+            {
+                response = await _seasonCRUD.SetActiveSeason(id);
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+
+            return Ok(response);
+
+        }
+
         // PUT: api/Seasons/5
         [Route("season/{id:Guid}")]
         [ResponseType(typeof(SeasonDTO))]

@@ -1,34 +1,34 @@
 ﻿<!DOCTYPE html>
-<html ng-app="racerApp">
+<html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewBag.Title - Masters Racers</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/angularjs")
-    @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/MastersRacersServices")
+    @Scripts.Render("~/bundles/MastersRacersControllers")
     @Scripts.Render("~/bundles/MastersRacers")
 </head>
-<body>
-    <div class="container-fluid">
-        <div class="jumbotron">
-            <div class="page-header text-left">
-                <h1>Masters Racers</h1>
-                <p>is a demonstation application for recording and organizing race results for the Manitoba Masters Ski Club.</p>
-            </div>
+<body ng-app="racerApp" layout="column" layout-fill ng-cloak>
+    <md-toolbar flex="5" class="md-warn">
+        <div class="md-toolbar-tools">
+            <h2 class="md-flex">Master's Racers</h2>
         </div>
+    </md-toolbar>
+    <div flex="5" layout-margin>
+        <p>A sample application for learning web development.</p>
+        <p>May actually record race results at some point too.</p>
     </div>
-    <div class="container-fluid body-content">
+    <div flex="80">
         @RenderBody()
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Masters Racers</p>
         </footer>
     </div>
-   
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -69,18 +69,51 @@ namespace MastersRacers.Controllers
         }
 
         // POST api/<controller>
-        public void Post([FromBody]string value)
+        [Route("raceevent")]
+        [ResponseType(typeof(RaceEventDTO))]
+        [HttpPost]
+        public async Task<IHttpActionResult> Post([FromBody]RaceEventDTO value)
         {
-        }
+            RaceEventDTO returnResult;
 
+            try
+            {
+                returnResult = await _raceEventCRUD.Put(value);
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+
+            return Ok(returnResult);
+
+        }
         // PUT api/<controller>/5
         public void Put(int id, [FromBody]string value)
         {
         }
 
         // DELETE api/<controller>/5
-        public void Delete(int id)
+        [Route("raceevent/{id:Guid}")]
+        [ResponseType(typeof(bool))]
+        [HttpDelete]
+        public async Task<IHttpActionResult> Delete(Guid id)
         {
+            bool deleteResult = false;
+            try
+            {
+                deleteResult = await _raceEventCRUD.Remove(id);
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+
+            if (!deleteResult)
+                return NotFound();
+            else
+                return Ok(deleteResult);
         }
+
     }
 }
