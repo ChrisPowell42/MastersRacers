@@ -6,7 +6,7 @@
         .module("racerApp")
         .component("locationListItem", {
             templateUrl: 'Scripts/app/templates/locationListItem.html',
-            controller: controller,
+            controller: Controller,
             controllerAs: 'lItem',
             bindings: {
                 listItem: '<',
@@ -15,8 +15,8 @@
             }
         });
 
-    controller.$inject = ['$log', '$mdDialog'];
-    function controller($log, $mdDialog) {
+    Controller.$inject = ['$log', '$mdDialog'];
+    function Controller($log, $mdDialog) {
 
         var vm = this;
 
@@ -41,6 +41,6 @@
 
         };
 
-    };
+    }
 
 }(this.angular));

@@ -6,26 +6,27 @@
         .module("racerApp")
         .component("seasonList", {
             templateUrl: 'Scripts/app/templates/seasonList.html',
-            controller: controller,
-            controllerAs: 'sList'
+            controller: Controller,
+            controllerAs: 'sList',
+            bindings: {
+                seasons: '<'
+            }
         });
 
-    controller.$inject = ['$log', '$mdDialog', '$mdToast', 'seasonService']
-    function controller( $log, $mdDialog, $mdToast, seasonService) {
+    Controller.$inject = ['$log', '$mdDialog', 'SeasonService', 'HttpErrorService'];
+    function Controller( $log, $mdDialog, SeasonService, HttpErrorService) {
 
         var vm = this;
 
         vm.title = "Seasons";
-        vm.seasons = [];
 
         vm.editSeasonOpen = false;
         vm.selectedSeason = null;
         vm.selectedId = null;
 
-
         vm.toggleEditPanel = function(season) {
 
-            if (season != null) {
+            if (season !== null) {
                 vm.selectedSeason = season;
                 vm.editSeasonOpen = true;
             }
@@ -51,24 +52,9 @@
 
         };
 
-        vm.onError = function (httpError) {
-
-            $log.log(httpError.data);
-
-            var errorToast = $mdToast.simple()
-                                     .textContent('Season Error has occured: ' + httpError.status + ' - ' + httpError.statusText + ' (' + httpError.config.url + ')')
-                                     .hideDelay(0)
-                                     .action('Ok');
-
-            $mdToast.show(errorToast).then(function (response) {
-                $mdToast.hide(errorToast);
-            });
-
-        };
-
         vm.activateSeason = function () {
 
-            seasonService.setActive(vm.selectedSeason.id).then(vm.doSeasonActivated, vm.onError);
+            SeasonService.setActive(vm.selectedSeason.id).then(vm.doSeasonActivated, HttpErrorService.onError);
 
         };
 
@@ -76,7 +62,7 @@
 
             if (resp.data) {
                 vm.loadData(vm.selectedSeason.id);
-            };
+            }
 
         };
 
@@ -99,7 +85,7 @@
             vm.seasons = null;
             vm.selectedId = id;
 
-            seasonService.get().then(vm.afterDataLoad, vm.onError);
+            SeasonService.get().then(vm.afterDataLoad, HttpErrorService.onError);
 
         };
 
@@ -107,7 +93,7 @@
 
             vm.seasons = resp.data;
 
-            if (vm.selectedId != null) {
+            if (vm.selectedId !== null) {
                 vm.selectedSeason = null;
                 vm.toggleEditPanel(vm.findById(vm.selectedId, vm.seasons));
                 vm.selectedId = null;
@@ -117,7 +103,7 @@
 
         };
 
-        vm.$onInit = vm.loadData;
+        //vm.$onInit = vm.loadData;
 
         vm.triggerCreateSeason = function (event) {
 
@@ -136,7 +122,7 @@
 
         vm.createSeason = function() {
 
-            seasonService.create().then(vm.afterCreateSeason, vm.onError);
+            SeasonService.create().then(vm.afterCreateSeason, HttpErrorService.onError);
 
         };
 
@@ -146,6 +132,6 @@
 
         };
 
-    };
+    }
 
 }(this.angular));

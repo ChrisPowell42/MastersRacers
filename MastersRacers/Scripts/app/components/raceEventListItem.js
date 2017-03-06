@@ -6,7 +6,7 @@
     .module("racerApp")
     .component("raceEventListItem", {
         templateUrl: 'Scripts/app/templates/raceEventListItem.html',
-        controller: controller,
+        controller: Controller,
         controllerAs: 'reItem',
         bindings: {
             listItem: '<',
@@ -15,8 +15,8 @@
         }
     });
 
-    controller.$inject = ['$log', '$mdDialog'];
-    function controller($log, $mdDialog) {
+    Controller.$inject = ['$log', '$mdDialog'];
+    function Controller($log, $mdDialog) {
 
         var vm = this;
 
@@ -26,7 +26,7 @@
 
         vm.editToggle = function () {
             vm.onEditToggle({ race: vm.listItem });
-        }
+        };
 
         vm.deleteToggle = function (event) {
 
@@ -41,6 +41,6 @@
 
         };
 
-    };
+    }
 
 }(this.angular));

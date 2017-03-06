@@ -11,6 +11,7 @@ using System.Web.Http.Description;
 
 namespace MastersRacers.Controllers
 {
+    [RoutePrefix("api")]
     public class LocationsController : ApiController
     {
         private readonly ILocationCRUD _locationCRUD;

@@ -11,7 +11,7 @@ using System.Web.Http.Description;
 
 namespace MastersRacers.Controllers
 {
-    [RoutePrefix("refdata")]
+    [RoutePrefix("api/refdata")]
     public class RefDataController : ApiController
     {
         private readonly IRefDataReader _refDataReader;

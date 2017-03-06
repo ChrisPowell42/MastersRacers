@@ -6,20 +6,20 @@
         .module("racerApp")
         .component("raceEventList", {
             templateUrl: 'Scripts/app/templates/raceEventList.html',
-            controller: controller,
-            controllerAs: 'reList'
+            controller: Controller,
+            controllerAs: 'reList',
+            bindings: {
+                raceEvents: '<',
+                raceFormats: '<',
+                locations: '<',
+                activeSeason: '<',
+            }
         });
 
-    controller.$inject = ['$log', '$q', '$mdToast', 'raceEventService', 'refDataService', 'seasonService', 'locationService'];
-    function controller($log, $q, $mdToast, raceEventService, refDataService, seasonService, locationService) {
+    Controller.$inject = ['$log', 'RaceEventService', 'RefDataService', 'SeasonService', 'LocationService', 'HttpErrorService'];
+    function Controller($log, RaceEventService, RefDataService, SeasonService, LocationService, HttpErrorService) {
 
         var vm = this;
-
-        vm.raceEvents = [];
-        vm.raceFormats = [];
-
-        vm.locations = [];
-        vm.activeSeason = {};
 
         vm.addRaceEventCollapsed = true;
         vm.editRaceEventCollapsed = true;
@@ -28,56 +28,11 @@
         vm.raceEventToAdd = null;
         vm.raceEventToDelete = null;
 
-        vm.cloneRaceEvent = function (raceEventToClone) {
-
-            return {
-                id: raceEventToClone.id,
-                location: raceEventToClone.location,
-                season: raceEventToClone.season,
-                raceFormat: raceEventToClone.raceFormat,
-                runCount: raceEventToClone.runCount,
-                raceName: raceEventToClone.raceName,
-                scheduledStartTime: new Date(raceEventToClone.scheduledStartTime),
-                notes: raceEventToClone.notes
-            };
-        };
-
-        vm.newRaceEvent = function () {
-
-            return {
-                id: null,
-                location: null,
-                season: vm.activeSeason,
-                raceFormat: null,
-                runCount: 2,
-                raceName: '',
-                scheduledStartTime: new Date(),
-                notes: ''
-            };
-
-        };
-
-        vm.onError = function (httpError) {
-
-            $log.log(httpError.data);
-
-            var errorToast = $mdToast.simple()
-                                     .textContent('Race Event Error has occured: ' + httpError.status + ' - ' + httpError.statusText + ' (' + httpError.config.url + ')')
-                                     .hideDelay(0)
-                                     .action('Ok');
-
-            $mdToast.show(errorToast).then(function (response) {
-                $mdToast.hide(errorToast);
-                vm.raceEventToDelete = null
-            });
-
-        };
-
         vm.loadActiveData = function () {
 
             vm.raceEvents = null;
 
-            raceEventService.getActive().then(vm.postLoadActiveData, vm.onError);
+            RaceEventService.getActive().then(vm.postLoadActiveData, HttpErrorService.onError);
 
         };
 
@@ -89,42 +44,42 @@
 
         };
 
-        vm.loadRefData = function () {
+        //vm.loadRefData = function () {
 
-            $log.log("Starting Race Event RefData load.");
+        //    $log.log("Starting Race Event RefData load.");
 
-            vm.raceFormats = null;
-            vm.locations = null;
-            vm.activeSeason = null;
+        //    vm.raceFormats = null;
+        //    vm.locations = null;
+        //    vm.activeSeason = null;
 
-            var promiseFormat = refDataService.getRaceFormats();
-            var promiseLocations = locationService.get();
-            var promiseActiveSeason = seasonService.getActive();
+        //    var promiseFormat = RefDataService.getRaceFormats();
+        //    var promiseLocations = LocationService.get();
+        //    var promiseActiveSeason = SeasonService.getActive();
 
-            $q.all([promiseFormat, promiseLocations, promiseActiveSeason]).then(function (resp) {
-                vm.raceFormats = resp[0].data;
-                vm.locations = resp[1].data;
-                vm.activeSeason = resp[2].data;
+        //    $q.all([promiseFormat, promiseLocations, promiseActiveSeason]).then(function (resp) {
+        //        vm.raceFormats = resp[0].data;
+        //        vm.locations = resp[1].data;
+        //        vm.activeSeason = resp[2].data;
 
-                $log.log("Race Event RefData load complete.");
+        //        $log.log("Race Event RefData load complete.");
 
-            });
+        //    });
 
-        };
+        //};
 
-        vm.$onInit = function () {
+        //vm.$onInit = function () {
 
-            vm.loadRefData();
-            vm.loadActiveData();
+        //    vm.loadRefData();
+        //    vm.loadActiveData();
 
-        }
+        //};
 
         vm.toggleAddPanel = function () {
 
             if (vm.addRaceEventCollapsed) {
                 vm.editRaceEventCollapsed = true;
                 vm.raceEventToEdit = null;
-                vm.raceEventToAdd = vm.newRaceEvent();
+                vm.raceEventToAdd = RaceEventService.newRaceEvent(vm.activeSeason);
             }
 
             vm.addRaceEventCollapsed = !vm.addRaceEventCollapsed;
@@ -133,14 +88,14 @@
 
         vm.toggleEditPanel = function (raceEvent) {
 
-            if (vm.editRaceEventCollapsed && raceEvent != null) {
+            if (vm.editRaceEventCollapsed && raceEvent !== null) {
                 vm.addRaceEventCollapsed = true;
                 vm.raceEventToAdd = null;
             }
 
-            vm.editRaceEventCollapsed = (raceEvent == null);
-            if (raceEvent != null) {
-                vm.raceEventToEdit = vm.cloneRaceEvent(raceEvent);
+            vm.editRaceEventCollapsed = (raceEvent === null);
+            if (raceEvent !== null) {
+                vm.raceEventToEdit = RaceEventService.cloneRaceEvent(raceEvent);
             }
         };
 
@@ -148,7 +103,7 @@
             
             vm.raceEventToDelete = race;
 
-            raceEventService.delete(race.id).then(vm.postDeleteRaceEvent, vm.onError);
+            RaceEventService.delete(race.id).then(vm.postDeleteRaceEvent, HttpErrorService.onError);
 
         };
 
@@ -159,17 +114,17 @@
                 var idx = vm.raceEvents.indexOf(vm.raceEventToDelete);
                 if (idx >= 0) {
                     vm.raceEvents.splice(idx, 1);
-                    vm.raceEventToDelete = null
+                    vm.raceEventToDelete = null;
                 }
                 else
                     $log.log("Deleted race event not found in list.");
-            };
+            }
 
         };
 
         vm.addRaceEvent = function (toAdd) {
 
-            raceEventService.post(toAdd).then(vm.postAddRaceEvent, vm.onError);
+            RaceEventService.post(toAdd).then(vm.postAddRaceEvent, HttpErrorService.onError);
 
         };
 
@@ -177,7 +132,7 @@
 
             var addedEvent = resp.data;
 
-            if (addedEvent != null) {
+            if (addedEvent !== null) {
                 vm.raceEvents.push(addedEvent);
             }
             else
@@ -200,16 +155,16 @@
 
         vm.updateRaceEvent = function (toUpdate) {
 
-            raceEventService.post(toUpdate).then(vm.postUpdateRaceEvent, vm.onError);
+            RaceEventService.post(toUpdate).then(vm.postUpdateRaceEvent, HttpErrorService.onError);
 
         };
 
         vm.postUpdateRaceEvent = function (resp) {
 
             var updatedRaceEvent = resp.data;
-            if (updatedRaceEvent != null) {
-                var idx = vm.find(updatedRaceEvent, vm.raceEvents)
-                if (idx != null) {
+            if (updatedRaceEvent !== null) {
+                var idx = vm.find(updatedRaceEvent, vm.raceEvents);
+                if (idx !== null) {
                     vm.raceEvents[idx] = updatedRaceEvent;
                     vm.editRaceEventCollapsed = true;
                 }

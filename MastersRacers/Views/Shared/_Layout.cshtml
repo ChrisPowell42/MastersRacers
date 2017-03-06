@@ -4,13 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewBag.Title - Masters Racers</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/angularjs")
-    @Scripts.Render("~/bundles/MastersRacersServices")
-    @Scripts.Render("~/bundles/MastersRacersControllers")
-    @Scripts.Render("~/bundles/MastersRacers")
+    <link href="/Content/dist/css/app.min.css" rel="stylesheet" />
+    <script src="/Scripts/build/jquery-bundle.min.js"></script>
+    <script src="/Scripts/build/angular-bundle.min.js"></script>
+    <script src="/Scripts/build/app-bundle.js"></script>
 </head>
 <body ng-app="racerApp" layout="column" layout-fill ng-cloak>
     <md-toolbar flex="5" class="md-warn">

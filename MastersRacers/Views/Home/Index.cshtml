@@ -1,28 +1,9 @@
-﻿<div layout="column" layout-fill id="tabContainer" ng-controller="mainTabController as ctrl" ng-cloak>
-    <md-tabs layout-fill class="md-primary" md-selected="ctrl.selectedIndex">
-        <md-tab id="raceEventsTab">
-            <md-tab-label>Races</md-tab-label>
-            <md-tab-body layout-fill>
-                <race-event-list></race-event-list>
-            </md-tab-body>
-        </md-tab>
-        <md-tab id="racersTab">
-            <md-tab-label>Racers</md-tab-label>
-            <md-tab-body layout-fill>
-                <racer-list></racer-list>
-            </md-tab-body>
-        </md-tab>
-        <md-tab id="locationsTab">
-            <md-tab-label>Locations</md-tab-label>
-            <md-tab-body layout-fill>
-                <location-list></location-list>
-            </md-tab-body>
-        </md-tab>
-        <md-tab id="seasonsTab">
-            <md-tab-label>Seasons</md-tab-label>
-            <md-tab-body layout-fill>
-                <season-list></season-list>
-            </md-tab-body>
-        </md-tab>
-    </md-tabs>
+﻿<div layout="column" layout-fill id="tabContainer" ng-cloak>
+    <md-toolbar layout="row" md-primary flex="5">
+        <md-button ui-sref="races">Races</md-button>
+        <md-button ui-sref="racers">Racers</md-button>
+        <md-button ui-sref="locations">Locations</md-button>
+        <md-button ui-sref="seasons">Seasons</md-button>
+    </md-toolbar>
+    <div ui-view flex="90"></div>
 </div>

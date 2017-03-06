@@ -6,44 +6,24 @@
         .module("racerApp")
         .component("locationList", {
             templateUrl: 'Scripts/app/templates/locationList.html',
-            controller: controller,
-            controllerAs: 'locList'
+            controller: Controller,
+            controllerAs: 'locList',
+            bindings: {
+                locations: '<'
+            }
         });
 
-    controller.$inject = ['$mdToast', '$log', 'locationService'];
-    function controller($mdToast, $log, locationService) {
+    Controller.$inject = ['$log', 'LocationService', 'HttpErrorService'];
+    function Controller($log, LocationService, HttpErrorService) {
 
         var vm = this;
 
-        vm.locations = [];
         vm.addLocationCollapsed = true;
         vm.editLocationCollapsed = true;
 
         vm.locationToEdit = null;
         vm.locationToAdd = null;
         vm.locationToDelete = null;
-
-        vm.newLocation = function () {
-            return {
-                id: null,
-                name: 'New Location',
-                description: '',
-                latPos: 0.0,
-                longPos: 0.0
-            };
-        };
-
-        //There is probably a better way of doing this.
-        //It will work for now.
-        vm.cloneLocation = function (location) {
-            return {
-                id: location.id,
-                name: location.name,
-                description: location.description,
-                latPos: location.latPos,
-                longPos: location.longPos
-            };
-        };
 
         vm.toggleAddPanel = function () {
 
@@ -53,7 +33,7 @@
             {
                 vm.editLocationCollapsed = true;
                 vm.locationToEdit = null;
-                vm.locationToAdd = vm.newLocation();
+                vm.locationToAdd = LocationService.newLocation();
             }
 
             vm.addLocationCollapsed = !vm.addLocationCollapsed;
@@ -64,36 +44,20 @@
 
             $log.log("toggleEditPanel called.");
 
-            if (vm.editLocationCollapsed && location != null) {
+            if (vm.editLocationCollapsed && location !== null) {
                 vm.addLocationCollapsed = true;
                 vm.locationToAdd = null;
             }
 
-            vm.editLocationCollapsed = (location == null);
-            if (location != null) {
-                vm.locationToEdit = vm.cloneLocation(location);
+            vm.editLocationCollapsed = (location === null);
+            if (location !== null) {
+                vm.locationToEdit = LocationService.cloneLocation(location);
             }
-        };
-
-        vm.onError = function (httpError) {
-
-            $log.log(httpError.data);
-
-            var errorToast = $mdToast.simple()
-                                     .textContent('Location Error has occured: ' + httpError.status + ' - ' + httpError.statusText + ' (' + httpError.config.url + ')')
-                                     .hideDelay(0)
-                                     .action('Ok');
-
-            $mdToast.show(errorToast).then(function (response) {
-                $mdToast.hide(errorToast);
-                vm.locationToDelete = null;
-            });
-
         };
 
         vm.setData = function (resp) {
 
-            if (resp != undefined)
+            if (resp !== undefined)
                 vm.locations = resp.data;
 
         };
@@ -102,16 +66,17 @@
 
             vm.locations = null;
 
-            locationService.get()
-                           .then(vm.setData, vm.onError);
+            LocationService.get()
+                           .then(vm.setData, HttpErrorService.onError);
 
-        }
+        };
 
-        vm.$onInit = vm.dataLoad;
+        //vm.$onInit = vm.dataLoad;
 
         vm.addLocation = function (location) {
 
-            locationService.post(location).then(vm.postAddLocation, vm.onError);
+            LocationService.post(location)
+                           .then(vm.postAddLocation, HttpErrorService.onError);
 
         };
 
@@ -119,7 +84,7 @@
 
             var addedLocation = resp.data;
 
-            if (addedLocation != null) {
+            if (addedLocation !== null) {
                 vm.locations.push(addedLocation);
             }
             else
@@ -145,7 +110,8 @@
 
             $log.log("Update Location started");
 
-            locationService.post(location).then(vm.postUpdateLocation, vm.onError);
+            LocationService.post(location)
+                           .then(vm.postUpdateLocation, HttpErrorService.onError);
 
         };
 
@@ -154,9 +120,9 @@
             $log.log("Returned from Post location call.");
 
             var updatedLocation = resp.data;
-            if (updatedLocation != null) {
+            if (updatedLocation !== null) {
                 var idx = vm.findIdxById(updatedLocation, vm.locations);
-                if (idx != null) {
+                if (idx !== null) {
                     vm.locations[idx] = updatedLocation;
                     vm.editLocationCollapsed = true;
                 }
@@ -171,7 +137,8 @@
 
             vm.locationToDelete = location;
 
-            locationService.delete(location.id).then(vm.postDeleteLocation, vm.onError);
+            LocationService.delete(location.id)
+                           .then(vm.postDeleteLocation, HttpErrorService.onError);
 
         };
 
@@ -182,13 +149,13 @@
                 var idx = vm.locations.indexOf(vm.locationToDelete);
                 if (idx >= 0) {
                     vm.locations.splice(idx, 1);
-                    vm.locationToDelete = null
+                    vm.locationToDelete = null;
                 }
-            };
+            }
 
 
         };
 
-    };
+    }
 
 }(this.angular));

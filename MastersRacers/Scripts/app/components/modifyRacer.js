@@ -6,7 +6,7 @@
         .module("racerApp")
         .component("modifyRacer", {
             templateUrl: 'Scripts/app/templates/modifyRacer.html',
-            controller: controller,
+            controller: Controller,
             controllerAs: 'mrCtrl',
             bindings: {
                 modifyAction: '@',
@@ -17,8 +17,8 @@
             }
         });
 
-    controller.$inject = ['$log', '$mdDialog'];
-    function controller($log, $mdDialog) {
+    Controller.$inject = ['$log', '$mdDialog'];
+    function Controller($log, $mdDialog) {
 
         var mv = this;
 
