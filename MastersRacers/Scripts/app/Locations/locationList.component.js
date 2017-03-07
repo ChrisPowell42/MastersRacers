@@ -1,10 +1,10 @@
-﻿(function (angular) {
+﻿(function(angular) {
 
     'use strict';
 
     angular
-        .module("racerApp")
-        .component("locationList", {
+        .module('racerApp')
+        .component('locationList', {
             templateUrl: 'Scripts/app/Locations/locationList.template.html',
             controller: Controller,
             controllerAs: 'locList',
@@ -34,10 +34,9 @@
 
         function toggleAddPanel() {
 
-            $log.log("toggleAddPanel called.");
+            $log.log('toggleAddPanel called.');
 
-            if (vm.addLocationCollapsed)
-            {
+            if (vm.addLocationCollapsed) {
                 vm.editLocationCollapsed = true;
                 vm.locationToEdit = null;
                 vm.locationToAdd = LocationService.newLocation();
@@ -49,7 +48,7 @@
 
         function toggleEditPanel(location) {
 
-            $log.log("toggleEditPanel called.");
+            $log.log('toggleEditPanel called.');
 
             if (vm.editLocationCollapsed && location !== null) {
                 vm.addLocationCollapsed = true;
@@ -73,8 +72,9 @@
 
         function setData(resp) {
 
-            if (resp !== undefined)
+            if (resp !== undefined) {
                 vm.locations = resp.data;
+            }
 
         }
 
@@ -91,9 +91,9 @@
 
             if (addedLocation !== null) {
                 vm.locations.push(addedLocation);
-            }
-            else
+            } else {
                 $log.log('Could not find added location in response.');
+            }
 
             vm.addLocationCollapsed = true;
 
@@ -113,7 +113,7 @@
 
         function updateLocation(location) {
 
-            $log.log("Update Location started");
+            $log.log('Update Location started');
 
             LocationService.post(location)
                            .then(vm.postUpdateLocation, HttpErrorService.onError);
@@ -123,7 +123,7 @@
         function postUpdateLocation(resp) {
 
             var updatedLocation, idx;
-            $log.log("Returned from Post location call.");
+            $log.log('Returned from Post location call.');
 
             updatedLocation = resp.data;
             if (updatedLocation) {
@@ -131,9 +131,8 @@
                 if (idx !== null) {
                     vm.locations[idx] = updatedLocation;
                     vm.editLocationCollapsed = true;
-                }
-                else {
-                    $log.log("Could not find updated location in response.");
+                } else {
+                    $log.log('Could not find updated location in response.');
                 }
             }
 
@@ -160,7 +159,6 @@
                     vm.locationToDelete = null;
                 }
             }
-
 
         }
 

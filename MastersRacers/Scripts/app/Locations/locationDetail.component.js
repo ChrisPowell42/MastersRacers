@@ -1,10 +1,10 @@
-﻿(function (angular) {
+﻿(function(angular) {
 
     'use strict';
 
     angular
-        .module("racerApp")
-        .component("locationDetail", {
+        .module('racerApp')
+        .component('locationDetail', {
             templateUrl: 'Scripts/app/Locations/locationDetail.template.html',
             controller: Controller,
             controllerAs: 'lDetail',
@@ -16,7 +16,6 @@
     function Controller() {
 
         var vm = this;
-
 
     }
 

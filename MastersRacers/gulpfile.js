@@ -54,14 +54,14 @@ var config = {
 }
 
 // Synchronously delete the output script file(s)
-gulp.task('clean-vendor-scripts', function () {
+gulp.task('clean-vendor-scripts', function() {
     del(['Scripts/build/*.*']).then(paths=>{
                   console.log('Deleted files and folders:\n', paths.join('\n'));
               });
 });
 
 //Create a jquery bundled file
-gulp.task('jquery-bundle', function () {
+gulp.task('jquery-bundle', function() {
     return gulp.src(config.jquerysrc)
      .pipe(sourcemaps.init())
      .pipe(uglify())
@@ -71,7 +71,7 @@ gulp.task('jquery-bundle', function () {
 });
 
 //Create an angular bundled file
-gulp.task('angular-bundle', function () {
+gulp.task('angular-bundle', function() {
     return gulp.src(config.angularsrc)
         //.pipe(debug())
         .pipe(sourcemaps.init())
@@ -92,7 +92,7 @@ gulp.task('angular-bundle', function () {
 //});
 
 //Create a bundle file for the application scripts
-gulp.task('app-bundle', function () {
+gulp.task('app-bundle', function() {
     return gulp.src(config.appsrc)
         //.pipe(debug())
         //.pipe(sourcemaps.init())
@@ -102,26 +102,27 @@ gulp.task('app-bundle', function () {
         .pipe(gulp.dest('Scripts'));
 });
 
-gulp.task('jshint', function () {
+gulp.task('jshint', function() {
     return gulp.src(config.appsrc)
         .pipe(jshint())
         .pipe(jshint.reporter("default"))
         .pipe(jshint.reporter("fail"));
 });
 
-gulp.task('jscs', function () {
+gulp.task('jscs', function() {
     return gulp.src(config.appsrc)
         .pipe(jscs())
-        .pipe(jscs.reporter());
+        .pipe(jscs.reporter())
+        .pipe(jscs.reporter("fail"));
 });
 
 // Combine and the vendor files from bower into bundles (output to the Scripts folder)
-gulp.task('vendor-scripts', ['jquery-bundle', 'angular-bundle', 'app-bundle'], function () {
+gulp.task('vendor-scripts', ['jquery-bundle', 'angular-bundle', 'app-bundle'], function() {
 
 });
 
 // Synchronously delete the output style files (css / fonts)
-gulp.task('clean-styles', function () {
+gulp.task('clean-styles', function() {
     del([config.cssout]);
 });
 
@@ -134,12 +135,16 @@ gulp.task('css', function () {
      .pipe(gulp.dest(config.cssout));
 });
 
+gulp.task('style-nazi', ['jshint', 'jscs'], function () {
+
+});
+
 //Restore all bower packages
-gulp.task('bower-restore', function () {
+gulp.task('bower-restore', function() {
     return bower();
 });
 
 //Set a default tasks
-gulp.task('default', ['bower-restore', 'clean-styles', 'clean-vendor-scripts', 'jshint'], function () {
+gulp.task('default', ['bower-restore', 'clean-styles', 'clean-vendor-scripts', 'style-nazi'], function() {
     gulp.start('vendor-scripts', 'css');
 });

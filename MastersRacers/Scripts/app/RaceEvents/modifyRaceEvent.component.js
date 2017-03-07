@@ -1,10 +1,10 @@
-﻿(function (angular) {
+﻿(function(angular) {
 
     'use strict';
 
     angular
-        .module("racerApp")
-        .component("modifyRaceEvent", {
+        .module('racerApp')
+        .component('modifyRaceEvent', {
             templateUrl: 'Scripts/app/RaceEvents/modifyRaceEvent.template.html',
             controller: Controller,
             controllerAs: 'mreCtrl',
@@ -37,7 +37,7 @@
                             .cancel('Cancel');
 
             $mdDialog.show(confirm)
-                     .then(modify, function () {/*Nop*/ });
+                     .then(modify, function() {/*Nop*/ });
 
         }
 

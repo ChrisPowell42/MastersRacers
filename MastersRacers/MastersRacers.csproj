@@ -282,6 +282,7 @@
     <Content Include="bower.json" />
     <Content Include="gulpfile.js" />
     <Content Include="package.json" />
+    <Content Include=".jscs.json" />
     <None Include="Properties\PublishProfiles\MastersRacers.pubxml" />
     <Content Include="Scripts\app\Locations\locationDetail.component.js" />
     <Content Include="Scripts\app\RaceEvents\modifyRaceEvent.component.js" />

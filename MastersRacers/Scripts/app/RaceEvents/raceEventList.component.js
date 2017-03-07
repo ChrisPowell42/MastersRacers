@@ -1,10 +1,10 @@
-﻿(function (angular) {
+﻿(function(angular) {
 
     'use strict';
 
     angular
-        .module("racerApp")
-        .component("raceEventList", {
+        .module('racerApp')
+        .component('raceEventList', {
             templateUrl: 'Scripts/app/RaceEvents/raceEventList.template.html',
             controller: Controller,
             controllerAs: 'reList',
@@ -28,53 +28,31 @@
         vm.raceEventToAdd = null;
         vm.raceEventToDelete = null;
 
-        vm.loadActiveData = function () {
+        vm.loadActiveData = loadActiveData;
+        vm.updateRaceEvent = updateRaceEvent;
+        vm.toggleAddPanel = toggleAddPanel;
+        vm.toggleEditPanel = toggleEditPanel;
+        vm.deleteRaceEvent = deleteRaceEvent;
+        vm.addRaceEvent = addRaceEvent;
+
+        function loadActiveData() {
 
             vm.raceEvents = null;
 
-            RaceEventService.getActive().then(vm.postLoadActiveData, HttpErrorService.onError);
+            RaceEventService.getActive()
+                            .then(postLoadActiveData, HttpErrorService.onError);
 
-        };
+        }
 
-        vm.postLoadActiveData = function (resp) {
+        function postLoadActiveData(resp) {
 
-            $log.log("Active Race Events loaded.");
+            $log.log('Active Race Events loaded.');
 
             vm.raceEvents = resp.data;
 
-        };
+        }
 
-        //vm.loadRefData = function () {
-
-        //    $log.log("Starting Race Event RefData load.");
-
-        //    vm.raceFormats = null;
-        //    vm.locations = null;
-        //    vm.activeSeason = null;
-
-        //    var promiseFormat = RefDataService.getRaceFormats();
-        //    var promiseLocations = LocationService.get();
-        //    var promiseActiveSeason = SeasonService.getActive();
-
-        //    $q.all([promiseFormat, promiseLocations, promiseActiveSeason]).then(function (resp) {
-        //        vm.raceFormats = resp[0].data;
-        //        vm.locations = resp[1].data;
-        //        vm.activeSeason = resp[2].data;
-
-        //        $log.log("Race Event RefData load complete.");
-
-        //    });
-
-        //};
-
-        //vm.$onInit = function () {
-
-        //    vm.loadRefData();
-        //    vm.loadActiveData();
-
-        //};
-
-        vm.toggleAddPanel = function () {
+        function toggleAddPanel() {
 
             if (vm.addRaceEventCollapsed) {
                 vm.editRaceEventCollapsed = true;
@@ -84,9 +62,9 @@
 
             vm.addRaceEventCollapsed = !vm.addRaceEventCollapsed;
 
-        };
+        }
 
-        vm.toggleEditPanel = function (raceEvent) {
+        function toggleEditPanel(raceEvent) {
 
             if (vm.editRaceEventCollapsed && raceEvent !== null) {
                 vm.addRaceEventCollapsed = true;
@@ -97,17 +75,18 @@
             if (raceEvent !== null) {
                 vm.raceEventToEdit = RaceEventService.cloneRaceEvent(raceEvent);
             }
-        };
+        }
 
-        vm.deleteRaceEvent = function (race) {
-            
+        function deleteRaceEvent(race) {
+
             vm.raceEventToDelete = race;
 
-            RaceEventService.delete(race.id).then(vm.postDeleteRaceEvent, HttpErrorService.onError);
+            RaceEventService.delete(race.id)
+                            .then(postDeleteRaceEvent, HttpErrorService.onError);
 
-        };
+        }
 
-        vm.postDeleteRaceEvent = function (resp) {
+        function postDeleteRaceEvent(resp) {
 
             var successful = resp.data;
             if (successful) {
@@ -115,33 +94,34 @@
                 if (idx >= 0) {
                     vm.raceEvents.splice(idx, 1);
                     vm.raceEventToDelete = null;
+                } else {
+                    $log.log('Deleted race event not found in list.');
                 }
-                else
-                    $log.log("Deleted race event not found in list.");
             }
 
-        };
+        }
 
-        vm.addRaceEvent = function (toAdd) {
+        function addRaceEvent(toAdd) {
 
-            RaceEventService.post(toAdd).then(vm.postAddRaceEvent, HttpErrorService.onError);
+            RaceEventService.post(toAdd)
+                            .then(postAddRaceEvent, HttpErrorService.onError);
 
-        };
+        }
 
-        vm.postAddRaceEvent = function (resp) {
+        function postAddRaceEvent(resp) {
 
             var addedEvent = resp.data;
 
             if (addedEvent !== null) {
                 vm.raceEvents.push(addedEvent);
-            }
-            else
+            } else {
                 $log.log('Could not find added event in response.');
+            }
 
             vm.addRaceEventCollapsed = true;
-        };
+        }
 
-        vm.findIdxById = function (raceEvent, raceEventList) {
+        function findIdxById(raceEvent, raceEventList) {
 
             for (var i = 0; i < raceEventList.length; i++) {
                 if (raceEventList[i].id === raceEvent.id) {
@@ -151,29 +131,29 @@
 
             return null;
 
-        };
+        }
 
-        vm.updateRaceEvent = function (toUpdate) {
+        function updateRaceEvent(toUpdate) {
 
-            RaceEventService.post(toUpdate).then(vm.postUpdateRaceEvent, HttpErrorService.onError);
+            RaceEventService.post(toUpdate)
+                            .then(postUpdateRaceEvent, HttpErrorService.onError);
 
-        };
+        }
 
-        vm.postUpdateRaceEvent = function (resp) {
+        function postUpdateRaceEvent(resp) {
 
             var updatedRaceEvent = resp.data;
             if (updatedRaceEvent !== null) {
-                var idx = vm.find(updatedRaceEvent, vm.raceEvents);
+                var idx = findIdxById(updatedRaceEvent, vm.raceEvents);
                 if (idx !== null) {
                     vm.raceEvents[idx] = updatedRaceEvent;
                     vm.editRaceEventCollapsed = true;
-                }
-                else {
-                    $log.log("Could not find updated race event in response.");
+                } else {
+                    $log.log('Could not find updated race event in response.');
                 }
             }
 
-        };
+        }
 
     }
 

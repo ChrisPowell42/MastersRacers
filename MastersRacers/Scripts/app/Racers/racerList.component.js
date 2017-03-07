@@ -1,10 +1,10 @@
-﻿(function (angular) {
+﻿(function(angular) {
 
     'use strict';
 
     angular
-        .module("racerApp")
-        .component("racerList", {
+        .module('racerApp')
+        .component('racerList', {
             templateUrl: 'Scripts/app/Racers/racerList.template.html',
             controller: Controller,
             controllerAs: 'rList',
@@ -47,7 +47,7 @@
 
         function toggleEditPanel(racer) {
 
-            $log.log("Handling toggleEditPanel.");
+            $log.log('Handling toggleEditPanel.');
 
             if (vm.editRacerCollapsed && racer !== null) {
                 vm.addRacerCollapsed = true;
@@ -122,9 +122,8 @@
                 if (idx !== null) {
                     vm.racers[idx] = updatedRacer;
                     vm.editRacerCollapsed = true;
-                }
-                else {
-                    $log.log("Could not find updated racer.");
+                } else {
+                    $log.log('Could not find updated racer.');
                 }
             }
 

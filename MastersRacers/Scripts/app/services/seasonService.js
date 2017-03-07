@@ -1,10 +1,10 @@
-﻿(function (angular) {
+﻿(function(angular) {
 
     'use strict';
 
     angular
-        .module("racerApp")
-        .service("SeasonService", SeasonService);
+        .module('racerApp')
+        .service('SeasonService', SeasonService);
 
     SeasonService.$inject = ['$http', 'HttpErrorService'];
     function SeasonService($http, HttpErrorService) {
@@ -24,11 +24,12 @@
         }
 
         function getResolved() {
-            return ss.get().then(function (resp) {
+            return ss.get()
+                     .then(function(resp) {
                 return resp.data;
             }, HttpErrorService.onError);
         }
-        
+
         function create() {
             var response = $http.put('api/season/{00000000-0000-0000-0000-000000000000}', null);
             return response;
@@ -40,7 +41,8 @@
         }
 
         function getActiveResolved() {
-            return ss.getActive().then(function (resp) {
+            return ss.getActive()
+                     .then(function(resp) {
                 return resp.data;
             }, HttpErrorService.onError);
         }

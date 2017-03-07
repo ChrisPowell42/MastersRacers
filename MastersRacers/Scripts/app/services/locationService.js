@@ -1,10 +1,10 @@
-﻿(function (angular) {
+﻿(function(angular) {
 
     'use strict';
 
     angular
-        .module("racerApp")
-        .service("LocationService", LocationService);
+        .module('racerApp')
+        .service('LocationService', LocationService);
 
     LocationService.$inject = ['$http', 'HttpErrorService'];
     function LocationService($http, HttpErrorService) {
@@ -25,7 +25,8 @@
         }
 
         function getResolved() {
-            return ls.get().then(function (resp) {
+            return ls.get()
+                     .then(function(resp) {
                 return resp.data;
             }, HttpErrorService.onError);
         }
@@ -54,7 +55,7 @@
                 longPos: 0.0
             };
         }
-        
+
         function cloneLocation(location) {
             return angular.copy(location);
         }

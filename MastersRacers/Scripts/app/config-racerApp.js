@@ -1,4 +1,4 @@
-﻿(function (angular) {
+﻿(function(angular) {
 
     'use strict';
 
@@ -22,7 +22,7 @@
             url: '/seasons',
             component: 'seasonList',
             resolve: {
-                seasons: function (SeasonService) {
+                seasons: function(SeasonService) {
                     return SeasonService.getResolved();
                 }
             }
@@ -33,7 +33,7 @@
             url: '/locations',
             component: 'locationList',
             resolve: {
-                locations: function (LocationService) {
+                locations: function(LocationService) {
                     return LocationService.getResolved();
                 }
             }
@@ -44,10 +44,10 @@
             url: '/racers',
             component: 'racerList',
             resolve: {
-                racers: function (RacerService) {
+                racers: function(RacerService) {
                     return RacerService.getResolved();
                 },
-                raceSeries: function (RefDataService) {
+                raceSeries: function(RefDataService) {
                     return RefDataService.getRaceSeriesResolved();
                 }
             }
@@ -58,16 +58,16 @@
             url: '/races',
             component: 'raceEventList',
             resolve: {
-                raceEvents: function (RaceEventService) {
+                raceEvents: function(RaceEventService) {
                     return RaceEventService.getActiveResolved();
                 },
-                raceFormats: function (RefDataService) {
+                raceFormats: function(RefDataService) {
                     return RefDataService.getRaceFormatsResolved();
                 },
-                locations: function (LocationService) {
+                locations: function(LocationService) {
                     return LocationService.getResolved();
                 },
-                activeSeason: function (SeasonService) {
+                activeSeason: function(SeasonService) {
                     return SeasonService.getActiveResolved();
                 }
             }

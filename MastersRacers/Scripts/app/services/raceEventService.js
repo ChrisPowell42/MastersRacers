@@ -1,10 +1,10 @@
-﻿(function (angular) {
+﻿(function(angular) {
 
     'use strict';
 
     angular
-        .module("racerApp")
-        .service("RaceEventService", RaceEventService);
+        .module('racerApp')
+        .service('RaceEventService', RaceEventService);
 
     RaceEventService.$inject = ['$http', 'HttpErrorService'];
     function RaceEventService($http, HttpErrorService) {
@@ -26,7 +26,7 @@
         }
 
         function getActiveResolved() {
-            return rs.getActive().then(function (resp) {
+            return rs.getActive().then(function(resp) {
                 return resp.data;
             }, HttpErrorService.onError);
         }

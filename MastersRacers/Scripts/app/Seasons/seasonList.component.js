@@ -1,10 +1,10 @@
-﻿(function (angular) {
+﻿(function(angular) {
 
     'use strict';
 
     angular
-        .module("racerApp")
-        .component("seasonList", {
+        .module('racerApp')
+        .component('seasonList', {
             templateUrl: 'Scripts/app/Seasons/seasonList.template.html',
             controller: Controller,
             controllerAs: 'sList',
@@ -14,11 +14,11 @@
         });
 
     Controller.$inject = ['$log', '$mdDialog', 'SeasonService', 'HttpErrorService'];
-    function Controller( $log, $mdDialog, SeasonService, HttpErrorService) {
+    function Controller($log, $mdDialog, SeasonService, HttpErrorService) {
 
         var vm = this;
 
-        vm.title = "Seasons";
+        vm.title = 'Seasons';
 
         vm.editSeasonOpen = false;
         vm.selectedSeason = null;
@@ -36,8 +36,7 @@
             if (season !== null) {
                 vm.selectedSeason = season;
                 vm.editSeasonOpen = true;
-            }
-            else {
+            } else {
                 vm.selectedSeason = null;
                 vm.editSeasonOpen = false;
             }
@@ -47,13 +46,13 @@
         function triggerActivateSeason(event) {
 
             var confirm = $mdDialog.confirm()
-                          .title("Are you sure you want to activate this Season?")
-                          .textContent("All new races will be added to this season.")
+                          .title('Are you sure you want to activate this Season?')
+                          .textContent('All new races will be added to this season.')
                           .targetEvent(event)
-                          .ok("Activate")
-                          .cancel("Cancel");
-            
-            $mdDialog.show(confirm).then(activateSeason, function () { /*nop*/ });
+                          .ok('Activate')
+                          .cancel('Cancel');
+
+            $mdDialog.show(confirm).then(activateSeason, function() { /*nop*/ });
 
         }
 
@@ -86,7 +85,7 @@
 
         function loadData(id) {
 
-            $log.log("Starting Season Load Data");
+            $log.log('Starting Season Load Data');
 
             vm.seasons = null;
             vm.selectedId = id;
@@ -106,23 +105,21 @@
                 vm.selectedId = null;
             }
 
-            $log.log("After Season Data Load finished.");
+            $log.log('After Season Data Load finished.');
 
         }
-
-        //vm.$onInit = vm.loadData;
 
         function triggerCreateSeason(event) {
 
             var confirm = $mdDialog.confirm()
-                          .title("Are you sure you want to create a new Season?")
-                          .textContent("All new races will be added to this season.")
+                          .title('Are you sure you want to create a new Season?')
+                          .textContent('All new races will be added to this season.')
                           .targetEvent(event)
-                          .ok("Create")
-                          .cancel("Cancel");
+                          .ok('Create')
+                          .cancel('Cancel');
 
             $mdDialog.show(confirm)
-                     .then(createSeason, function () { /*nop*/ });
+                     .then(createSeason, function() { /*nop*/ });
 
         }
 

@@ -1,10 +1,10 @@
-﻿(function (angular) {
+﻿(function(angular) {
 
     'use strict';
 
     angular
-        .module("racerApp")
-        .component("locationListItem", {
+        .module('racerApp')
+        .component('locationListItem', {
             templateUrl: 'Scripts/app/Locations/locationListItem.template.html',
             controller: Controller,
             controllerAs: 'lItem',
@@ -31,12 +31,12 @@
                             .ok('Delete')
                             .cancel('Cancel');
 
-            $mdDialog.show(confirm).then( deleteItem, function () { /*nop*/});
+            $mdDialog.show(confirm).then(deleteItem, function() { /*nop*/});
 
         }
 
         function deleteItem() {
-            vm.onDelete({ location: vm.listItem });
+            vm.onDelete({location: vm.listItem});
         }
 
     }

@@ -1,10 +1,10 @@
-﻿(function (angular) {
+﻿(function(angular) {
 
     'use strict';
 
     angular
-        .module("racerApp")
-        .component("racerListItem", {
+        .module('racerApp')
+        .component('racerListItem', {
             templateUrl: 'Scripts/app/Racers/racerListItem.template.html',
             controller: Controller,
             controllerAs: 'rItem',
@@ -32,12 +32,12 @@
                             .cancel('Cancel');
 
             $mdDialog.show(confirm)
-                     .then(callDelete, function () { /*nop*/ });
+                     .then(callDelete, function() { /*nop*/ });
 
         }
 
-        function callDelete () {
-            vm.onDelete({ racer: vm.listItem });
+        function callDelete() {
+            vm.onDelete({racer: vm.listItem});
         }
 
     }
