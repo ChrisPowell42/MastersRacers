@@ -10,6 +10,7 @@ var copy = require('gulp-copy');
 var bower = require('gulp-bower');
 var sourcemaps = require('gulp-sourcemaps');
 var jshint = require('gulp-jshint');
+var jscs = require('gulp-jscs');
 var debug = require('gulp-debug');
 
 var config = {
@@ -81,14 +82,14 @@ gulp.task('angular-bundle', function () {
 });
 
 //Create a modernizr bundled file
-gulp.task('modernizer', function () {
-    return gulp.src(config.modernizrsrc)
-        .pipe(sourcemaps.init())
-        .pipe(uglify())
-        .pipe(concat(config.modernizrbundle))
-        .pipe(sourcemaps.write(''))
-        .pipe(gulp.dest('Scripts'));
-});
+//gulp.task('modernizer', function () {
+//    return gulp.src(config.modernizrsrc)
+//        .pipe(sourcemaps.init())
+//        .pipe(uglify())
+//        .pipe(concat(config.modernizrbundle))
+//        .pipe(sourcemaps.write(''))
+//        .pipe(gulp.dest('Scripts'));
+//});
 
 //Create a bundle file for the application scripts
 gulp.task('app-bundle', function () {
@@ -106,6 +107,12 @@ gulp.task('jshint', function () {
         .pipe(jshint())
         .pipe(jshint.reporter("default"))
         .pipe(jshint.reporter("fail"));
+});
+
+gulp.task('jscs', function () {
+    return gulp.src(config.appsrc)
+        .pipe(jscs())
+        .pipe(jscs.reporter());
 });
 
 // Combine and the vendor files from bower into bundles (output to the Scripts folder)

@@ -1,11 +1,11 @@
-﻿(function (ng) {
+﻿(function (angular) {
 
     'use strict';
 
     angular
         .module("racerApp")
         .component("raceEventList", {
-            templateUrl: 'Scripts/app/templates/raceEventList.html',
+            templateUrl: 'Scripts/app/RaceEvents/raceEventList.template.html',
             controller: Controller,
             controllerAs: 'reList',
             bindings: {

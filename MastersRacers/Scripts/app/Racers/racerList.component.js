@@ -1,11 +1,11 @@
-﻿(function (ng) {
+﻿(function (angular) {
 
     'use strict';
 
     angular
         .module("racerApp")
         .component("racerList", {
-            templateUrl: 'Scripts/app/templates/racerList.html',
+            templateUrl: 'Scripts/app/Racers/racerList.template.html',
             controller: Controller,
             controllerAs: 'rList',
             bindings: {
@@ -26,7 +26,14 @@
         vm.racerToAdd = null;
         vm.racerToDelete = null;
 
-        vm.toggleAddPanel = function () {
+        vm.toggleAddPanel = toggleAddPanel;
+        vm.toggleEditPanel = toggleEditPanel;
+        vm.loadData = loadData;
+        vm.addRacer = addRacer;
+        vm.updateRacer = updateRacer;
+        vm.deleteRacer = deleteRacer;
+
+        function toggleAddPanel() {
 
             if (vm.addRacerCollapsed) {
                 vm.editRacerCollapsed = true;
@@ -36,9 +43,9 @@
 
             vm.addRacerCollapsed = !vm.addRacerCollapsed;
 
-        };
+        }
 
-        vm.toggleEditPanel = function (racer) {
+        function toggleEditPanel(racer) {
 
             $log.log("Handling toggleEditPanel.");
 
@@ -51,53 +58,31 @@
             if (racer !== null) {
                 vm.racerToEdit = RacerService.cloneRacer(racer);
             }
-        };
+        }
 
-        vm.loadData = function () {
+        function loadData() {
 
             vm.racers = null;
 
             RacerService.get()
-                        .then(vm.afterLoadData, HttpErrorService.onError);
+                        .then(afterLoadData, HttpErrorService.onError);
 
-        };
+        }
 
-        vm.afterLoadData = function (resp) {
+        function afterLoadData(resp) {
 
             vm.racers = resp.data;
 
-        };
+        }
 
-        vm.loadRefData = function () {
-
-            vm.raceSeries = null;
-
-            RefDataService.getRaceSeries()
-                          .then(vm.afterLoadRefData, HttpErrorService.onError);
-
-        };
-
-        vm.afterLoadRefData = function (resp) {
-
-            vm.raceSeries = resp.data;
-
-        };
-
-        //vm.$onInit = function () {
-
-        //    vm.loadData();
-        //    vm.loadRefData();
-
-        //};
-
-        vm.addRacer = function (racer) {
+        function addRacer(racer) {
 
             RacerService.post(racer)
-                        .then(vm.postAddRacer, HttpErrorService.onError);
+                        .then(postAddRacer, HttpErrorService.onError);
 
-        };
+        }
 
-        vm.postAddRacer = function (resp) {
+        function postAddRacer(resp) {
 
             var addedRacer = resp.data;
             if (addedRacer !== null) {
@@ -106,9 +91,9 @@
 
             vm.addRacerCollapsed = true;
             vm.racerToAdd = null;
-        };
+        }
 
-        vm.findIdxById = function (racer, racerList) {
+        function findIdxById(racer, racerList) {
 
             for (var i = 0; i < racerList.length; i++) {
                 if (racerList[i].id === racer.id) {
@@ -118,20 +103,22 @@
 
             return null;
 
-        };
+        }
 
-        vm.updateRacer = function (racer) {
+        function updateRacer(racer) {
 
             RacerService.put(racer)
-                        .then(vm.postUpdateRacer, HttpErrorService.onError);
+                        .then(postUpdateRacer, HttpErrorService.onError);
 
-        };
+        }
 
-        vm.postUpdateRacer = function (resp) {
+        function postUpdateRacer(resp) {
 
-            var updatedRacer = resp.data;
+            var updatedRacer, idx;
+
+            updatedRacer = resp.data;
             if (updatedRacer !== null) {
-                var idx = vm.findIdxById(updatedRacer, vm.racers);
+                idx = findIdxById(updatedRacer, vm.racers);
                 if (idx !== null) {
                     vm.racers[idx] = updatedRacer;
                     vm.editRacerCollapsed = true;
@@ -141,16 +128,17 @@
                 }
             }
 
-        };
+        }
 
-        vm.deleteRacer = function (racer) {
+        function deleteRacer(racer) {
 
             vm.racerToDelete = racer;
-            RacerService.delete(racer.id).then(vm.afterDeleteRacer, HttpErrorService.onError);
+            RacerService.delete(racer.id)
+                        .then(afterDeleteRacer, HttpErrorService.onError);
 
-        };
+        }
 
-        vm.afterDeleteRacer = function (resp) {
+        function afterDeleteRacer(resp) {
 
             var successful = resp.data;
             if (successful) {
@@ -162,7 +150,7 @@
 
             vm.racerToDelete = null;
 
-        };
+        }
 
     }
 

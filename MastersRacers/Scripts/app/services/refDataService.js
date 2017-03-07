@@ -1,37 +1,42 @@
-﻿(function (ng) {
+﻿(function (angular) {
 
     'use strict';
 
     angular
-    .module("racerApp")
-    .service("RefDataService", RefDataService);
+        .module("racerApp")
+        .service("RefDataService", RefDataService);
 
     RefDataService.$inject = ['$http', 'HttpErrorService'];
     function RefDataService($http, HttpErrorService) {
 
         var rs = this;
 
-        rs.getRaceSeries = function () {
+        rs.getRaceSeries = getRaceSeries;
+        rs.getRaceSeriesResolved = getRaceSeriesResolved;
+        rs.getRaceFormats = getRaceFormats;
+        rs.getRaceFormatsResolved = getRaceFormatsResolved;
+
+        function getRaceSeries() {
             var response = $http.get('api/refdata/raceseries', { cache: true });
             return response;
-        };
+        }
 
-        rs.getRaceSeriesResolved = function () {
+        function getRaceSeriesResolved() {
             return rs.getRaceSeries().then(function (resp) {
                 return resp.data;
             }, HttpErrorService.onError);
-        };
+        }
 
-        rs.getRaceFormats = function () {
+        function getRaceFormats() {
             var response = $http.get('api/refdata/raceformats', { cache: true });
             return response;
-        };
+        }
 
-        rs.getRaceFormatsResolved = function () {
+        function getRaceFormatsResolved() {
             return rs.getRaceFormats().then(function (resp) {
                 return resp.data;
             }, HttpErrorService.onError);
-        };
+        }
 
     }
 

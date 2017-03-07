@@ -1,11 +1,11 @@
-﻿(function (ng) {
+﻿(function (angular) {
 
     'use strict';
 
     angular
         .module("racerApp")
         .component("locationList", {
-            templateUrl: 'Scripts/app/templates/locationList.html',
+            templateUrl: 'Scripts/app/Locations/locationList.template.html',
             controller: Controller,
             controllerAs: 'locList',
             bindings: {
@@ -25,7 +25,14 @@
         vm.locationToAdd = null;
         vm.locationToDelete = null;
 
-        vm.toggleAddPanel = function () {
+        vm.dataLoad = dataLoad;
+        vm.toggleAddPanel = toggleAddPanel;
+        vm.toggleEditPanel = toggleEditPanel;
+        vm.addLocation = addLocation;
+        vm.updateLocation = updateLocation;
+        vm.deleteLocation = deleteLocation;
+
+        function toggleAddPanel() {
 
             $log.log("toggleAddPanel called.");
 
@@ -38,9 +45,9 @@
 
             vm.addLocationCollapsed = !vm.addLocationCollapsed;
 
-        };
+        }
 
-        vm.toggleEditPanel = function (location) {
+        function toggleEditPanel(location) {
 
             $log.log("toggleEditPanel called.");
 
@@ -53,34 +60,32 @@
             if (location !== null) {
                 vm.locationToEdit = LocationService.cloneLocation(location);
             }
-        };
+        }
 
-        vm.setData = function (resp) {
-
-            if (resp !== undefined)
-                vm.locations = resp.data;
-
-        };
-
-        vm.dataLoad = function () {
+        function dataLoad() {
 
             vm.locations = null;
 
             LocationService.get()
-                           .then(vm.setData, HttpErrorService.onError);
+                           .then(setData, HttpErrorService.onError);
 
-        };
+        }
 
-        //vm.$onInit = vm.dataLoad;
+        function setData(resp) {
 
-        vm.addLocation = function (location) {
+            if (resp !== undefined)
+                vm.locations = resp.data;
+
+        }
+
+        function addLocation(location) {
 
             LocationService.post(location)
-                           .then(vm.postAddLocation, HttpErrorService.onError);
+                           .then(postAddLocation, HttpErrorService.onError);
 
-        };
+        }
 
-        vm.postAddLocation = function (resp) {
+        function postAddLocation(resp) {
 
             var addedLocation = resp.data;
 
@@ -92,9 +97,9 @@
 
             vm.addLocationCollapsed = true;
 
-        };
+        }
 
-        vm.findIdxById = function (location, locationList) {
+        function findIdxById(location, locationList) {
 
             for (var i = 0; i < locationList.length; i++) {
                 if (locationList[i].id === location.id) {
@@ -104,24 +109,25 @@
 
             return null;
 
-        };
+        }
 
-        vm.updateLocation = function (location) {
+        function updateLocation(location) {
 
             $log.log("Update Location started");
 
             LocationService.post(location)
                            .then(vm.postUpdateLocation, HttpErrorService.onError);
 
-        };
+        }
 
-        vm.postUpdateLocation = function (resp) {
+        function postUpdateLocation(resp) {
 
+            var updatedLocation, idx;
             $log.log("Returned from Post location call.");
 
-            var updatedLocation = resp.data;
-            if (updatedLocation !== null) {
-                var idx = vm.findIdxById(updatedLocation, vm.locations);
+            updatedLocation = resp.data;
+            if (updatedLocation) {
+                idx = findIdxById(updatedLocation, vm.locations);
                 if (idx !== null) {
                     vm.locations[idx] = updatedLocation;
                     vm.editLocationCollapsed = true;
@@ -131,22 +137,24 @@
                 }
             }
 
-        };
+        }
 
-        vm.deleteLocation = function (location) {
+        function deleteLocation(location) {
 
             vm.locationToDelete = location;
 
             LocationService.delete(location.id)
-                           .then(vm.postDeleteLocation, HttpErrorService.onError);
+                           .then(postDeleteLocation, HttpErrorService.onError);
 
-        };
+        }
 
-        vm.postDeleteLocation = function (resp) {
+        function postDeleteLocation(resp) {
 
-            var successful = resp.data;
+            var successful, idx;
+
+            successful = resp.data;
             if (successful) {
-                var idx = vm.locations.indexOf(vm.locationToDelete);
+                idx = vm.locations.indexOf(vm.locationToDelete);
                 if (idx >= 0) {
                     vm.locations.splice(idx, 1);
                     vm.locationToDelete = null;
@@ -154,7 +162,7 @@
             }
 
 
-        };
+        }
 
     }
 

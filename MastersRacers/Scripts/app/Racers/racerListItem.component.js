@@ -1,13 +1,13 @@
-﻿(function (ng) {
+﻿(function (angular) {
 
     'use strict';
 
     angular
         .module("racerApp")
-        .component("locationListItem", {
-            templateUrl: 'Scripts/app/templates/locationListItem.html',
+        .component("racerListItem", {
+            templateUrl: 'Scripts/app/Racers/racerListItem.template.html',
             controller: Controller,
-            controllerAs: 'lItem',
+            controllerAs: 'rItem',
             bindings: {
                 listItem: '<',
                 onEditToggle: '&',
@@ -20,26 +20,25 @@
 
         var vm = this;
 
-        vm.delete = function () {
-            vm.onDelete({ location: vm.listItem });
-        };
+        vm.deleteToggle = deleteToggle;
 
-        vm.editToggle = function () {
-            vm.onEditToggle({ location: vm.listItem });
-        };
-
-        vm.deleteToggle = function (event) {
+        function deleteToggle(event) {
 
             var confirm = $mdDialog.confirm()
                             .title('Confirm Deletion')
-                            .textContent('Please confirm that you wish to delete this location.')
+                            .textContent('Please confirm that you wish to delete this racer.<br/>Cannot be undone.')
                             .targetEvent(event)
                             .ok('Delete')
                             .cancel('Cancel');
 
-            $mdDialog.show(confirm).then( vm.delete, function () { /*nop*/});
+            $mdDialog.show(confirm)
+                     .then(callDelete, function () { /*nop*/ });
 
-        };
+        }
+
+        function callDelete () {
+            vm.onDelete({ racer: vm.listItem });
+        }
 
     }
 

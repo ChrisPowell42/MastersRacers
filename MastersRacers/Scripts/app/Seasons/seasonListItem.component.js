@@ -1,11 +1,11 @@
-﻿(function (ng) {
+﻿(function (angular) {
 
     'use strict';
 
     angular
         .module("racerApp")
         .component("seasonListItem", {
-            templateUrl: 'Scripts/app/templates/seasonListItem.html',
+            templateUrl: 'Scripts/app/Seasons/seasonListItem.template.html',
             controller: Controller,
             controllerAs: 'sItem',
             bindings: {
@@ -19,9 +19,11 @@
 
         var vm = this;
 
-        vm.editToggle = function () {
+        vm.editToggle = editToggle;
+
+        function editToggle() {
             vm.onEditToggle({ season: vm.listItem });
-        };
+        }
 
     }
 

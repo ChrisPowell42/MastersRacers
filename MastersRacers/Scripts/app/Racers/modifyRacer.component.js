@@ -1,11 +1,11 @@
-﻿(function (ng) {
+﻿(function (angular) {
 
     'use strict';
 
     angular
         .module("racerApp")
         .component("modifyRacer", {
-            templateUrl: 'Scripts/app/templates/modifyRacer.html',
+            templateUrl: 'Scripts/app/Racers/modifyRacer.template.html',
             controller: Controller,
             controllerAs: 'mrCtrl',
             bindings: {
@@ -22,17 +22,9 @@
 
         var mv = this;
 
-        mv.modifyRacer = mv.modifyItem;
-
-        mv.cancel = function () {
-            mv.onCancel();
-        };
-
-        mv.modify = function () {
-            mv.onModify(mv.modifyRacer);
-        };
-
-        mv.modifyTrigger = function (event) {
+        mv.modifyTrigger = modifyTrigger;
+        
+        function modifyTrigger(event) {
 
             var confirm = $mdDialog.confirm()
                             .title(mv.modifyAction + ' confirmation')
@@ -43,8 +35,11 @@
 
             $mdDialog.show(confirm).then(mv.modify, function () {/*Nop*/ });
 
-        };
+        }
 
+        function modify() {
+            mv.onModify(mv.modifyItem);
+        }
     }
 
 }(this.angular));

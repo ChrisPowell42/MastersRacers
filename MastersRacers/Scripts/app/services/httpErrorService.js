@@ -1,4 +1,4 @@
-﻿(function (ng) {
+﻿(function (angular) {
 
     'use strict';
 
@@ -11,7 +11,9 @@
 
         var es = this;
 
-        es.onError = function (httpError) {
+        es.onError = onError;
+        
+        function onError(httpError) {
 
             $log.log(httpError.data);
 
@@ -24,7 +26,7 @@
                 $mdToast.hide(errorToast);
             });
 
-        };
+        }
 
     }
 

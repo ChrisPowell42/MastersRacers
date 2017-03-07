@@ -1,11 +1,11 @@
-﻿(function (ng) {
+﻿(function (angular) {
 
     'use strict';
 
     angular
         .module("racerApp")
         .component("seasonList", {
-            templateUrl: 'Scripts/app/templates/seasonList.html',
+            templateUrl: 'Scripts/app/Seasons/seasonList.template.html',
             controller: Controller,
             controllerAs: 'sList',
             bindings: {
@@ -24,7 +24,14 @@
         vm.selectedSeason = null;
         vm.selectedId = null;
 
-        vm.toggleEditPanel = function(season) {
+        vm.loadData = loadData;
+        vm.toggleEditPanel = toggleEditPanel;
+        vm.triggerActivateSeason = triggerActivateSeason;
+        vm.activateSeason = activateSeason;
+        vm.triggerCreateSeason = triggerCreateSeason;
+        vm.createSeason = createSeason;
+
+        function toggleEditPanel(season) {
 
             if (season !== null) {
                 vm.selectedSeason = season;
@@ -35,9 +42,9 @@
                 vm.editSeasonOpen = false;
             }
 
-        };
+        }
 
-        vm.triggerActivateSeason = function (event) {
+        function triggerActivateSeason(event) {
 
             var confirm = $mdDialog.confirm()
                           .title("Are you sure you want to activate this Season?")
@@ -46,27 +53,26 @@
                           .ok("Activate")
                           .cancel("Cancel");
             
-            $mdDialog.show(confirm).then(function () {
-                vm.activateSeason();
-            }, function () { /*nop*/ });
+            $mdDialog.show(confirm).then(activateSeason, function () { /*nop*/ });
 
-        };
+        }
 
-        vm.activateSeason = function () {
+        function activateSeason() {
 
-            SeasonService.setActive(vm.selectedSeason.id).then(vm.doSeasonActivated, HttpErrorService.onError);
+            SeasonService.setActive(vm.selectedSeason.id)
+                         .then(doSeasonActivated, HttpErrorService.onError);
 
-        };
+        }
 
-        vm.doSeasonActivated = function (resp) {
+        function doSeasonActivated(resp) {
 
             if (resp.data) {
-                vm.loadData(vm.selectedSeason.id);
+                loadData(vm.selectedSeason.id);
             }
 
-        };
+        }
 
-        vm.findById = function (id, seasonList) {
+        function findById(id, seasonList) {
 
             for (var i = 0; i < seasonList.length; i++) {
                 if (seasonList[i].id === id) {
@@ -76,36 +82,37 @@
 
             return null;
 
-        };
+        }
 
-        vm.loadData = function(id) {
+        function loadData(id) {
 
             $log.log("Starting Season Load Data");
 
             vm.seasons = null;
             vm.selectedId = id;
 
-            SeasonService.get().then(vm.afterDataLoad, HttpErrorService.onError);
+            SeasonService.get()
+                         .then(afterDataLoad, HttpErrorService.onError);
 
-        };
+        }
 
-        vm.afterDataLoad = function (resp) {
+        function afterDataLoad(resp) {
 
             vm.seasons = resp.data;
 
             if (vm.selectedId !== null) {
                 vm.selectedSeason = null;
-                vm.toggleEditPanel(vm.findById(vm.selectedId, vm.seasons));
+                vm.toggleEditPanel(findById(vm.selectedId, vm.seasons));
                 vm.selectedId = null;
             }
 
             $log.log("After Season Data Load finished.");
 
-        };
+        }
 
         //vm.$onInit = vm.loadData;
 
-        vm.triggerCreateSeason = function (event) {
+        function triggerCreateSeason(event) {
 
             var confirm = $mdDialog.confirm()
                           .title("Are you sure you want to create a new Season?")
@@ -114,23 +121,23 @@
                           .ok("Create")
                           .cancel("Cancel");
 
-            $mdDialog.show(confirm).then(function () {
-                vm.createSeason();
-            }, function () { /*nop*/ });
+            $mdDialog.show(confirm)
+                     .then(createSeason, function () { /*nop*/ });
 
-        };
+        }
 
-        vm.createSeason = function() {
+        function createSeason() {
 
-            SeasonService.create().then(vm.afterCreateSeason, HttpErrorService.onError);
+            SeasonService.create()
+                         .then(afterCreateSeason, HttpErrorService.onError);
 
-        };
+        }
 
-        vm.afterCreateSeason = function (resp) {
+        function afterCreateSeason(resp) {
 
-            vm.loadData();
+            loadData();
 
-        };
+        }
 
     }
 

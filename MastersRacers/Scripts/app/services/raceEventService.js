@@ -1,4 +1,4 @@
-﻿(function (ng) {
+﻿(function (angular) {
 
     'use strict';
 
@@ -11,44 +11,53 @@
 
         var rs = this;
 
-        rs.getActive = function () {
+        rs.getActive = getActive;
+        rs.getActiveResolved = getActiveResolved;
+        rs.get = get;
+        rs.delete = deleteEvent;
+        rs.put = put;
+        rs.post = post;
+        rs.cloneRaceEvent = cloneRaceEvent;
+        rs.newRaceEvent = newRaceEvent;
+
+        function getActive() {
             var response = $http.get('api/raceevents/active');
             return response;
-        };
+        }
 
-        rs.getActiveResolved = function () {
+        function getActiveResolved() {
             return rs.getActive().then(function (resp) {
                 return resp.data;
             }, HttpErrorService.onError);
-        };
+        }
 
-        rs.get = function () {
+        function get() {
             var response = $http.get('api/raceevents');
             return response;
-        };
+        }
 
-        rs.delete = function (id) {
+        function deleteEvent(id) {
             var response = $http.delete('api/raceevent/' + id);
             return response;
-        };
+        }
 
-        rs.put = function (raceEvent) {
+        function put(raceEvent) {
             var response = $http.put('api/raceevent/' + raceEvent.id, raceEvent);
             return response;
-        };
+        }
 
-        rs.post = function (raceEvent) {
+        function post(raceEvent) {
             var response = $http.post('api/raceevent/', raceEvent);
             return response;
-        };
+        }
 
-        rs.cloneRaceEvent = function (raceEventToClone) {
+        function cloneRaceEvent(raceEventToClone) {
 
             return angular.copy(raceEventToClone);
 
-        };
+        }
 
-        rs.newRaceEvent = function (activeSeason) {
+        function newRaceEvent(activeSeason) {
 
             return {
                 id: null,
@@ -61,7 +70,7 @@
                 notes: ''
             };
 
-        };
+        }
 
     }
 

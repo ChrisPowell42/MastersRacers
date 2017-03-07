@@ -1,11 +1,11 @@
-﻿(function (ng) {
+﻿(function (angular) {
 
     'use strict';
 
     angular
         .module("racerApp")
         .component("modifyLocation", {
-            templateUrl: 'Scripts/app/templates/modifyLocation.html',
+            templateUrl: 'Scripts/app/Locations/modifyLocation.template.html',
             controller: Controller,
             controllerAs: 'mlCtrl',
             bindings: {
@@ -21,19 +21,9 @@
 
         var mv = this;
 
-        mv.modifyLocation = mv.modifyItem;
+        mv.modifyTrigger = modifyTrigger;
 
-        mv.cancel = function () {
-            $log.log("Cancel method called in modifyLocation");
-            mv.onCancel();
-        };
-
-        mv.modify = function () {
-            $log.log("Modify method called in modifyLocation");
-            mv.onModify(mv.modifyLocation);
-        };
-
-        mv.modifyTrigger = function (event) {
+        function modifyTrigger(event) {
 
             var confirm = $mdDialog.confirm()
                             .title(mv.modifyAction+' confirmation')
@@ -42,10 +32,15 @@
                             .ok(mv.modifyAction)
                             .cancel('Cancel');
 
-            $mdDialog.show(confirm).then(mv.modify, function () {/*Nop*/ });
+            $mdDialog.show(confirm)
+                     .then(modify, function () {/*Nop*/ });
 
-        };
+        }
 
+        function modify() {
+            $log.log("Modify method called in modifyLocation");
+            mv.onModify(mv.modifyItem);
+        }
     }
 
 }(this.angular));

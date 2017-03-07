@@ -1,4 +1,4 @@
-﻿(function (ng) {
+﻿(function (angular) {
 
     'use strict';
 
@@ -11,33 +11,41 @@
 
         var rs = this;
 
-        rs.get = function () {
+        rs.get = get;
+        rs.getResolved = getResolved;
+        rs.delete = deleteRacer;
+        rs.put = put;
+        rs.post = post;
+        rs.newRacer = newRacer;
+        rs.cloneRacer = cloneRacer;
+
+        function get() {
             var response = $http.get('api/racers');
             return response;
-        };
+        }
 
-        rs.getResolved = function () {
+        function getResolved() {
             return rs.get().then(function (resp) {
                 return resp.data;
             }, HttpErrorService.onError);
-        };
+        }
 
-        rs.delete = function (id) {
+        function deleteRacer(id) {
             var response = $http.delete('api/racer/' + id);
             return response;
-        };
+        }
 
-        rs.put = function (racer) {
+        function put(racer) {
             var response = $http.put('api/racer/' + racer.id, racer);
             return response;
-        };
+        }
 
-        rs.post = function (racer) {
+        function post(racer) {
             var response = $http.post('api/racer/', racer);
             return response;
-        };
+        }
 
-        rs.newRacer = function () {
+        function newRacer() {
             return {
                 id: null,
                 name: 'New Racer',
@@ -45,11 +53,11 @@
                 active: true,
                 raceSeries: null
             };
-        };
+        }
 
-        rs.cloneRacer = function (racerToClone) {
+        function cloneRacer(racerToClone) {
             return angular.copy(racerToClone);
-        };
+        }
 
     }
 
