@@ -39,6 +39,44 @@
             }
         };
 
+        var addLocationState = {
+            name: 'locations.add',
+            url: '/add',
+            component: 'modifyLocation',
+            resolve: {
+                modifyAction: function() { return 'Add'; },
+                modifyItem: function(LocationService) {
+                    return LocationService.newLocation();
+                }
+            }
+        };
+
+        var editLocationState = {
+            name: 'locations.edit',
+            url: '/edit/:id',
+            component: 'modifyLocation',
+            resolve: {
+                modifyAction: function() { return 'Edit'; },
+                modifyItem: function(LocationService, $transition$, locations) {
+                    var locationId = $transition$.params().id;
+                    var cloneLocation = LocationService.findLocationInListById(locationId, locations);
+                    return LocationService.cloneLocation(cloneLocation);
+                }
+            }
+        };
+
+        var viewLocationState = {
+            name: 'locations.detail',
+            url: '/:id',
+            component: 'locationDetail',
+            resolve: {
+                location: function(LocationService, $transition$, locations) {
+                    var locationId = $transition$.params().id;
+                    return LocationService.findLocationInListById(locationId, locations);
+                }
+            }
+        };
+
         var racersState = {
             name: 'racers',
             url: '/racers',
@@ -76,6 +114,9 @@
         $stateProvider.state(defaultState);
         $stateProvider.state(seasonState);
         $stateProvider.state(locationState);
+        $stateProvider.state(addLocationState);
+        $stateProvider.state(editLocationState);
+        $stateProvider.state(viewLocationState);
         $stateProvider.state(racersState);
         $stateProvider.state(raceEventsState);
 

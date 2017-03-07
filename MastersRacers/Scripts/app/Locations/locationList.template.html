@@ -1,18 +1,13 @@
 ﻿<div layout="row" layout-fill>
-    <md-sidenav flex layout-padding class="md-sidenav-left md-whiteframe-z2" md-component_id="listLocationLeft" md-disable-backdrop md-is-locked-open="true">
+    <md-sidenav flex="20" layout-padding class="md-sidenav-left md-whiteframe-z2" md-component_id="listLocationLeft" md-disable-backdrop md-is-locked-open="true">
         <md-content layout="column">
             <md-toolbar class="md-warn" layout-align="center start" layout="row">
                 <p>Locations</p>
                 <md-button class="md-primary" ng-click="locList.dataLoad()">Refresh</md-button>
-                <md-button class="md-primary" ng-click="locList.toggleAddPanel()">Add</md-button>
+                <md-button class="md-primary" ui-sref="locations.add()">Add</md-button>
             </md-toolbar>
-            <location-list-item list-item="loc" ng-repeat="loc in locList.locations" on-delete="locList.deleteLocation(loc)" on-edit-toggle="locList.toggleEditPanel(loc)"></location-list-item>
+            <location-list-item list-item="loc" ng-repeat="loc in locList.locations" on-delete="locList.deleteLocation(loc)"></location-list-item>
         </md-content>
     </md-sidenav>
-    <md-content id="AddLocation" class="horizontal-collapse" ng-hide="locList.addLocationCollapsed" flex>
-        <modify-location modify-action="Add" modify-item="locList.locationToAdd" on-modify="locList.addLocation(locList.locationToAdd)" on-cancel="locList.toggleAddPanel()"></modify-location>
-    </md-content>
-    <md-content id="EditLocation" class="horizontal-collapse" ng-hide="locList.editLocationCollapsed" flex>
-        <modify-location modify-action="Edit" modify-item="locList.locationToEdit" on-modify="locList.updateLocation(locList.locationToEdit)" on-cancel="locList.toggleEditPanel(null)"></modify-location>
-    </md-content>
+    <ui-view flex="80" layout-fill></ui-view>
 </div>

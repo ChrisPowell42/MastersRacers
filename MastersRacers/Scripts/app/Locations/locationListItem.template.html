@@ -5,10 +5,8 @@
         </md-card-title-text>
     </md-card-title>
     <md-card-actions layout="row" layout-align="start center">
-        <md-button ng-click="lItem.onEditToggle(lItem.listItem)">Edit</md-button>
+        <md-button ui-sref="locations.detail({ id: lItem.listItem.id })">Details</md-button>
+        <md-button ui-sref="locations.edit({id: lItem.listItem.id })">Edit</md-button>
         <md-button ng-click="lItem.deleteToggle($event)">Delete</md-button>
     </md-card-actions>
-    <md-card-content>
-        <p>{{lItem.listItem.description}}</p>
-    </md-card-content>
 </md-card>

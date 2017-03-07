@@ -13,53 +13,17 @@
             }
         });
 
-    Controller.$inject = ['$log', 'LocationService', 'HttpErrorService'];
-    function Controller($log, LocationService, HttpErrorService) {
+    Controller.$inject = ['$log', '$state', 'LocationService', 'HttpErrorService'];
+    function Controller($log, $state, LocationService, HttpErrorService) {
 
         var vm = this;
 
-        vm.addLocationCollapsed = true;
-        vm.editLocationCollapsed = true;
-
-        vm.locationToEdit = null;
-        vm.locationToAdd = null;
         vm.locationToDelete = null;
 
         vm.dataLoad = dataLoad;
-        vm.toggleAddPanel = toggleAddPanel;
-        vm.toggleEditPanel = toggleEditPanel;
         vm.addLocation = addLocation;
         vm.updateLocation = updateLocation;
         vm.deleteLocation = deleteLocation;
-
-        function toggleAddPanel() {
-
-            $log.log('toggleAddPanel called.');
-
-            if (vm.addLocationCollapsed) {
-                vm.editLocationCollapsed = true;
-                vm.locationToEdit = null;
-                vm.locationToAdd = LocationService.newLocation();
-            }
-
-            vm.addLocationCollapsed = !vm.addLocationCollapsed;
-
-        }
-
-        function toggleEditPanel(location) {
-
-            $log.log('toggleEditPanel called.');
-
-            if (vm.editLocationCollapsed && location !== null) {
-                vm.addLocationCollapsed = true;
-                vm.locationToAdd = null;
-            }
-
-            vm.editLocationCollapsed = (location === null);
-            if (location !== null) {
-                vm.locationToEdit = LocationService.cloneLocation(location);
-            }
-        }
 
         function dataLoad() {
 
@@ -95,8 +59,6 @@
                 $log.log('Could not find added location in response.');
             }
 
-            vm.addLocationCollapsed = true;
-
         }
 
         function findIdxById(location, locationList) {
@@ -130,7 +92,6 @@
                 idx = findIdxById(updatedLocation, vm.locations);
                 if (idx !== null) {
                     vm.locations[idx] = updatedLocation;
-                    vm.editLocationCollapsed = true;
                 } else {
                     $log.log('Could not find updated location in response.');
                 }
