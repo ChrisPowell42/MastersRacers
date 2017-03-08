@@ -33,7 +33,7 @@
 
         function toggleEditPanel(season) {
 
-            if (season !== null) {
+            if (season) {
                 vm.selectedSeason = season;
                 vm.editSeasonOpen = true;
             } else {

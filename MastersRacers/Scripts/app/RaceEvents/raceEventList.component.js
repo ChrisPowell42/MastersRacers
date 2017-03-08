@@ -71,7 +71,7 @@
                 vm.raceEventToAdd = null;
             }
 
-            vm.editRaceEventCollapsed = (raceEvent === null);
+            vm.editRaceEventCollapsed = (!raceEvent);
             if (raceEvent !== null) {
                 vm.raceEventToEdit = RaceEventService.cloneRaceEvent(raceEvent);
             }

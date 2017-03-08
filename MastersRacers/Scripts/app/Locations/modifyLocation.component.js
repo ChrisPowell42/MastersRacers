@@ -33,13 +33,14 @@
                             .cancel('Cancel');
 
             $mdDialog.show(confirm)
-                     .then(modify, function() {/*Nop*/ });
+                     .then(modify, function() {/*Nop*/});
 
         }
 
         function modify() {
             $log.log('Modify method called in modifyLocation');
-            mv.onModify(mv.modifyItem);
+            $log.log(mv.modifyItem);
+            mv.onModify({changedLocation: mv.modifyItem});
         }
     }
 

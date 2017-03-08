@@ -24,6 +24,12 @@
         vm.addLocation = addLocation;
         vm.updateLocation = updateLocation;
         vm.deleteLocation = deleteLocation;
+        vm.handleModifyLocation = handleModifyLocation;
+        vm.showLocations = showLocations;
+
+        function showLocations() {
+            $state.go('locations');
+        }
 
         function dataLoad() {
 
@@ -58,6 +64,8 @@
             } else {
                 $log.log('Could not find added location in response.');
             }
+
+            $state.go('locations', null, {reload: 'locations'});
 
         }
 
@@ -97,6 +105,8 @@
                 }
             }
 
+            $state.go('locations', null, {reload: 'locations'});
+
         }
 
         function deleteLocation(location) {
@@ -119,6 +129,19 @@
                     vm.locations.splice(idx, 1);
                     vm.locationToDelete = null;
                 }
+            }
+
+        }
+
+        function handleModifyLocation(changedLocation) {
+
+            $log.log('handleModifyLocation called.');
+            $log.log(changedLocation);
+
+            if (!changedLocation.id) {
+                addLocation(changedLocation);
+            } else {
+                updateLocation(changedLocation);
             }
 
         }
