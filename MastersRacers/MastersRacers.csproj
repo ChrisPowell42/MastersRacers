@@ -256,6 +256,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\dist\css\app.css" />
+    <Content Include="Content\dist\css\app.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -315,6 +317,9 @@
     <Content Include="Scripts\app\Racers\racerList.template.html" />
     <Content Include="Scripts\app\Seasons\seasonList.template.html" />
     <Content Include="Scripts\app\Seasons\seasonListItem.template.html" />
+    <Content Include="Scripts\build\angular-bundle.min.js" />
+    <Content Include="Scripts\build\app-bundle.js" />
+    <Content Include="Scripts\build\jquery-bundle.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -332,10 +337,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Scripts\build\angular-bundle.min.js.map" />
+    <Content Include="Scripts\build\jquery-bundle.min.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\build\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
