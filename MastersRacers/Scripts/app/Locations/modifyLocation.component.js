@@ -16,8 +16,8 @@
             }
         });
 
-    Controller.$inject = ['$log', '$mdDialog'];
-    function Controller($log, $mdDialog) {
+    Controller.$inject = ['$log', '$mdDialog', 'CacheService'];
+    function Controller($log, $mdDialog, CacheService) {
 
         var mv = this;
 
@@ -39,8 +39,8 @@
 
         function modify() {
             $log.log('Modify method called in modifyLocation');
-            $log.log(mv.modifyItem);
-            mv.onModify({changedLocation: mv.modifyItem});
+            CacheService.stashItem(mv.modifyItem);
+            mv.onModify();
         }
     }
 

@@ -13,8 +13,8 @@
             }
         });
 
-    Controller.$inject = ['$log', '$state', 'LocationService', 'HttpErrorService'];
-    function Controller($log, $state, LocationService, HttpErrorService) {
+    Controller.$inject = ['$log', '$state', 'LocationService', 'CacheService', 'HttpErrorService'];
+    function Controller($log, $state, LocationService, CacheService, HttpErrorService) {
 
         var vm = this;
 
@@ -86,7 +86,7 @@
             $log.log('Update Location started');
 
             LocationService.post(location)
-                           .then(vm.postUpdateLocation, HttpErrorService.onError);
+                           .then(postUpdateLocation, HttpErrorService.onError);
 
         }
 
@@ -133,9 +133,12 @@
 
         }
 
-        function handleModifyLocation(changedLocation) {
+        function handleModifyLocation() {
 
             $log.log('handleModifyLocation called.');
+
+            var changedLocation = CacheService.popItem();
+
             $log.log(changedLocation);
 
             if (!changedLocation.id) {

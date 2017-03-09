@@ -9,5 +9,5 @@
             <location-list-item list-item="loc" ng-repeat="loc in locList.locations" on-delete="locList.deleteLocation(loc)"></location-list-item>
         </md-content>
     </md-sidenav>
-    <ui-view flex="80" layout-fill on-modify="locList.handleModifyLocation(loc)" on-cancel="locList.showLocations()"></ui-view>
+    <ui-view flex="80" layout-fill on-modify="locList.handleModifyLocation()" on-cancel="locList.showLocations()"></ui-view>
 </div>
