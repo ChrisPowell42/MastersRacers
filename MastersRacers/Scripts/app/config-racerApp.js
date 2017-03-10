@@ -77,7 +77,7 @@
             component: 'modifyLocation',
             resolve: {
                 modifyAction: function() { return 'Edit'; },
-                modifyItem: function(CacheService, $transition$, locations) {
+                modifyItem: function(CacheService, LocationService, $transition$, locations) {
                     var locationId = $transition$.params().id;
                     var cloneLocation = CacheService.findInListById(locationId, locations);
                     return LocationService.cloneLocation(cloneLocation);
@@ -90,9 +90,9 @@
             url: '/:id',
             component: 'locationDetail',
             resolve: {
-                location: function(LocationService, $transition$, locations) {
+                location: function(CacheService, $transition$, locations) {
                     var locationId = $transition$.params().id;
-                    return LocationService.findLocationInListById(locationId, locations);
+                    return CacheService.findInListById(locationId, locations);
                 }
             }
         };
