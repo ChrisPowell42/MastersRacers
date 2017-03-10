@@ -13,8 +13,8 @@
             }
         });
 
-    Controller.$inject = ['$log', '$mdDialog', 'SeasonService', 'HttpErrorService'];
-    function Controller($log, $mdDialog, SeasonService, HttpErrorService) {
+    Controller.$inject = ['$log', '$mdDialog', '$state', 'SeasonService', 'CacheService', 'HttpErrorService'];
+    function Controller($log, $mdDialog, $state, SeasonService, CacheService, HttpErrorService) {
 
         var vm = this;
 
@@ -22,10 +22,8 @@
 
         vm.editSeasonOpen = false;
         vm.selectedSeason = null;
-        vm.selectedId = null;
 
         vm.loadData = loadData;
-        vm.toggleEditPanel = toggleEditPanel;
         vm.activateSeason = activateSeason;
         vm.createSeason = createSeason;
 
@@ -43,9 +41,9 @@
 
         function activateSeason() {
 
-            var seasonId = CachService.popItem('Seasons');
+            var selectedId = CacheService.popItem('Seasons');
 
-            SeasonService.setActive(seasonId)
+            SeasonService.setActive(selectedId)
                          .then(doSeasonActivated, HttpErrorService.onError);
 
         }
@@ -53,7 +51,7 @@
         function doSeasonActivated(resp) {
 
             if (resp.data) {
-                loadData(vm.selectedSeason.id);
+                $state.go('seasons.list', null, {reload: 'seasons'});
             }
 
         }
@@ -70,12 +68,11 @@
 
         }
 
-        function loadData(id) {
+        function loadData() {
 
             $log.log('Starting Season Load Data');
 
             vm.seasons = null;
-            vm.selectedId = id;
 
             SeasonService.get()
                          .then(afterDataLoad, HttpErrorService.onError);
@@ -85,12 +82,6 @@
         function afterDataLoad(resp) {
 
             vm.seasons = resp.data;
-
-            if (vm.selectedId !== null) {
-                vm.selectedSeason = null;
-                vm.toggleEditPanel(findById(vm.selectedId, vm.seasons));
-                vm.selectedId = null;
-            }
 
             $log.log('After Season Data Load finished.');
 

@@ -32,7 +32,7 @@
         var seasonListState = {
             name: 'seasons.list',
             url: '/list',
-            template: 'Scripts/app/Seasons/seasonDefault.html'
+            templateUrl: 'Scripts/app/Seasons/seasonDefault.html'
         };
 
         var seasonDetailState = {

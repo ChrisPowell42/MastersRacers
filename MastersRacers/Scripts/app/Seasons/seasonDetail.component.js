@@ -14,8 +14,8 @@
             }
         });
 
-    Controller.$inject = ['$log', '$mdDialog', 'CacheService'];
-    function Controller($log, $mdDialog, CacheService) {
+    Controller.$inject = ['$log', '$state', '$mdDialog', 'CacheService'];
+    function Controller($log, $state, $mdDialog, CacheService) {
 
         var vm = this;
 
@@ -29,7 +29,7 @@
         function activateTrigger(event) {
 
             var confirm = $mdDialog.confirm()
-                    .title(mv.modifyAction + ' confirmation')
+                    .title('Activate confirmation')
                     .textContent('Please confirm that you wish to set this season as Active.')
                     .targetEvent(event)
                     .ok('Activate')
@@ -41,9 +41,10 @@
         }
 
         function activate() {
-            $log.log('Activate method called in seasonDetail');
-            CacheService.stashItem('Season', mv.season.id);
+
+            CacheService.stashItem('Seasons', vm.season.id);
             vm.onActivate();
+
         }
 
     }
