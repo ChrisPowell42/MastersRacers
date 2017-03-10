@@ -6,8 +6,14 @@
         .module('racerApp')
         .config(Configuration);
 
-    Configuration.$inject = ['$stateProvider', '$urlRouterProvider'];
-    function Configuration($stateProvider, $urlRouterProvider) {
+    Configuration.$inject = ['$stateProvider', '$urlRouterProvider', '$mdThemingProvider'];
+    function Configuration($stateProvider, $urlRouterProvider, $mdThemingProvider) {
+
+        $mdThemingProvider.theme('default')
+                          .primaryPalette('blue-grey')
+                          .warnPalette('red')
+                          .accentPalette('yellow')
+                          .backgroundPalette('brown');
 
         $urlRouterProvider.otherwise('/default');
 
