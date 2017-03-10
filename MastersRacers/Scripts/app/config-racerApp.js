@@ -51,12 +51,19 @@
         var locationState = {
             name: 'locations',
             url: '/locations',
+            abstract: true,
             component: 'locationList',
             resolve: {
                 locations: function(LocationService) {
                     return LocationService.getResolved();
                 }
             }
+        };
+
+        var locationListState = {
+            name: 'locations.list',
+            url: '/list',
+            templateUrl: 'Scripts/app/Locations/locationDefault.html'
         };
 
         var addLocationState = {
@@ -136,6 +143,7 @@
         $stateProvider.state(seasonListState);
         $stateProvider.state(seasonDetailState);
         $stateProvider.state(locationState);
+        $stateProvider.state(locationListState);
         $stateProvider.state(addLocationState);
         $stateProvider.state(editLocationState);
         $stateProvider.state(viewLocationState);

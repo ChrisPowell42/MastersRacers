@@ -28,7 +28,7 @@
         vm.showLocations = showLocations;
 
         function showLocations() {
-            $state.go('locations');
+            $state.go('locations.list');
         }
 
         function dataLoad() {
