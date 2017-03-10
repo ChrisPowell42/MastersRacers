@@ -294,6 +294,9 @@
     <Content Include="Scripts\app\RaceEvents\raceEventList.component.js" />
     <Content Include="Scripts\app\RaceEvents\raceEventListItem.component.js" />
     <Content Include="Scripts\app\Racers\racerList.component.js" />
+    <Content Include="Scripts\app\Seasons\seasonDefault.html" />
+    <Content Include="Scripts\app\Seasons\seasonDetail.component.js" />
+    <Content Include="Scripts\app\Seasons\seasonDetail.template.html" />
     <Content Include="Scripts\app\Seasons\seasonList.component.js" />
     <Content Include="Scripts\app\Seasons\seasonListItem.component.js" />
     <Content Include="Scripts\app\services\CacheService.js" />

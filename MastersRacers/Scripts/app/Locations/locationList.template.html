@@ -1,5 +1,5 @@
 ﻿<div layout="row" layout-fill>
-    <md-sidenav flex="20" layout-padding class="md-sidenav-left md-whiteframe-z2" md-component_id="listLocationLeft" md-disable-backdrop md-is-locked-open="true">
+    <md-sidenav flex layout-padding class="md-sidenav-left md-whiteframe-z2" md-component_id="listLocationLeft" md-disable-backdrop md-is-locked-open="true">
         <md-content layout="column">
             <md-toolbar class="md-warn" layout-align="center start" layout="row">
                 <p>Locations</p>
@@ -9,5 +9,5 @@
             <location-list-item list-item="loc" ng-repeat="loc in locList.locations" on-delete="locList.deleteLocation(loc)"></location-list-item>
         </md-content>
     </md-sidenav>
-    <ui-view flex="80" layout-fill on-modify="locList.handleModifyLocation()" on-cancel="locList.showLocations()"></ui-view>
+    <ui-view flex layout-fill on-modify="locList.handleModifyLocation()" on-cancel="locList.showLocations()"></ui-view>
 </div>

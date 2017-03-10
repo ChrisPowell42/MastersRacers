@@ -39,7 +39,7 @@
 
         function modify() {
             $log.log('Modify method called in modifyLocation');
-            CacheService.stashItem(mv.modifyItem);
+            CacheService.stashItem('Location', mv.modifyItem);
             mv.onModify();
         }
     }

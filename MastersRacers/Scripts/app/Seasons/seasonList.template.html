@@ -6,25 +6,8 @@
                 <md-button class="md-primary" ng-click="sList.loadData()">Refresh</md-button>
                 <md-button class="md-primary" ng-click="sList.triggerCreateSeason($event)">Add</md-button>
             </md-toolbar>
-            <md-button class="md-raised" ng-repeat="season in sList.seasons" ng-click="sList.toggleEditPanel(season)">{{season.startYear}}-{{season.endYear}} <span ng-if="season.isCurrentSeason"><strong>*</strong></span></md-button>
+            <md-button class="md-raised" ng-repeat="season in sList.seasons" ui-sref="seasons.detail(season.id)">{{season.startYear}}-{{season.endYear}} <span ng-if="season.isCurrentSeason"><strong>*</strong></span></md-button>
         </md-content>
     </md-sidenav>
-    <md-content id="seasonDetail" ng-hide="!sList.editSeasonOpen" flex>
-        <div layout="column">
-            <md-toolbar flex="5" layout-padding class="md-primary">
-                <span>{{sList.selectedSeason.startYear}}-{{sList.selectedSeason.endYear}}  <span ng-if="sList.selectedSeason.isCurrentSeason"><strong>*</strong></span></span>
-            </md-toolbar>
-            <div flex="80" layout-fill layout-padding>Notes: {{sList.selectedSeason.notes}}</div>
-            <div flex="5">
-                <div layout="row" layout-align="center end">
-                    <span ng-if="!sList.selectedSeason.isCurrentSeason"><md-button class="md-raised md-warn md-mini" ng-click="sList.triggerActivateSeason($event)">Make Active</md-button></span>
-                    <md-button class="md-raised md-primary md-mini" ng-click="sList.toggleEditPanel()">Close</md-button>
-                </div>
-            </div>
-        </div>
-    </md-content>
-    <md-content id="seasonInfo" ng-hide="sList.editSeasonOpen" flex layout-padding>
-        <p>Season's define the time period for a race.</p>
-        <p>When a season is active, all new races will be added to that season.</p>
-    </md-content>
+    <ui-view flex on-activate="sList.activateSeason()"></ui-view>
 </div>

@@ -26,9 +26,7 @@
 
         vm.loadData = loadData;
         vm.toggleEditPanel = toggleEditPanel;
-        vm.triggerActivateSeason = triggerActivateSeason;
         vm.activateSeason = activateSeason;
-        vm.triggerCreateSeason = triggerCreateSeason;
         vm.createSeason = createSeason;
 
         function toggleEditPanel(season) {
@@ -43,22 +41,11 @@
 
         }
 
-        function triggerActivateSeason(event) {
-
-            var confirm = $mdDialog.confirm()
-                          .title('Are you sure you want to activate this Season?')
-                          .textContent('All new races will be added to this season.')
-                          .targetEvent(event)
-                          .ok('Activate')
-                          .cancel('Cancel');
-
-            $mdDialog.show(confirm).then(activateSeason, function() { /*nop*/ });
-
-        }
-
         function activateSeason() {
 
-            SeasonService.setActive(vm.selectedSeason.id)
+            var seasonId = CachService.popItem('Seasons');
+
+            SeasonService.setActive(seasonId)
                          .then(doSeasonActivated, HttpErrorService.onError);
 
         }

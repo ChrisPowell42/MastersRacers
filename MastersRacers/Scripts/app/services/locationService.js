@@ -18,7 +18,6 @@
         ls.post = post;
         ls.newLocation = newLocation;
         ls.cloneLocation = cloneLocation;
-        ls.findLocationInListById = findLocationInListById;
 
         function get() {
             var response = $http.get('api/locations');
@@ -45,17 +44,6 @@
         function post(location) {
             var response = $http.post('api/location/', location);
             return response;
-        }
-
-        function findLocationInListById(id, locationList) {
-
-            for (var i = 0; i < locationList.length; i++) {
-                if (locationList[i].id === id) {
-                    return locationList[i];
-                }
-            }
-
-            return null;
         }
 
         function newLocation() {

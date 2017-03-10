@@ -19,11 +19,31 @@
 
         var seasonState = {
             name: 'seasons',
+            abstract: true,
             url: '/seasons',
             component: 'seasonList',
             resolve: {
                 seasons: function(SeasonService) {
                     return SeasonService.getResolved();
+                }
+            }
+        };
+
+        var seasonListState = {
+            name: 'seasons.list',
+            url: '/list',
+            template: 'Scripts/app/Seasons/seasonDefault.html'
+        };
+
+        var seasonDetailState = {
+            name: 'seasons.detail',
+            url: '/detail/:id',
+            component: 'seasonDetail',
+            resolve: {
+                season: function(CacheService, $transition$, seasons) {
+                        var seasonId = $transition$.params().id;
+                        var detailSeason = CacheService.findInListById(seasonId, seasons);
+                        return detailSeason;
                 }
             }
         };
@@ -57,9 +77,9 @@
             component: 'modifyLocation',
             resolve: {
                 modifyAction: function() { return 'Edit'; },
-                modifyItem: function(LocationService, $transition$, locations) {
+                modifyItem: function(CacheService, $transition$, locations) {
                     var locationId = $transition$.params().id;
-                    var cloneLocation = LocationService.findLocationInListById(locationId, locations);
+                    var cloneLocation = CacheService.findInListById(locationId, locations);
                     return LocationService.cloneLocation(cloneLocation);
                 }
             }
@@ -113,6 +133,8 @@
 
         $stateProvider.state(defaultState);
         $stateProvider.state(seasonState);
+        $stateProvider.state(seasonListState);
+        $stateProvider.state(seasonDetailState);
         $stateProvider.state(locationState);
         $stateProvider.state(addLocationState);
         $stateProvider.state(editLocationState);

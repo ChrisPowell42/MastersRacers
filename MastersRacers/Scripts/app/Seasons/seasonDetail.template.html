@@ -1,0 +1,14 @@
+﻿<md-content id="seasonDetail" flex>
+    <div layout="column">
+        <md-toolbar flex="5" layout-padding class="md-primary">
+            <span>{{sDetail.season.startYear}}-{{sDetail.season.endYear}}  <span ng-if="sDetail.season.isCurrentSeason"><strong>*</strong></span></span>
+        </md-toolbar>
+        <div flex="80" layout-fill layout-padding>Notes: {{sDetail.season.notes}}</div>
+        <div flex="5">
+            <div layout="row" layout-align="center end">
+                <span ng-if="!sDetail.season.isCurrentSeason"><md-button class="md-raised md-warn md-mini" ng-click="sDetail.activateTrigger($event)">Make Active</md-button></span>
+                <md-button class="md-raised md-primary md-mini" ng-click="sDetail.showSeasons()">Close</md-button>
+            </div>
+        </div>
+    </div>
+</md-content>

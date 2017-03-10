@@ -11,18 +11,34 @@
 
         var vm = this;
 
-        var cachedItems = [];
+        var allCaches = [];
 
         vm.stashItem = stashItem;
         vm.popItem = popItem;
 
-        function stashItem(item) {
+        vm.findInListById = findInListById;
 
-            cachedItems.push(item);
+        function stashItem(cache, item) {
+
+            var currentCache = allCaches[cache];
+
+            if (!currentCache) {
+                allCaches[cache] = [];
+                currentCache = allCaches[cache];
+            }
+
+            currentCache.push(item);
 
         }
 
-        function popItem() {
+        function popItem(cache) {
+
+            var cachedItems = allCaches[cache];
+
+            if (!cachedItems) {
+                $log.log('Attempt to access undefined cache.');
+                return null;
+            }
 
             if (cachedItems && cachedItems.length > 0) {
                 return cachedItems.pop();
@@ -31,6 +47,17 @@
                 return null;
             }
 
+        }
+
+        function findInListById(id, itemList) {
+
+            for (var i = 0; i < itemList.length; i++) {
+                if (itemList[i].id === id) {
+                    return itemList[i];
+                }
+            }
+
+            return null;
         }
 
     }

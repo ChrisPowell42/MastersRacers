@@ -137,7 +137,7 @@
 
             $log.log('handleModifyLocation called.');
 
-            var changedLocation = CacheService.popItem();
+            var changedLocation = CacheService.popItem('Location');
 
             $log.log(changedLocation);
 
