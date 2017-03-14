@@ -88,7 +88,7 @@
 
             if (updatedRacer) {
                 idx = findIdxById(updatedRacer, vm.racers);
-                if (idx) {
+                if (idx !== null) {
                     vm.racers[idx] = updatedRacer;
                 } else {
                     $log.log('Could not find updated racer.');
