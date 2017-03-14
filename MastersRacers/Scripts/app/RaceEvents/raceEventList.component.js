@@ -16,24 +16,23 @@
             }
         });
 
-    Controller.$inject = ['$log', 'RaceEventService', 'RefDataService', 'SeasonService', 'LocationService', 'HttpErrorService'];
-    function Controller($log, RaceEventService, RefDataService, SeasonService, LocationService, HttpErrorService) {
+    Controller.$inject = ['$log', '$state', 'RaceEventService', 'RefDataService', 'SeasonService', 'LocationService', 'CacheService', 'HttpErrorService'];
+    function Controller($log, $state, RaceEventService, RefDataService, SeasonService, LocationService, CacheService, HttpErrorService) {
 
         var vm = this;
 
-        vm.addRaceEventCollapsed = true;
-        vm.editRaceEventCollapsed = true;
-
-        vm.raceEventToEdit = null;
-        vm.raceEventToAdd = null;
         vm.raceEventToDelete = null;
 
         vm.loadActiveData = loadActiveData;
         vm.updateRaceEvent = updateRaceEvent;
-        vm.toggleAddPanel = toggleAddPanel;
-        vm.toggleEditPanel = toggleEditPanel;
         vm.deleteRaceEvent = deleteRaceEvent;
         vm.addRaceEvent = addRaceEvent;
+        vm.handleModifyRace = handleModifyRace;
+        vm.showRaces = showRaces;
+
+        function showRaces() {
+            $state.go('races.list');
+        }
 
         function loadActiveData() {
 
@@ -50,31 +49,6 @@
 
             vm.raceEvents = resp.data;
 
-        }
-
-        function toggleAddPanel() {
-
-            if (vm.addRaceEventCollapsed) {
-                vm.editRaceEventCollapsed = true;
-                vm.raceEventToEdit = null;
-                vm.raceEventToAdd = RaceEventService.newRaceEvent(vm.activeSeason);
-            }
-
-            vm.addRaceEventCollapsed = !vm.addRaceEventCollapsed;
-
-        }
-
-        function toggleEditPanel(raceEvent) {
-
-            if (vm.editRaceEventCollapsed && raceEvent !== null) {
-                vm.addRaceEventCollapsed = true;
-                vm.raceEventToAdd = null;
-            }
-
-            vm.editRaceEventCollapsed = (!raceEvent);
-            if (raceEvent !== null) {
-                vm.raceEventToEdit = RaceEventService.cloneRaceEvent(raceEvent);
-            }
         }
 
         function deleteRaceEvent(race) {
@@ -117,8 +91,6 @@
             } else {
                 $log.log('Could not find added event in response.');
             }
-
-            vm.addRaceEventCollapsed = true;
         }
 
         function findIdxById(raceEvent, raceEventList) {
@@ -147,10 +119,24 @@
                 var idx = findIdxById(updatedRaceEvent, vm.raceEvents);
                 if (idx !== null) {
                     vm.raceEvents[idx] = updatedRaceEvent;
-                    vm.editRaceEventCollapsed = true;
                 } else {
                     $log.log('Could not find updated race event in response.');
                 }
+            }
+
+        }
+
+        function handleModifyRace() {
+
+            var changedRace = CacheService.popItem('Races');
+            changedRace.scheduledStartTime = changedRace.startTime;
+
+            $log.log(changedRace);
+
+            if (!changedRace.id) {
+                addRaceEvent(changedRace);
+            } else {
+                updateRaceEvent(changedRace);
             }
 
         }

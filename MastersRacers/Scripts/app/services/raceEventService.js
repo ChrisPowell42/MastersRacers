@@ -6,8 +6,8 @@
         .module('racerApp')
         .service('RaceEventService', RaceEventService);
 
-    RaceEventService.$inject = ['$http', 'HttpErrorService'];
-    function RaceEventService($http, HttpErrorService) {
+    RaceEventService.$inject = ['$log', '$http', 'HttpErrorService'];
+    function RaceEventService($log, $http, HttpErrorService) {
 
         var rs = this;
 
@@ -53,8 +53,12 @@
 
         function cloneRaceEvent(raceEventToClone) {
 
-            return angular.copy(raceEventToClone);
+            var clone = angular.copy(raceEventToClone);
 
+            clone.startTime = Date.parse(clone.scheduledStartTime);
+            $log.log(clone);
+
+            return clone;
         }
 
         function newRaceEvent(activeSeason) {

@@ -16,6 +16,7 @@
     "jquery-validation": "^1.16.0",
     "angular": "^1.6.2",
     "jquery-validation-unobtrusive": "^3.2.6",
-    "respond": "respond-minmax#^1.4.2"
+    "respond": "respond-minmax#^1.4.2",
+    "material-design-icons": "v2.1.3"
   }
 }

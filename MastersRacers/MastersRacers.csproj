@@ -291,9 +291,13 @@
     <Content Include="Scripts\app\Locations\locationList.component.js" />
     <Content Include="Scripts\app\Locations\locationListItem.component.js" />
     <Content Include="Scripts\app\Locations\modifyLocation.component.js" />
+    <Content Include="Scripts\app\RaceEvents\raceEventDefault.html" />
     <Content Include="Scripts\app\Racers\modifyRacer.component.js" />
     <Content Include="Scripts\app\RaceEvents\raceEventList.component.js" />
     <Content Include="Scripts\app\RaceEvents\raceEventListItem.component.js" />
+    <Content Include="Scripts\app\Racers\racerDefault.html" />
+    <Content Include="Scripts\app\Racers\racerDetail.component.js" />
+    <Content Include="Scripts\app\Racers\racerDetail.template.html" />
     <Content Include="Scripts\app\Racers\racerList.component.js" />
     <Content Include="Scripts\app\Seasons\seasonDefault.html" />
     <Content Include="Scripts\app\Seasons\seasonDetail.component.js" />

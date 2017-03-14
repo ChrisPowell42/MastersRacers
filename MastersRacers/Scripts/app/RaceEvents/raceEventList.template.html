@@ -1,18 +1,13 @@
 ﻿<div layout="row" layout-fill>
     <md-sidenav flex layout-padding class="md-sidenav-left md-whiteframe-z2" md-component_id="listRaceEventLeft" md-disable-backdrop md-is-locked-open="true">
         <md-content layout="column">
-            <md-toolbar class="md-warn" layout-align="center start" layout="row">
+            <md-toolbar class="md-warn" layout-align="space-between center" layout="row">
+                <md-button class="md-primary" ng-click="reList.loadActiveData()"><i class="material-icons">cached</i></md-button>
                 <p>Race Events</p>
-                <md-button class="md-primary" ng-click="reList.loadActiveData()">Refresh</md-button>
-                <md-button class="md-primary" ng-click="reList.toggleAddPanel()">Add</md-button>
+                <md-button class="md-primary" ui-sref="races.add()"><i class="material-icons">add</i></md-button>
             </md-toolbar>
-            <race-event-list-item list-item="race" ng-repeat="race in reList.raceEvents" on-delete="reList.deleteRaceEvent(race)" on-edit-toggle="reList.toggleEditPanel(race)"></race-event-list-item>
+            <race-event-list-item list-item="race" ng-repeat="race in reList.raceEvents" on-delete="reList.deleteRaceEvent(race)"></race-event-list-item>
         </md-content>
     </md-sidenav>
-    <md-content id="AddRaceEvent" class="horizontal-collapse" ng-hide="reList.addRaceEventCollapsed" flex>
-        <modify-race-event modify-action="Add" modify-item="reList.raceEventToAdd" location-list="reList.locations" format-list="reList.raceFormats" on-modify="reList.addRaceEvent(reList.raceEventToAdd)" on-cancel="reList.toggleAddPanel()"></modify-race-event>
-    </md-content>
-    <md-content id="EditRaceEvent" class="horizontal-collapse" ng-hide="reList.editRaceEventCollapsed" flex>
-        <modify-race-event modify-action="Edit" modify-item="reList.raceEventToEdit" location-list="reList.locations" format-list="reList.raceFormats" on-modify="reList.updateRaceEvent(reList.raceEventToEdit)" on-cancel="reList.toggleEditPanel()"></modify-race-event>
-    </md-content>
+    <ui-view flex layout-fill on-modify="reList.handleModifyRace()" on-cancel="reList.showRaces()"></ui-view>
 </div>

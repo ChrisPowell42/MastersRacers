@@ -5,8 +5,8 @@
         </md-card-title-text>
     </md-card-title>
     <md-card-actions layout="row" layout-align="start center">
-        <md-button ui-sref="locations.detail({ id: lItem.listItem.id })">Details</md-button>
-        <md-button ui-sref="locations.edit({id: lItem.listItem.id })">Edit</md-button>
-        <md-button ng-click="lItem.deleteToggle($event)">Delete</md-button>
+        <md-button ui-sref="locations.detail({ id: lItem.listItem.id })"><md-icon class="material-icons md-48">description</md-icon></md-button>
+        <md-button ui-sref="locations.edit({id: lItem.listItem.id })"><md-icon class="material-icons md-48">create</md-icon></md-button>
+        <md-button ng-click="lItem.deleteToggle($event)"><md-icon class="material-icons md-48">delete</md-icon></md-button>
     </md-card-actions>
 </md-card>

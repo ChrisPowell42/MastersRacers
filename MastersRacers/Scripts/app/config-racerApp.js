@@ -113,6 +113,7 @@
         var racersState = {
             name: 'racers',
             url: '/racers',
+            abstract: true,
             component: 'racerList',
             resolve: {
                 racers: function(RacerService) {
@@ -124,9 +125,54 @@
             }
         };
 
+        var racersDefaultState = {
+            name: 'racers.list',
+            url: '/list',
+            templateUrl: 'Scripts/app/Racers/racerDefault.html'
+        };
+
+        var racerAddState = {
+            name: 'racers.add',
+            url: '/add',
+            component: 'modifyRacer',
+            resolve: {
+                modifyAction: function() { return 'Add'; },
+                modifyItem: function(RacerService) { return RacerService.newRacer(); },
+                raceSeriesList: function(raceSeries) { return raceSeries; }
+            }
+        };
+
+        var racerEditState = {
+            name: 'racers.edit',
+            url: '/edit/:id',
+            component: 'modifyRacer',
+            resolve: {
+                modifyAction: function() { return 'Edit'; },
+                modifyItem: function($transition$, CacheService, RacerService, racers) {
+                    var racerId = $transition$.params().id;
+                    var cloneRacer = CacheService.findInListById(racerId, racers);
+                    return RacerService.cloneRacer(cloneRacer);
+                },
+                raceSeriesList: function(raceSeries) { return raceSeries; }
+            }
+        };
+
+        var racerDetailState = {
+            name: 'racers.detail',
+            url: '/detail/:id',
+            component: 'racerDetail',
+            resolve: {
+                detailItem: function($transition$, CacheService, racers) {
+                    var racerId = $transition$.params().id;
+                    return CacheService.findInListById(racerId, racers);
+                }
+            }
+        };
+
         var raceEventsState = {
             name: 'races',
             url: '/races',
+            abstract: true,
             component: 'raceEventList',
             resolve: {
                 raceEvents: function(RaceEventService) {
@@ -144,17 +190,63 @@
             }
         };
 
+        var racesDefaultState = {
+            name: 'races.list',
+            url: '/list',
+            templateUrl: 'Scripts/app/RaceEvents/raceEventDefault.html'
+        };
+
+        var addRaceState = {
+            name: 'races.add',
+            url: '/add',
+            component: 'modifyRaceEvent',
+            resolve: {
+                locationList: function(locations) { return locations; },
+                formatList: function(raceFormats) { return raceFormats;},
+                modifyAction: function() { return 'Add'; },
+                modifyItem: function(RaceEventService) {
+                    return RaceEventService.newRaceEvent();
+                }
+            }
+        };
+
+        var editRaceState = {
+            name: 'races.edit',
+            url: '/edit/:id',
+            component: 'modifyRaceEvent',
+            resolve: {
+                locationList: function(locations) { return locations; },
+                formatList: function(raceFormats) { return raceFormats; },
+                modifyAction: function() { return 'Edit'; },
+                modifyItem: function(CacheService, RaceEventService, $transition$, raceEvents) {
+                    var raceId = $transition$.params().id;
+                    var cloneRace = CacheService.findInListById(raceId, raceEvents);
+                    return RaceEventService.cloneRaceEvent(cloneRace);
+                }
+            }
+        };
+
         $stateProvider.state(defaultState);
         $stateProvider.state(seasonState);
         $stateProvider.state(seasonListState);
         $stateProvider.state(seasonDetailState);
+
         $stateProvider.state(locationState);
         $stateProvider.state(locationListState);
         $stateProvider.state(addLocationState);
         $stateProvider.state(editLocationState);
         $stateProvider.state(viewLocationState);
+
         $stateProvider.state(racersState);
+        $stateProvider.state(racersDefaultState);
+        $stateProvider.state(racerAddState);
+        $stateProvider.state(racerEditState);
+        $stateProvider.state(racerDetailState);
+
         $stateProvider.state(raceEventsState);
+        $stateProvider.state(racesDefaultState);
+        $stateProvider.state(addRaceState);
+        $stateProvider.state(editRaceState);
 
     }
 

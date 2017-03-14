@@ -1,10 +1,10 @@
 ﻿<div layout="row" layout-fill>
     <md-sidenav flex layout-padding class="md-sidenav-left md-whiteframe-z2" md-component_id="listLocationLeft" md-disable-backdrop md-is-locked-open="true">
         <md-content layout="column">
-            <md-toolbar class="md-warn" layout-align="center start" layout="row">
+            <md-toolbar class="md-warn" layout-align="space-between center" layout="row">
+                <md-button class="md-primary" ng-click="locList.dataLoad()"><i class="material-icons">cached</i></md-button>
                 <p>Locations</p>
-                <md-button class="md-primary" ng-click="locList.dataLoad()">Refresh</md-button>
-                <md-button class="md-primary" ui-sref="locations.add()">Add</md-button>
+                <md-button class="md-primary" ui-sref="locations.add()"><i class="material-icons">add</i></md-button>
             </md-toolbar>
             <location-list-item list-item="loc" ng-repeat="loc in locList.locations" on-delete="locList.deleteLocation(loc)"></location-list-item>
         </md-content>

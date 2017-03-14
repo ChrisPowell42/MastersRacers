@@ -5,8 +5,8 @@
         </md-card-title-text>
     </md-card-title>
     <md-card-actions layout="row" layout-align="start center">
-        <md-button ng-click="reItem.onEditToggle(reItem.listItem)">Edit</md-button>
-        <md-button ng-click="reItem.deleteToggle($event)">Delete</md-button>
+        <md-button ui-sref="races.edit({id: reItem.listItem.id })"><i class="material-icons">create</i></md-button>
+        <md-button ng-click="reItem.deleteToggle($event)"><i class="material-icons">delete</i></md-button>
     </md-card-actions>
     <md-card-content>
         Location: {{reItem.listItem.location.name}}<br />

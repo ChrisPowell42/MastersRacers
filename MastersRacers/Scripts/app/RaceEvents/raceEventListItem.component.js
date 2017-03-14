@@ -10,7 +10,6 @@
             controllerAs: 'reItem',
             bindings: {
                 listItem: '<',
-                onEditToggle: '&',
                 onDelete: '&'
             }
     });

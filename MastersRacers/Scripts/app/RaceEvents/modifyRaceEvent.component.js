@@ -18,22 +18,22 @@
             }
         });
 
-    Controller.$inject = ['$log', '$mdDialog'];
-    function Controller($log, $mdDialog) {
+    Controller.$inject = ['$log', '$mdDialog', 'CacheService'];
+    function Controller($log, $mdDialog, CacheService) {
 
-        var mv = this;
+        var vm = this;
 
-        mv.modifyTrigger = modifyTrigger;
+        vm.modifyTrigger = modifyTrigger;
 
         function modifyTrigger(event) {
 
             //$log.log(mv.modifyItem);
 
             var confirm = $mdDialog.confirm()
-                            .title(mv.modifyAction + ' confirmation')
-                            .textContent('Please confirm that you wish to ' + mv.modifyAction + ' this race event.')
+                            .title(vm.modifyAction + ' confirmation')
+                            .textContent('Please confirm that you wish to ' + vm.modifyAction + ' this race event.')
                             .targetEvent(event)
-                            .ok(mv.modifyAction)
+                            .ok(vm.modifyAction)
                             .cancel('Cancel');
 
             $mdDialog.show(confirm)
@@ -42,7 +42,9 @@
         }
 
         function modify() {
-            mv.onModify(mv.modifyItem);
+
+            CacheService.stashItem('Races', vm.modifyItem);
+            vm.onModify();
         }
     }
 
