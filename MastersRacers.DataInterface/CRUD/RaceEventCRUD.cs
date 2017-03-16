@@ -89,7 +89,10 @@ namespace MastersRacers.DataInterface.CRUD
             {
                 if (disposing)
                 {
-                    // TODO: dispose managed state (managed objects).
+                    _getAllRaceEventCmd.Dispose();
+                    _getActiveSeasonRaceEventsCmd.Dispose();
+                    _saveRaceEventCmd.Dispose();
+                    _removeRaceEventCmd.Dispose();                    
                 }
 
                 // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.

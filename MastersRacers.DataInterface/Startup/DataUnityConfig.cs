@@ -21,8 +21,11 @@ namespace MastersRacers.DataInterface.Startup
         {
             container.RegisterType<IRaceContext, RaceContext>();
 
+            container.RegisterType<IRaceResultCRUD, RaceResultCRUD>();
+
             container.RegisterType<IRemoveCommand<Racer>, RemoveCommand<Racer>>();
             container.RegisterType<IGetAllCommand<Racer>, GetAllRacersCommand>();
+            container.RegisterType<IGetActiveRacersCommand, GetActiveRacersCommand>();
             container.RegisterType<ISaveRacerCommand, SaveRacerCommand>();
             container.RegisterType<IGetRacerCommand, GetRacerCommand>();
 
@@ -46,10 +49,12 @@ namespace MastersRacers.DataInterface.Startup
             container.RegisterType<IRemoveCommand<RaceEvent>, RemoveCommand<RaceEvent>>();
             container.RegisterType<IGetActiveSeasonRaceEventsCommand, GetActiveSeasonRaceEventsCommand>();
             container.RegisterType<ISaveRaceEventCommand, SaveRaceEventCommand>();
+            container.RegisterType<IGetCommand<RaceEvent>, GetCommand<RaceEvent>>();
             container.RegisterType<IRaceEventCRUD, RaceEventCRUD>();
 
             container.RegisterType<IGetAllCommand<RaceFormat>, GetAllCommand<RaceFormat>>();
             container.RegisterType<IGetAllCommand<RaceSeries>, GetAllCommand<RaceSeries>>();
+            container.RegisterType<IGetAllCommand<RacePhase>, GetAllCommand<RacePhase>>();
 
             container.RegisterType<IRefDataReader, RefDataReader>();
 

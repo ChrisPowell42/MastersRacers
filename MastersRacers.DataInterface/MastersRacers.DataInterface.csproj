@@ -76,6 +76,7 @@
     <Compile Include="CRUD\LocationCRUD.cs" />
     <Compile Include="CRUD\RaceEventCRUD.cs" />
     <Compile Include="CRUD\RacerCRUD.cs" />
+    <Compile Include="CRUD\RaceResultCRUD.cs" />
     <Compile Include="CRUD\RefDataReader.cs" />
     <Compile Include="CRUD\SeasonCRUD.cs" />
     <Compile Include="Startup\AutoMapperConfig.cs" />

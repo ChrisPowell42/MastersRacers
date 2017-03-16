@@ -20,7 +20,5 @@ namespace MastersRacers.Data.Models
 
         public Boolean IsCurrentSeason { get; set; }
 
-        public virtual List<Location> Locations { get; set; }
-
     }
 }

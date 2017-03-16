@@ -16,10 +16,11 @@ namespace MastersRacers.Data.Contexts
         IDbSet<Location> Locations { get; set; }
         IDbSet<Season> Seasons { get; set; }
         IDbSet<RaceEvent> RaceEvents { get; set; }
+        IDbSet<RaceResult> RaceResults { get; set; }
 
         IDbSet<RaceFormat> RaceFormats { get; set; }
         IDbSet<RaceSeries> RaceSeries { get; set; }
-
+        IDbSet<RacePhase> RacePhases { get; set; }
 
         int SaveChanges();
         Task<int> SaveChangesAsync();
@@ -39,8 +40,10 @@ namespace MastersRacers.Data.Contexts
         public IDbSet<Location> Locations { get; set; }
         public IDbSet<Season> Seasons { get; set; }
         public IDbSet<RaceEvent> RaceEvents { get; set; }
+        public IDbSet<RaceResult> RaceResults { get; set; }
         public IDbSet<RaceFormat> RaceFormats { get; set; }
         public IDbSet<RaceSeries> RaceSeries { get; set; }
+        public IDbSet<RacePhase> RacePhases { get; set; }
 
     }
 }

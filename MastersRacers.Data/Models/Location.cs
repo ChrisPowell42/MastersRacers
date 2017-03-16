@@ -12,15 +12,12 @@ namespace MastersRacers.Data.Models
         [Key]
         public Guid Id { get; set; }
 
-        [Required]
-        [MaxLength(200)]
+        [Required, MaxLength(200)]
         public string Name { get; set; }
         [MaxLength(2000)]
         public string Description { get; set; }
         public double LatPos { get; set; }
         public double LongPos { get; set; }
-
-        public virtual List<Season> Seasons { get; set; }
 
     }
 }

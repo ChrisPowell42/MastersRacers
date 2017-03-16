@@ -28,6 +28,9 @@ namespace MastersRacers.DataInterface.Startup
             CreateMap<RaceSeriesDTO, RaceSeries>();
             CreateMap<RaceSeries, RaceSeriesDTO>();
 
+            CreateMap<RacePhaseDTO, RacePhase>();
+            CreateMap<RacePhase, RacePhaseDTO>();
+
         }
 
     }

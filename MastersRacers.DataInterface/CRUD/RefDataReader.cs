@@ -14,6 +14,7 @@ namespace MastersRacers.DataInterface.CRUD
     {
         Task<ICollection<RaceFormatDTO>> GetAllRaceFormats();
         Task<ICollection<RaceSeriesDTO>> GetAllRaceSeries();
+        Task<ICollection<RacePhaseDTO>> GetAllRacePhases();
     }
 
     public class RefDataReader : IRefDataReader
@@ -22,13 +23,16 @@ namespace MastersRacers.DataInterface.CRUD
         private readonly IMapper _mapper;
         private readonly IGetAllCommand<RaceFormat> _getAllRaceFormatCmd;
         private readonly IGetAllCommand<RaceSeries> _getAllRaceSeriesCmd;
+        private readonly IGetAllCommand<RacePhase> _getAllRacePhaseCmd;
 
         public RefDataReader(IGetAllCommand<RaceFormat> getAllRaceFormatCmd, 
                              IGetAllCommand<RaceSeries> getAllRaceSeriesCmd,
+                             IGetAllCommand<RacePhase> getAllRacePhaseCmd,
                              IMapper mapper)
         {
             _getAllRaceFormatCmd = getAllRaceFormatCmd;
             _getAllRaceSeriesCmd = getAllRaceSeriesCmd;
+            _getAllRacePhaseCmd = getAllRacePhaseCmd;
 
             _mapper = mapper;
         }
@@ -45,6 +49,14 @@ namespace MastersRacers.DataInterface.CRUD
         {
             ICollection<RaceSeries> allRaceSeries = await _getAllRaceSeriesCmd.GetAll();
             ICollection<RaceSeriesDTO> returnValues = _mapper.Map<ICollection<RaceSeriesDTO>>(allRaceSeries.OrderBy(x=>x.SortOrderIdx));
+
+            return returnValues;
+        }
+
+        public async Task<ICollection<RacePhaseDTO>> GetAllRacePhases()
+        {
+            ICollection<RacePhase> allRacePhases = await _getAllRacePhaseCmd.GetAll();
+            ICollection<RacePhaseDTO> returnValues = _mapper.Map<ICollection<RacePhaseDTO>>(allRacePhases.OrderBy(x => x.SortIdx));
 
             return returnValues;
         }
@@ -83,6 +95,7 @@ namespace MastersRacers.DataInterface.CRUD
             // TODO: uncomment the following line if the finalizer is overridden above.
             // GC.SuppressFinalize(this);
         }
+
         #endregion
 
     }

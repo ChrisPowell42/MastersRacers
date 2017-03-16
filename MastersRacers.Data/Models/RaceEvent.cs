@@ -3,9 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MastersRacers.Data.Models
 {
@@ -20,6 +17,8 @@ namespace MastersRacers.Data.Models
         public Guid SeasonId { get; set; }
         [Required]
         public Guid RaceFormatId { get; set; }
+        [Required]
+        public Guid RacePhaseId { get; set; }
 
         public int RunCount { get; set; }
         [MaxLength(255)]
@@ -34,6 +33,10 @@ namespace MastersRacers.Data.Models
         public virtual Season Season { get; set; }
         [ForeignKey("RaceFormatId")]
         public virtual RaceFormat RaceFormat { get; set; }
+        [ForeignKey("RacePhaseId")]
+        public virtual RacePhase RacePhase { get; set; }
+
+        public virtual ICollection<RaceResult> RaceResults { get; set; }
 
     }
 }

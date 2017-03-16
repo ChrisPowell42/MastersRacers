@@ -58,5 +58,24 @@ namespace MastersRacers.Controllers
             return Ok(returnValues);
         }
 
+        [Route("racephases")]
+        [ResponseType(typeof(IEnumerable<RacePhaseDTO>))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetRacePhases()
+        {
+            IEnumerable<RacePhaseDTO> returnValues;
+            try
+            {
+                returnValues = await _refDataReader.GetAllRacePhases();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+
+            return Ok(returnValues);
+
+        }
+
     }
 }

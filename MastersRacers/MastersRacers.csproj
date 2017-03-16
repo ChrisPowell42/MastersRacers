@@ -240,6 +240,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\RaceEventController.cs" />
+    <Compile Include="Controllers\RaceResultsController.cs" />
     <Compile Include="Controllers\RacersController.cs" />
     <Compile Include="Controllers\RefDataController.cs" />
     <Compile Include="Controllers\SeasonsController.cs" />

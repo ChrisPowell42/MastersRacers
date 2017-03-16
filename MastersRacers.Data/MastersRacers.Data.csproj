@@ -71,8 +71,10 @@
   <ItemGroup>
     <Compile Include="CommandObjects\CommandObjectBase.cs" />
     <Compile Include="CommandObjects\GetAllCommand.cs" />
+    <Compile Include="CommandObjects\GetCommand.cs" />
     <Compile Include="CommandObjects\RaceEventCommands\SaveRaceEventCommand.cs" />
     <Compile Include="CommandObjects\RaceEventCommands\GetActiveSeasonRaceEventsCommand.cs" />
+    <Compile Include="CommandObjects\RacerCommands\GetActiveRacersCommand.cs" />
     <Compile Include="CommandObjects\RacerCommands\GetAllRacersCommand.cs" />
     <Compile Include="CommandObjects\RacerCommands\GetRacerCommand.cs" />
     <Compile Include="CommandObjects\RacerCommands\SaveRacerCommand.cs" />
@@ -114,13 +116,28 @@
     <Compile Include="Migrations\201702281503037_AddActiveRacerFlag.Designer.cs">
       <DependentUpon>201702281503037_AddActiveRacerFlag.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703150130359_AddRaceResults.cs" />
+    <Compile Include="Migrations\201703150130359_AddRaceResults.Designer.cs">
+      <DependentUpon>201703150130359_AddRaceResults.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703150132132_AddRacePhaseToRaceEvent.cs" />
+    <Compile Include="Migrations\201703150132132_AddRacePhaseToRaceEvent.Designer.cs">
+      <DependentUpon>201703150132132_AddRacePhaseToRaceEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703152241364_AddSortIdxToRacePhase.cs" />
+    <Compile Include="Migrations\201703152241364_AddSortIdxToRacePhase.Designer.cs">
+      <DependentUpon>201703152241364_AddSortIdxToRacePhase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IDBObject.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\RaceEvent.cs" />
+    <Compile Include="Models\RaceResult.cs" />
     <Compile Include="Models\RefData\RaceFormat.cs" />
     <Compile Include="Models\Racer.cs" />
+    <Compile Include="Models\RefData\RacePhase.cs" />
     <Compile Include="Models\RefData\RaceSeries.cs" />
+    <Compile Include="Models\RunResult.cs" />
     <Compile Include="Models\Season.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -152,6 +169,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702281503037_AddActiveRacerFlag.resx">
       <DependentUpon>201702281503037_AddActiveRacerFlag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703150130359_AddRaceResults.resx">
+      <DependentUpon>201703150130359_AddRaceResults.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703150132132_AddRacePhaseToRaceEvent.resx">
+      <DependentUpon>201703150132132_AddRacePhaseToRaceEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703152241364_AddSortIdxToRacePhase.resx">
+      <DependentUpon>201703152241364_AddSortIdxToRacePhase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
