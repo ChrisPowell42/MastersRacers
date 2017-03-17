@@ -226,6 +226,17 @@
             }
         };
 
+        var raceResultsDefaultState = {
+            name: 'raceResults',
+            url: '/raceresults',
+            component: 'raceResultDefault',
+            resolve: {
+                racePhases: function(RefDataService) {
+                    return RefDataService.getRacePhasesResolved();
+                }
+            }
+        };
+
         $stateProvider.state(defaultState);
         $stateProvider.state(seasonState);
         $stateProvider.state(seasonListState);
@@ -247,6 +258,8 @@
         $stateProvider.state(racesDefaultState);
         $stateProvider.state(addRaceState);
         $stateProvider.state(editRaceState);
+
+        $stateProvider.state(raceResultsDefaultState);
 
     }
 

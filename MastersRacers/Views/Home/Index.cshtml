@@ -1,9 +1,32 @@
 ﻿<div layout="column" layout-fill id="tabContainer" ng-cloak>
     <md-toolbar layout="row" md-primary flex="5">
-        <md-button ui-sref="races.list()">Races</md-button>
-        <md-button ui-sref="racers.list()">Racers</md-button>
-        <md-button ui-sref="locations.list()">Locations</md-button>
-        <md-button ui-sref="seasons.list()">Seasons</md-button>
+        <md-menu-bar>
+            <md-menu md-warn>
+                <md-button class="md-raised md-warn" ng-click="$mdMenu.open($event)">Administration</md-button>
+                <md-menu-content width="4">
+                    <md-menu-item md-primary>
+                        <md-menu>
+                            <md-button class="md-raised md-warn" ng-click="$mdMenu.open($event)">Result Management</md-button>
+                            <md-menu-content width="4">
+                                <md-menu-item><md-button class="md-raised md-warn" ui-sref="raceResults">Enter Results</md-button></md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+                    </md-menu-item>
+                    <md-menu-divider md-primary></md-menu-divider>
+                    <md-menu-item md-primary>
+                        <md-menu>
+                            <md-button class="md-raised md-warn" ng-click="$mdMenu.open($event)">Setup</md-button>
+                            <md-menu-content width="4">
+                                <md-menu-item><md-button class="md-raised md-warn" ui-sref="races.list()">Races</md-button></md-menu-item>
+                                <md-menu-item><md-button class="md-raised md-warn" ui-sref="racers.list()">Racers</md-button></md-menu-item>
+                                <md-menu-item><md-button class="md-raised md-warn" ui-sref="locations.list()">Locations</md-button></md-menu-item>
+                                <md-menu-item><md-button class="md-raised md-warn" ui-sref="seasons.list()">Seasons</md-button></md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </md-menu-bar>
     </md-toolbar>
     <div ui-view flex="95"></div>
 </div>

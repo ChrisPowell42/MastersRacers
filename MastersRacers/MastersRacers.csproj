@@ -293,6 +293,8 @@
     <Content Include="Scripts\app\Locations\locationListItem.component.js" />
     <Content Include="Scripts\app\Locations\modifyLocation.component.js" />
     <Content Include="Scripts\app\RaceEvents\raceEventDefault.html" />
+    <Content Include="Scripts\app\RaceResults\raceResultDefault.component.js" />
+    <Content Include="Scripts\app\RaceResults\raceResultDefault.template.html" />
     <Content Include="Scripts\app\Racers\modifyRacer.component.js" />
     <Content Include="Scripts\app\RaceEvents\raceEventList.component.js" />
     <Content Include="Scripts\app\RaceEvents\raceEventListItem.component.js" />

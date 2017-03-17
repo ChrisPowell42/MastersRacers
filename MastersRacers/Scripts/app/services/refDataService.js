@@ -6,8 +6,8 @@
         .module('racerApp')
         .service('RefDataService', RefDataService);
 
-    RefDataService.$inject = ['$http', 'HttpErrorService'];
-    function RefDataService($http, HttpErrorService) {
+    RefDataService.$inject = ['$log', '$http', 'HttpErrorService'];
+    function RefDataService($log, $http, HttpErrorService) {
 
         var rs = this;
 
@@ -15,6 +15,8 @@
         rs.getRaceSeriesResolved = getRaceSeriesResolved;
         rs.getRaceFormats = getRaceFormats;
         rs.getRaceFormatsResolved = getRaceFormatsResolved;
+        rs.getRacePhases = getRacePhases;
+        rs.getRacePhasesResolved = getRacePhasesResolved;
 
         function getRaceSeries() {
             var response = $http.get('api/refdata/raceseries', {cache: true});
@@ -22,8 +24,7 @@
         }
 
         function getRaceSeriesResolved() {
-            return rs.getRaceSeries()
-                     .then(function(resp) {
+            return getRaceSeries().then(function(resp) {
                 return resp.data;
             }, HttpErrorService.onError);
         }
@@ -34,8 +35,18 @@
         }
 
         function getRaceFormatsResolved() {
-            return rs.getRaceFormats()
-                     .then(function(resp) {
+            return getRaceFormats().then(function(resp) {
+                return resp.data;
+            }, HttpErrorService.onError);
+        }
+
+        function getRacePhases() {
+            var response = $http.get('api/refdata/racephases', {cache: true});
+            return response;
+        }
+
+        function getRacePhasesResolved() {
+            return getRacePhases().then(function(resp) {
                 return resp.data;
             }, HttpErrorService.onError);
         }

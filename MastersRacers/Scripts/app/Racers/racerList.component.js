@@ -14,8 +14,8 @@
             }
         });
 
-    Controller.$inject = ['$log', '$state', 'RacerService', 'RefDataService', 'CacheService', 'HttpErrorService'];
-    function Controller($log, $state, RacerService, RefDataService, CacheService, HttpErrorService) {
+    Controller.$inject = ['$log', '$state', 'RacerService', 'CacheService', 'HttpErrorService'];
+    function Controller($log, $state, RacerService, CacheService, HttpErrorService) {
 
         var vm = this;
 

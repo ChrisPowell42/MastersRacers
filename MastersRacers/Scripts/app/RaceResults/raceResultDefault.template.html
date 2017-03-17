@@ -1,0 +1,16 @@
+﻿<div flex>
+    <md-toolbar layout="row">
+        <form layout="row">
+            <md-input-container class="md-block">
+                <label>Race Status:</label>
+                <md-select id="rRacePhase" ng-model-options="{trackBy: '$value.id'}" ng-model="rrCtrl.selectedPhase" placeholder="Select a race status">
+                    <md-option ng-value="phase" ng-repeat="phase in rrCtrl.racePhases">{{phase.phase}}</md-option>
+                </md-select>
+            </md-input-container>
+            <md-button class="md-raised md-primary" ng-click="rrCtrl.checkSelectedPhase()">Get Races by Status</md-button>
+        </form>
+    </md-toolbar>
+    <div layout-padding layout-margin flex>
+        <p>Place holder until I think of something to put here.</p>
+    </div>
+</div>
