@@ -228,12 +228,86 @@
 
         var raceResultsDefaultState = {
             name: 'raceResults',
+            url: '/raceresults/:raceId',
+            component: 'raceResultDefault',
+            resolve: {
+                racePhases: function(RefDataService) {
+                    return RefDataService.getRacePhasesResolved();
+                },
+                seasonRaces: function(RaceEventService) {
+                    return RaceEventService.getActiveResolved();
+                },
+                activeSeason: function(SeasonService) {
+                    return SeasonService.getActiveResolved();
+                },
+                selectedRace: ['$transition$', 'CacheService', 'seasonRaces', function($transition$, CacheService, seasonRaces) {
+                    var raceId = $transition$.params().raceId;
+                    var returnValue = null;
+                    if (raceId) {
+                        returnValue = CacheService.findInListById(raceId, seasonRaces);
+                    }
+                    return returnValue;
+                }],
+                selectedPhase: ['$transition$', 'racePhases', 'selectedRace', 'CacheService', function($transition$, racePhases, selectedRace, CacheService) {
+                    var returnValue = null;
+                    if (selectedRace) {
+                        returnValue = CacheService.findInListById(selectedRace.racePhaseId, racePhases);
+                    }
+                    return returnValue;
+                }]
+            }
+        };
+
+        var raceResultsDefaultRaceState = {
+            name: 'raceResultsNotSelected',
             url: '/raceresults',
             component: 'raceResultDefault',
             resolve: {
                 racePhases: function(RefDataService) {
                     return RefDataService.getRacePhasesResolved();
+                },
+                seasonRaces: function(RaceEventService) {
+                    return RaceEventService.getActiveResolved();
+                },
+                activeSeason: function(SeasonService) {
+                    return SeasonService.getActiveResolved();
+                },
+                selectedRace: function() {
+                    return null;
+                },
+                selectedPhase: function() {
+                    return null;
                 }
+            }
+        };
+
+        var raceResultsScheduleState = {
+            name: 'raceResults.scheduled',
+            url: '/scheduled',
+            component: 'raceResultScheduled',
+            resolve: {
+                raceItem: function(selectedRace) {
+                    return selectedRace;
+                }
+            }
+        };
+
+        var raceResultsRecordingState = {
+            name: 'raceResults.recording',
+            url: '/recording',
+            component: 'raceResultsRecording',
+            resolve: {
+                raceItem: function(selectedRace) {
+                    return selectedRace;
+                },
+                raceResults: ['raceItem', 'RaceResultService', 'RaceResultNavService', function(raceItem, RaceResultService, RaceResultNavService) {
+
+                    if (RaceResultNavService.isRecording(raceItem))
+                    {
+                        RaceResultsService.getResultsForRaceResolved();
+                    }
+
+                }]
             }
         };
 
@@ -260,6 +334,9 @@
         $stateProvider.state(editRaceState);
 
         $stateProvider.state(raceResultsDefaultState);
+        $stateProvider.state(raceResultsDefaultRaceState);
+        $stateProvider.state(raceResultsScheduleState);
+        $stateProvider.state(raceResultsRecordingState);
 
     }
 

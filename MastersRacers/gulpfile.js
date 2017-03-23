@@ -1,4 +1,4 @@
-﻿/// <binding BeforeBuild='default' Clean='clean-styles, clean-vendor-scripts' />
+﻿/// <binding Clean='clean-styles, clean-vendor-scripts' />
 ///
 // include plug-ins
 var gulp = require('gulp');
@@ -29,13 +29,14 @@ var config = {
         'bower_components/angular-aria/angular-aria.js',
         'bower_components/angular-messages/angular-messages.js',
         'bower_components/angular-material/angular-material.js',
-        'bower_components/angular-ui-router/release/angular-ui-router.js'
+        'bower_components/angular-ui-router/release/angular-ui-router.js',
+        'bower_components/angular-loading-bar/build/loading-bar.js'
     ],
     angularbundle: 'build/angular-bundle.min.js',
 
     //Modernizr
-    modernizrsrc: ['bower_components/modernizr/src/modernizr.js'],
-    modernizrbundle: 'build/modernizer.min.js',
+    //modernizrsrc: ['bower_components/modernizr/src/modernizr.js'],
+    //modernizrbundle: 'build/modernizer.min.js',
 
     //Application files
     appsrc: ['Scripts/app/module-racerApp.js',
@@ -44,10 +45,14 @@ var config = {
     appbundle: 'build/app-bundle.js',
 
     //Angular CSS
-    angularcss: 'bower_components/angular-material/angular-material.min.css',
+    allcss: [
+        'bower_components/angular-material/angular-material.min.css',
+        'bower_components/angular-loading-bar/build/loading-bar.css',
+        'Content/Site.css'
+        ],
 
     //Application CSS
-    appcss: 'Content/Site.css',
+    //appcss: 'Content/Site.css',
     //fontsout: 'Content/dist/fonts',
     cssout: 'Content/dist/css'
 
@@ -127,7 +132,7 @@ gulp.task('clean-styles', function() {
 });
 
 gulp.task('css', function () {
-    return gulp.src([config.angularcss, config.appcss])
+    return gulp.src(config.allcss)
      .pipe(concat('app.css'))
      .pipe(gulp.dest(config.cssout))
      .pipe(minifyCSS())

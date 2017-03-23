@@ -23,7 +23,12 @@ namespace MastersRacers.Data.CommandObjects.RaceEventCommands
         public async Task<ICollection<RaceEvent>> GetAll()
         {
 
-            ICollection<RaceEvent> returnValues = await _dbContext.RaceEvents.Where(x => x.Season.IsCurrentSeason).ToListAsync();
+            ICollection<RaceEvent> returnValues = await _dbContext.RaceEvents.Where(x => x.Season.IsCurrentSeason)
+                                                                             .Include(x=>x.Location)
+                                                                             .Include(x=>x.RaceFormat)
+                                                                             .Include(x=>x.RacePhase)
+                                                                             .Include(x=>x.Season)
+                                                                             .ToListAsync();
 
             return returnValues;
 

@@ -6,7 +6,7 @@
         .module('racerApp')
         .service('CacheService', CacheService);
 
-     CacheService.$inject = ['$log'];
+    CacheService.$inject = ['$log'];
     function CacheService($log) {
 
         var vm = this;

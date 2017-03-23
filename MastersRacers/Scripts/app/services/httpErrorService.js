@@ -18,9 +18,9 @@
             $log.log(httpError.data);
 
             var errorToast = $mdToast.simple()
-                                .textContent('Http Error has occured: ' + httpError.status + ' - ' + httpError.statusText + ' (' + httpError.config.url + ')')
-                                .hideDelay(0)
-                                .action('Ok');
+                                     .textContent('Http Error has occured: ' + httpError.status + ' - ' + httpError.statusText + ' (' + httpError.config.url + ')')
+                                     .hideDelay(0)
+                                     .action('Ok');
 
             $mdToast.show(errorToast).then(function(response) {
                 $mdToast.hide(errorToast);

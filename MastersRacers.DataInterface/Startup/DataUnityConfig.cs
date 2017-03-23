@@ -1,6 +1,7 @@
 ﻿using MastersRacers.Data.CommandObjects;
 using MastersRacers.Data.CommandObjects.RaceEventCommands;
 using MastersRacers.Data.CommandObjects.RacerCommands;
+using MastersRacers.Data.CommandObjects.RaceResultCommands;
 using MastersRacers.Data.CommandObjects.SeasonCommands;
 using MastersRacers.Data.Contexts;
 using MastersRacers.Data.Models;
@@ -21,6 +22,7 @@ namespace MastersRacers.DataInterface.Startup
         {
             container.RegisterType<IRaceContext, RaceContext>();
 
+            container.RegisterType<IGetRaceResultsForRaceCommand, GetRaceResultsForRaceCommand>();
             container.RegisterType<IRaceResultCRUD, RaceResultCRUD>();
 
             container.RegisterType<IRemoveCommand<Racer>, RemoveCommand<Racer>>();
@@ -50,6 +52,7 @@ namespace MastersRacers.DataInterface.Startup
             container.RegisterType<IGetActiveSeasonRaceEventsCommand, GetActiveSeasonRaceEventsCommand>();
             container.RegisterType<ISaveRaceEventCommand, SaveRaceEventCommand>();
             container.RegisterType<IGetCommand<RaceEvent>, GetCommand<RaceEvent>>();
+            container.RegisterType<IGetActiveRaceEventsForPhaseCommand, GetActiveRaceEventsForPhaseCommand>();
             container.RegisterType<IRaceEventCRUD, RaceEventCRUD>();
 
             container.RegisterType<IGetAllCommand<RaceFormat>, GetAllCommand<RaceFormat>>();

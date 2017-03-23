@@ -9,30 +9,32 @@
             controller: Controller,
             controllerAs: 'rrCtrl',
             bindings: {
-                racePhases: '<'
+                racePhases: '<',
+                seasonRaces: '<',
+                selectedPhase: '<',
+                selectedRace: '<',
+                activeSeason: '<'
             }
         });
 
-    Controller.$inject = ['$log', '$state', 'RefDataService', 'HttpErrorService'];
-    function Controller($log, $state, RefDataService, HttpErrorService) {
+    Controller.$inject = ['$log', '$state', '$mdToast', 'RaceResultNavService', 'HttpErrorService'];
+    function Controller($log, $state, $mdToast, RaceResultNavService, HttpErrorService) {
 
         var vm = this;
 
-        vm.selectedPhase = null;
+        vm.navigateToDetail = navigateToDetail;
+        vm.phaseChange = phaseChange;
 
-        vm.checkSelectedPhase = checkSelectedPhase;
-        vm.setRaceFilter = setRaceFilter;
+        function navigateToDetail() {
 
-        vm.$onInit = function() {
-            $log.log(vm.racePhases);
-        };
+            RaceResultNavService.navigateToRaceResultAction(vm.selectedRace);
 
-        function checkSelectedPhase() {
-            $log.log(vm.selectedPhase);
         }
 
-        function setRaceFilter(event) {
-            $log.log('Test');
+        function phaseChange() {
+
+            vm.selectedRace = null;
+
         }
 
     }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MastersRacers.Data.CommandObjects;
 using MastersRacers.Data.CommandObjects.RacerCommands;
+using MastersRacers.Data.CommandObjects.RaceResultCommands;
 using MastersRacers.Data.Models;
 using MastersRacers.DTOs;
 using System;
@@ -14,21 +15,25 @@ namespace MastersRacers.DataInterface.CRUD
     public interface IRaceResultCRUD :IDisposable
     {
         Task<ICollection<RaceResultDTO>> BuildRaceResultsForRace(Guid raceEventId);
+        Task<ICollection<RaceResultDTO>> GetRaceResultsForRace(Guid raceEventId);
     }
 
     public class RaceResultCRUD : IRaceResultCRUD
     {
         private readonly IGetActiveRacersCommand _getActiveRacersCmd;
         private readonly IGetCommand<RaceEvent> _getRaceEventCmd;
+        private readonly IGetRaceResultsForRaceCommand _getRaceResultsForRaceCmd;
 
         private readonly IMapper _mapper;
 
         public RaceResultCRUD(IGetActiveRacersCommand getActiveRacersCmd,
                               IGetCommand<RaceEvent> getRaceEventCmd,
+                              IGetRaceResultsForRaceCommand getRaceResultsForRaceCmd, 
                               IMapper mapper)
         {
             _getActiveRacersCmd = getActiveRacersCmd;
             _getRaceEventCmd = getRaceEventCmd;
+            _getRaceResultsForRaceCmd = getRaceResultsForRaceCmd;
 
             _mapper = mapper;
         }
@@ -65,7 +70,6 @@ namespace MastersRacers.DataInterface.CRUD
                         IsDNF = false,
                         IsDSQ = false,
                         RaceResultId = resultID,
-                        //RaceResult = racerResult
                     };
                     runResults.Add(runResult);
                 }
@@ -76,6 +80,15 @@ namespace MastersRacers.DataInterface.CRUD
             }
 
             return returnList;
+
+        }
+
+        public async Task<ICollection<RaceResultDTO>> GetRaceResultsForRace(Guid raceEventId)
+        {
+            ICollection<RaceResult> raceResults = await _getRaceResultsForRaceCmd.GetRaceResultsForRace(raceEventId);
+            ICollection<RaceResultDTO> raceResultsDTO = _mapper.Map<ICollection<RaceResultDTO>>(raceResults);
+
+            return raceResultsDTO;
 
         }
 
@@ -112,6 +125,7 @@ namespace MastersRacers.DataInterface.CRUD
             // TODO: uncomment the following line if the finalizer is overridden above.
             // GC.SuppressFinalize(this);
         }
+
         #endregion
 
     }

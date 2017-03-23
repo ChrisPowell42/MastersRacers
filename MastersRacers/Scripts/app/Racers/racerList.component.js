@@ -59,6 +59,8 @@
                 vm.racers.push(addedRacer);
             }
 
+            $state.go('racers.list', null, {reload: 'racers'});
+
         }
 
         function findIdxById(racer, racerList) {
@@ -95,7 +97,7 @@
                 }
             }
 
-            $state.go('racers', null, {reload: 'racers'});
+            $state.go('racers.list', null, {reload: 'racers'});
 
         }
 

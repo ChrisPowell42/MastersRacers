@@ -1,14 +1,17 @@
-﻿<div layout="column" layout-fill id="tabContainer" ng-cloak>
-    <md-toolbar layout="row" md-primary flex="5">
+﻿<div layout="column">
+    <md-toolbar layout="row" flex class="md-warn">
+        <div class="md-toolbar-tools">
+            <h2 class="md-flex">Master's Racers</h2>
+        </div>
         <md-menu-bar>
-            <md-menu md-warn>
-                <md-button class="md-raised md-warn" ng-click="$mdMenu.open($event)">Administration</md-button>
+            <md-menu>
+                <md-button class="md-raised md-primary" ng-click="$mdMenu.open($event)">Administration</md-button>
                 <md-menu-content width="4">
                     <md-menu-item md-primary>
                         <md-menu>
                             <md-button class="md-raised md-warn" ng-click="$mdMenu.open($event)">Result Management</md-button>
                             <md-menu-content width="4">
-                                <md-menu-item><md-button class="md-raised md-warn" ui-sref="raceResults">Enter Results</md-button></md-menu-item>
+                                <md-menu-item><md-button class="md-raised md-warn" ui-sref="raceResultsNotSelected()">Enter Results</md-button></md-menu-item>
                             </md-menu-content>
                         </md-menu>
                     </md-menu-item>
@@ -28,5 +31,5 @@
             </md-menu>
         </md-menu-bar>
     </md-toolbar>
-    <div ui-view flex="95"></div>
+    <ui-view layout-fill></ui-view>
 </div>

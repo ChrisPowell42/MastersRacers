@@ -65,7 +65,7 @@
                 $log.log('Could not find added location in response.');
             }
 
-            $state.go('locations', null, {reload: 'locations'});
+            $state.go('locations.list', null, {reload: 'locations'});
 
         }
 
@@ -105,7 +105,7 @@
                 }
             }
 
-            $state.go('locations', null, {reload: 'locations'});
+            $state.go('locations.list', null, {reload: 'locations'});
 
         }
 

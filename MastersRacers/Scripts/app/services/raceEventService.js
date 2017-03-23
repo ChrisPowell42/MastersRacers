@@ -19,6 +19,8 @@
         rs.post = post;
         rs.cloneRaceEvent = cloneRaceEvent;
         rs.newRaceEvent = newRaceEvent;
+        rs.getActiveForPhase = getActiveForPhase;
+        rs.getActiveForPhaseResolved = getActiveForPhaseResolved;
 
         function getActive() {
             var response = $http.get('api/raceevents/active');
@@ -27,6 +29,17 @@
 
         function getActiveResolved() {
             return rs.getActive().then(function(resp) {
+                return resp.data;
+            }, HttpErrorService.onError);
+        }
+
+        function getActiveForPhase(phaseId) {
+            var response = $http.get('api/raceevents/active/phase/' + phaseId);
+            return response;
+        }
+
+        function getActiveForPhaseResolved(phaseId) {
+            return rs.getActiveForPhase(phaseId).then(function(resp) {
                 return resp.data;
             }, HttpErrorService.onError);
         }

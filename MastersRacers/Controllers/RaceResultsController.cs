@@ -41,5 +41,25 @@ namespace MastersRacers.Controllers
             return Ok(results);
         }
 
+        [Route("race/{id:Guid}/raceresults")]
+        [ResponseType(typeof(IEnumerable<RaceResultDTO>))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetRaceResultsForRace(Guid id)
+        {
+            IEnumerable<RaceResultDTO> results = null;
+
+            try
+            {
+                results = await _raceResultCRUD.GetRaceResultsForRace(id);
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+
+            return Ok(results);
+
+        }
+
     }
 }

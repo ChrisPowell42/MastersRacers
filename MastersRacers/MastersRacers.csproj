@@ -295,6 +295,10 @@
     <Content Include="Scripts\app\RaceEvents\raceEventDefault.html" />
     <Content Include="Scripts\app\RaceResults\raceResultDefault.component.js" />
     <Content Include="Scripts\app\RaceResults\raceResultDefault.template.html" />
+    <Content Include="Scripts\app\RaceResults\raceResultScheduled.component.js" />
+    <Content Include="Scripts\app\RaceResults\raceResultScheduled.template.html" />
+    <Content Include="Scripts\app\RaceResults\raceResultsRecording.component.js" />
+    <Content Include="Scripts\app\RaceResults\raceResultsRecording.template.html" />
     <Content Include="Scripts\app\Racers\modifyRacer.component.js" />
     <Content Include="Scripts\app\RaceEvents\raceEventList.component.js" />
     <Content Include="Scripts\app\RaceEvents\raceEventListItem.component.js" />
@@ -311,6 +315,8 @@
     <Content Include="Scripts\app\services\HttpErrorService.js" />
     <Content Include="Scripts\app\services\LocationService.js" />
     <Content Include="Scripts\app\services\RaceEventService.js" />
+    <Content Include="Scripts\app\services\RaceResultNavService.js" />
+    <Content Include="Scripts\app\services\RaceResultService.js" />
     <Content Include="Scripts\app\services\RacerService.js" />
     <Content Include="Scripts\app\services\RefDataService.js" />
     <Content Include="Scripts\app\services\SeasonService.js" />

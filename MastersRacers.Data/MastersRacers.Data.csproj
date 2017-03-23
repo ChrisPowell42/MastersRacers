@@ -72,12 +72,14 @@
     <Compile Include="CommandObjects\CommandObjectBase.cs" />
     <Compile Include="CommandObjects\GetAllCommand.cs" />
     <Compile Include="CommandObjects\GetCommand.cs" />
+    <Compile Include="CommandObjects\RaceEventCommands\GetActiveRaceEventsForPhaseCommand.cs" />
     <Compile Include="CommandObjects\RaceEventCommands\SaveRaceEventCommand.cs" />
     <Compile Include="CommandObjects\RaceEventCommands\GetActiveSeasonRaceEventsCommand.cs" />
     <Compile Include="CommandObjects\RacerCommands\GetActiveRacersCommand.cs" />
     <Compile Include="CommandObjects\RacerCommands\GetAllRacersCommand.cs" />
     <Compile Include="CommandObjects\RacerCommands\GetRacerCommand.cs" />
     <Compile Include="CommandObjects\RacerCommands\SaveRacerCommand.cs" />
+    <Compile Include="CommandObjects\RaceResultCommands\GetRaceResultsForRaceCommand.cs" />
     <Compile Include="CommandObjects\RemoveCommand.cs" />
     <Compile Include="CommandObjects\SaveCommand.cs" />
     <Compile Include="CommandObjects\SeasonCommands\CreateActiveSeasonCommand.cs" />

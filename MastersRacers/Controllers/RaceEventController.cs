@@ -62,11 +62,23 @@ namespace MastersRacers.Controllers
 
         }
 
-
-        // GET api/<controller>/5
-        public string Get(int id)
+        [Route("raceevents/active/phase/{id:guid}")]
+        [ResponseType(typeof(ICollection<RaceEventDTO>))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetActivePhaseRaces(Guid id)
         {
-            return "value";
+            ICollection<RaceEventDTO> returnValues = null;
+
+            try
+            {
+                returnValues = await _raceEventCRUD.GetAllActiveSeasonPhaseRaces(id);
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+
+            return Ok(returnValues);
         }
 
         // POST api/<controller>
@@ -88,10 +100,6 @@ namespace MastersRacers.Controllers
 
             return Ok(returnResult);
 
-        }
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
-        {
         }
 
         // DELETE api/<controller>/5
