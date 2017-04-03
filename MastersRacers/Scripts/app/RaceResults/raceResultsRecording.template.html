@@ -1,1 +1,9 @@
-﻿
+﻿<md-content flex layout-column>
+    <div layout="column">
+        <individual-race-result ng-repeat="race in rCtrl.raceResults" race-result="race" on-delete="rCtrl.deleteResult(race)" />
+    </div>
+    <div layout="row">
+        <md-button class="md-warn md-raised" ng-click="rCtrl.saveResults()">Save Results</md-button>
+        <md-button class="md-warn md-raised" ng-click="rCtrl.finalizeResults()">Finalize Results</md-button>
+    </div>
+</md-content>

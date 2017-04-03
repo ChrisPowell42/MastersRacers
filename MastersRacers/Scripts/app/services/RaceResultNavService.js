@@ -42,6 +42,8 @@
 
         function navigateToRaceResultAction(subjectRace) {
 
+            //$log.log(subjectRace);
+
             if (raceIsScheduled(subjectRace)) {
 
                 $state.go('raceResults.scheduled', {raceId: subjectRace.id});
@@ -64,6 +66,7 @@
         function proceedToRaceRecording(subjectRace) {
 
             subjectRace.racePhaseId = recordingId;
+            subjectRace.racePhase = null;
 
             RaceEventService.post(subjectRace)
                             .then(afterSaveToRecording, HttpErrorService.onError);

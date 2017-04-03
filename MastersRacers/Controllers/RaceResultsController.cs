@@ -51,6 +51,10 @@ namespace MastersRacers.Controllers
             try
             {
                 results = await _raceResultCRUD.GetRaceResultsForRace(id);
+                if (!results.Any())
+                {
+                    results = await _raceResultCRUD.BuildRaceResultsForRace(id);
+                }
             }
             catch (Exception e)
             {

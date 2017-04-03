@@ -20,12 +20,6 @@
 
         vm.toggleMoveToRecording = toggleMoveToRecording;
 
-        vm.$onInit = function() {
-
-            $log.log(vm.raceItem);
-
-        };
-
         function toggleMoveToRecording(event) {
 
             var confirm = $mdDialog.confirm()

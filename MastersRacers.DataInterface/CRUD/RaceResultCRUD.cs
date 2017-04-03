@@ -66,7 +66,7 @@ namespace MastersRacers.DataInterface.CRUD
                     RunResultDTO runResult = new RunResultDTO {
                         Id = Guid.NewGuid(),
                         RunIdx = i,
-                        RunTime = 0,
+                        RunTime = null,
                         IsDNF = false,
                         IsDSQ = false,
                         RaceResultId = resultID,

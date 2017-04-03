@@ -1,0 +1,5 @@
+﻿<md-whiteframe class="md-whiteframe-10dp" layout="row" layout-align="start center" layout-margin>
+    <div flex="15">#{{irCtrl.raceResult.racer.bibNumber}} {{irCtrl.raceResult.racer.name}}<br/>{{irCtrl.raceResult.racer.raceSeries.gender}} {{irCtrl.raceResult.racer.raceSeries.name}}</div>
+    <race-time-entry ng-repeat="run in irCtrl.raceResult.runResults" race-time="run" />
+    <md-button class="md-fab md-mini md-primary" ng-click="irCtrl.triggerDelete($event)"><md-icon class="material-icons">delete</md-icon></md-button>
+</md-whiteframe>

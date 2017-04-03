@@ -18,7 +18,7 @@ namespace MastersRacers.Data.Models
 
         [Required]
         public int RunIdx { get; set; }
-        public double RunTime { get; set; }
+        public double? RunTime { get; set; }
         public bool IsDSQ { get; set; }
         public bool IsDNF { get; set; }
 

@@ -150,6 +150,6 @@ gulp.task('bower-restore', function() {
 });
 
 //Set a default tasks
-gulp.task('default', ['bower-restore', 'clean-styles', 'clean-vendor-scripts', 'style-nazi'], function() {
+gulp.task('default', ['bower-restore', 'clean-styles', 'clean-vendor-scripts'/*, 'style-nazi'*/], function() {
     gulp.start('vendor-scripts', 'css');
 });

@@ -22,7 +22,11 @@ namespace MastersRacers.Data.CommandObjects.RacerCommands
 
         public async Task<ICollection<Racer>> GetActiveRacers()
         {
-            ICollection<Racer> returnResult = await _dbContext.Racers.Where(x => x.Active).ToListAsync();
+            ICollection<Racer> returnResult = await _dbContext.Racers.Where(x => x.Active)
+                                                                     .Include(x => x.RaceSeries)
+                                                                     .OrderBy(x => x.RaceSeries.SortOrderIdx)
+                                                                     .ThenBy(x => x.BibNumber)
+                                                                     .ToListAsync();
 
             return returnResult;
         }

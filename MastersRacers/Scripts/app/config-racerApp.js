@@ -297,16 +297,25 @@
             url: '/recording',
             component: 'raceResultsRecording',
             resolve: {
-                raceItem: function(selectedRace) {
+                raceItem: function ($log, selectedRace) {
                     return selectedRace;
                 },
-                raceResults: ['raceItem', 'RaceResultService', 'RaceResultNavService', function(raceItem, RaceResultService, RaceResultNavService) {
+                raceResults: ['$log', 'raceItem', 'RaceResultService', 'RaceResultNavService', function($log, raceItem, RaceResultService, RaceResultNavService) {
 
-                    if (RaceResultNavService.isRecording(raceItem))
-                    {
-                        RaceResultsService.getResultsForRaceResolved();
+                    var results = null;
+
+                    if (RaceResultNavService.raceIsRecording(raceItem)) {
+
+                        results = RaceResultService.getResultsForRaceResolved(raceItem);
+
+                        if (!results) {
+                            results = RaceResultService.createResultsForRaceResolved(raceItem);
+                        }
                     }
 
+                    $log.log(results);
+
+                    return results;
                 }]
             }
         };

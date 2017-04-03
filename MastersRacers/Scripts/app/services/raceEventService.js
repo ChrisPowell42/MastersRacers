@@ -15,7 +15,7 @@
         rs.getActiveResolved = getActiveResolved;
         rs.get = get;
         rs.delete = deleteEvent;
-        rs.put = put;
+        //rs.put = put;
         rs.post = post;
         rs.cloneRaceEvent = cloneRaceEvent;
         rs.newRaceEvent = newRaceEvent;
@@ -54,10 +54,10 @@
             return response;
         }
 
-        function put(raceEvent) {
-            var response = $http.put('api/raceevent/' + raceEvent.id, raceEvent);
-            return response;
-        }
+        //function put(raceEvent) {
+        //    var response = $http.put('api/raceevent/' + raceEvent.id, raceEvent);
+        //    return response;
+        //}
 
         function post(raceEvent) {
             var response = $http.post('api/raceevent/', raceEvent);
