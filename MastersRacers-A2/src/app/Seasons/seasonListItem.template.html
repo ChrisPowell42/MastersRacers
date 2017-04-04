@@ -1,0 +1,8 @@
+<md-card *ngIf='season'>
+    <md-card-title>
+        Season {{season.startYear}}-{{season.endYear}} <span *ngIf='season.isCurrentSeason'>*</span>
+    </md-card-title>
+    <md-card-content>
+        Note: {{season.notes}}
+    </md-card-content>
+</md-card>

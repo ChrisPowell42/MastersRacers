@@ -1,0 +1,4 @@
+<md-toolbar color="warn" layout-align="space-between center">{{title}} &nbsp; <button md-mini-fab color="primary" (click)="addNewSeason()"><md-icon>add</md-icon></button></md-toolbar>
+<div *ngIf='seasons'>
+    <season-list-item *ngFor='let season of seasons' [season]=season></season-list-item>
+</div>
