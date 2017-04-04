@@ -14,6 +14,8 @@ namespace MastersRacers
     {
         public static void Register(HttpConfiguration config)
         {
+            config.EnableCors();
+
             var container = UnityConfig.GetConfiguredContainer();
             config.DependencyResolver = new UnityWebApiResolver(container);
 
