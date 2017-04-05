@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+
 import { Season } from '../Seasons/season';
 import { LoggerService } from './logger.service';
-
-import 'rxjs/add/operator/toPromise';
+import { ErrorService } from './error.service';
 
 @Injectable()
 export class SeasonService {
@@ -11,40 +12,62 @@ export class SeasonService {
 // "http://mastersracers.azurewebsites.net",
 // "http://localhost:17585"
 
-    private headers = new Headers({'Content-Type': 'application/json'});
     private seasonsUrl = '/api/seasons';  // URL to web api
-    private newSeasonUrl = '/api/season/00000000-0000-0000-0000-000000000000';
+    private newSeasonUrl = '/api/season/new';
 
     constructor(private http: Http,
-                private logger: LoggerService) { }
+                private logger: LoggerService,
+                private errorHandler: ErrorService) { }
 
-    getSeasons(): Promise<Season[]> {
+    private extractData(res: Response) {
+
+        let body = res.json();
+
+        this.logger.log('Got data, SeasonService');
+        this.logger.log(body);
+
+        return body || { };
+
+    }
+
+    getSeasons(): Observable<Season[]> {
+
+        this.logger.log('Getting Seasons, SeasonService');
 
         return this.http.get(this.seasonsUrl)
-                        .toPromise()
-                        .then(response => response.json() as Season[])
-                        .catch(this.handleError);
+                        .map(resp => this.extractData(resp))
+                        .catch(error => this.errorHandler.handleError(error));
 
     }
 
-    newSeason(): Promise<Season> {
+    newSeason(): Observable<Season> {
 
-        var newSeason: Season;
+        this.logger.log('Adding Season, SeasonService');
 
-        this.http.put(this.newSeasonUrl, null)
-                 .toPromise()
-                 .then(response => newSeason = response.json().data as Season)
-                 .catch(this.handleError);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
 
-        this.logger.log(newSeason);
-
-        return Promise.resolve(newSeason);
+        return this.http.put(this.newSeasonUrl, null, options)
+                        .map(resp => this.extractData(resp))
+                        .catch(error => this.errorHandler.handleError(error));
 
     }
 
-    handleError(error: any): Promise<any> {
-        // console.error(error.message || error);
-        return Promise.reject(error.message || error);
-    }
+//     handleError(error: Response | any) {
+
+//         // In a real world app, you might use a remote logging infrastructure
+//         let errMsg: string;
+//         if (error instanceof Response) {
+//             const body = error.json() || '';
+//             const err = body.error || JSON.stringify(body);
+//             errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+//         } else {
+//             errMsg = error.message ? error.message : error.toString();
+//         }
+
+//         this.errorHandler.handleError(errMsg);
+
+//         return Observable.throw(errMsg);
+//   }
 
 }

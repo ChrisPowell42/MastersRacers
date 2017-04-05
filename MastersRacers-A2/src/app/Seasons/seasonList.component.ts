@@ -11,29 +11,26 @@ import { Season } from './season';
 })
 export class SeasonListComponent implements OnInit {
 
-    seasons: Season[] = [];
+    seasons: Season[];
     selectedSeason: Season;
     title = 'Seasons';
 
     constructor(private seasonServe: SeasonService,
-                private logger: LoggerService
-               ) {}
+                private logger: LoggerService) {}
 
     getSeasons(): void {
 
-        this.seasonServe.getSeasons().then(fetchedSeasons => this.seasons = fetchedSeasons);
+        this.logger.log('Getting Seasons, Component');
+        this.seasonServe.getSeasons().subscribe(fetchedSeasons => this.seasons = fetchedSeasons);
+        this.logger.log('After Getting Seasons, Component');
 
     }
 
     addNewSeason(): void {
 
-        var newSeason: Season;
-
-        this.seasonServe.newSeason().then(addedSeason => newSeason = addedSeason);
-
-        this.logger.log(newSeason);
-
-        this.seasons.push(newSeason);
+        this.logger.log('Adding Season, Component')
+        this.seasonServe.newSeason().subscribe(addedSeason => this.seasons.push(addedSeason));
+        this.logger.log('After Season, Component')
 
     }
 

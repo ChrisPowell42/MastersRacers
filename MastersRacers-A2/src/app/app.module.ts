@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule, JsonpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule} from './Routing/app-routing.module';
 
 import { SeasonService } from './Services/season.service';
 import { LoggerService } from './Services/logger.service';
+import { ErrorService } from './Services/error.service';
 
 import { AppComponent } from './app.component';
 import { SeasonListComponent } from './Seasons/seasonList.component';
@@ -25,13 +27,16 @@ import 'hammerjs';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
     FormsModule,
     HttpModule,
     MaterialModule,
     AppRoutingModule
   ],
   providers: [SeasonService,
-              LoggerService],
+              LoggerService,
+              ErrorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

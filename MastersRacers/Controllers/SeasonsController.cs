@@ -120,6 +120,26 @@ namespace MastersRacers.Controllers
             }
         }
 
+        [Route("season/new")]
+        [ResponseType(typeof(SeasonDTO))]
+        [HttpPut]
+        public async Task<IHttpActionResult> CreateNew()
+        {
+            SeasonDTO newSeason = null;
+
+            try
+            {
+                newSeason = await _seasonCRUD.CreateActiveSeason();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+
+            return Ok(newSeason);
+
+        }
+
         // DELETE: api/Seasons/5
         public void Delete(int id)
         {
