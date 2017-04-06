@@ -6,8 +6,6 @@ import { MdSnackBar} from '@angular/material';
 
 import { LoggerService } from './logger.service';
 
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 
 @Injectable()
