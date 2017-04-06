@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SeasonService } from '../Services/season.service';
 import { LoggerService } from '../Services/logger.service';
 
-import { Season } from './season';
+import { SeasonModel } from './season.type';
 
 @Component({
     selector: 'season-list',
@@ -11,8 +11,8 @@ import { Season } from './season';
 })
 export class SeasonListComponent implements OnInit {
 
-    seasons: Season[];
-    selectedSeason: Season;
+    seasons: SeasonModel[];
+    selectedSeason: SeasonModel;
     title = 'Seasons';
 
     constructor(private seasonServe: SeasonService,
@@ -28,9 +28,9 @@ export class SeasonListComponent implements OnInit {
 
     addNewSeason(): void {
 
-        this.logger.log('Adding Season, Component')
+        this.logger.log('Adding Season, Component');
         this.seasonServe.newSeason().subscribe(addedSeason => this.seasons.push(addedSeason));
-        this.logger.log('After Season, Component')
+        this.logger.log('After Season, Component');
 
     }
 

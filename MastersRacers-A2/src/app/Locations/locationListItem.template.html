@@ -1,0 +1,12 @@
+<md-card *ngIf='loc'>
+    <md-card-title>
+        Location {{loc.name}}
+    </md-card-title>
+    <md-card-content>
+        Note: {{loc.description}}
+    </md-card-content>
+    <md-card-actions>
+        <button md-button>Details</button>
+        <button md-button>Delete</button>
+    </md-card-actions>
+</md-card>

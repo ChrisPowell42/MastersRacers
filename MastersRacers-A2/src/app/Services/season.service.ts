@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { Season } from '../Seasons/season';
+import { SeasonModel } from '../Seasons/season.type';
 import { LoggerService } from './logger.service';
 import { ErrorService } from './error.service';
 
@@ -24,7 +24,7 @@ export class SeasonService {
 
     private extractData(res: Response) {
 
-        let body = res.json();
+        const body = res.json();
 
         this.logger.log('Got data, SeasonService');
         this.logger.log(body);
@@ -33,7 +33,7 @@ export class SeasonService {
 
     }
 
-    getSeasons(): Observable<Season[]> {
+    getSeasons(): Observable<SeasonModel[]> {
 
         this.logger.log('Getting Seasons, SeasonService');
 
@@ -43,12 +43,12 @@ export class SeasonService {
 
     }
 
-    newSeason(): Observable<Season> {
+    newSeason(): Observable<SeasonModel> {
 
         this.logger.log('Adding Season, SeasonService');
 
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({ headers: headers });
 
         return this.http.put(this.newSeasonUrl, null, options)
                         .map(resp => this.extractData(resp))

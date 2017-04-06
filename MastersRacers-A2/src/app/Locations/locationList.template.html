@@ -1,0 +1,9 @@
+<md-toolbar color="warn" layout-align="space-between center">{{title}} &nbsp; <button md-mini-fab color="primary" (click)="addNewLocation()"><md-icon>add</md-icon></button></md-toolbar>
+<md-sidenav-container>
+    <md-sidenav mode="side" opened="true" disableClose="true">
+        <div *ngIf='locations'>
+            <location-list-item *ngFor='let location of locations' [loc]=location></location-list-item>
+        </div>
+    </md-sidenav>
+    <router-outlet></router-outlet>
+</md-sidenav-container>

@@ -1,4 +1,4 @@
-export class Season {
+export class SeasonModel {
     id: string;
     startYear: number;
     endYear: number;

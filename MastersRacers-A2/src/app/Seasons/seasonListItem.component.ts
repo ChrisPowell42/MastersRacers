@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Season } from './season';
+import { SeasonModel } from './season.type';
 
 @Component({
     selector: 'season-list-item',
@@ -7,6 +7,6 @@ import { Season } from './season';
 })
 export class SeasonListItemComponent {
 
-    @Input() season: Season;
+    @Input() season: SeasonModel;
 
 }
