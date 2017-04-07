@@ -5,7 +5,6 @@ import { LoggerService } from '../Services/logger.service';
 import { LocationModel } from './location.type';
 
 @Component({
-    selector: 'location-list',
     templateUrl: './locationList.template.html',
     styles: ['md-sidenav { width: 400px; }'],
     providers: [LocationService, LoggerService]

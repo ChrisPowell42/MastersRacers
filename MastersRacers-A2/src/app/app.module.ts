@@ -16,13 +16,15 @@ import { ErrorService } from './Services/error.service';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './Dashboard/dashboard.component';
+import { PageNotFoundComponent } from './Dashboard/not-found.component';
 
 import 'hammerjs';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

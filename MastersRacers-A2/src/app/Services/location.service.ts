@@ -13,6 +13,7 @@ import 'rxjs/add/operator/map';
 export class LocationService {
 
     private locationsUrl = '/api/locations';
+    private locationUrl = '/api/locations/'
 
     constructor(private http: Http,
                 private logger: LoggerService,
@@ -37,6 +38,16 @@ export class LocationService {
                         .map(resp => this.extractData(resp))
                         .catch(error => this.errorHandler.handleError(error));
 
+
+    }
+
+    getLocation(id: string) {
+
+        this.logger.log('Getting Location, LocationService');
+
+        return this.http.get(this.locationUrl + id)
+                        .map(resp => this.extractData(resp))
+                        .catch(error => this.errorHandler.handleError(error));
 
     }
 

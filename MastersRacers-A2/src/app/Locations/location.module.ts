@@ -9,6 +9,7 @@ import { LocationListComponent } from './locationList.component';
 import { LocationListItemComponent } from './locationListItem.component';
 import { LocationDefaultComponent } from './locationDefault.component';
 import { LocationEditComponent } from './locationEdit.component';
+import { LocationDetailComponent } from './locationDetail.component';
 
 import { LocationRoutingModule } from './location-routing.module';
 
@@ -23,7 +24,8 @@ import { LocationRoutingModule } from './location-routing.module';
         LocationListComponent,
         LocationListItemComponent,
         LocationDefaultComponent,
-        LocationEditComponent
+        LocationEditComponent,
+        LocationDetailComponent
     ],
     providers: [ LocationService ]
 })
