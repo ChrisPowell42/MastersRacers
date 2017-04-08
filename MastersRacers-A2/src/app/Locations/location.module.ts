@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 
 import { LocationService } from '../Services/location.service';
+import { LocationResolver } from '../Routing/location-resolver.service';
+import { LocationRoutingModule } from '../Routing/location-routing.module';
+import { SharedModule } from '../Shared/shared.module';
 
 import { LocationListComponent } from './locationList.component';
 import { LocationListItemComponent } from './locationListItem.component';
@@ -11,11 +13,9 @@ import { LocationDefaultComponent } from './locationDefault.component';
 import { LocationEditComponent } from './locationEdit.component';
 import { LocationDetailComponent } from './locationDetail.component';
 
-import { LocationRoutingModule } from './location-routing.module';
-
 @NgModule({
     imports: [
-        CommonModule,
+        SharedModule,
         FormsModule,
         MaterialModule,
         LocationRoutingModule
@@ -27,6 +27,7 @@ import { LocationRoutingModule } from './location-routing.module';
         LocationEditComponent,
         LocationDetailComponent
     ],
-    providers: [ LocationService ]
+    providers: [ LocationService,
+                 LocationResolver ]
 })
 export class LocationModule {}

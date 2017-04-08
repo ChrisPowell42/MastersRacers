@@ -13,7 +13,7 @@ import 'rxjs/add/operator/map';
 export class LocationService {
 
     private locationsUrl = '/api/locations';
-    private locationUrl = '/api/locations/'
+    private locationUrl = '/api/locations/';
 
     constructor(private http: Http,
                 private logger: LoggerService,

@@ -28,6 +28,7 @@ namespace MastersRacers.DataInterface.CRUD
     public class SeasonCRUD : ISeasonCRUD
     {
         private readonly IGetAllCommand<Season> _getAllSeasonsCmd;
+        private readonly IGetCommand<Season> _getSeasonCmd;
         private readonly ISaveCommand<Season> _saveSeasonCmd;
         private readonly ICreateActiveSeasonCommand _createActiveSeasonCmd;
         private readonly IGetActiveSeasonCommand _getActiveSeasonCmd;
@@ -36,6 +37,7 @@ namespace MastersRacers.DataInterface.CRUD
         private readonly IMapper _mapper;
 
         public SeasonCRUD(IGetAllCommand<Season> getAllSeasonsCmd,
+                          IGetCommand<Season> getSeasonCmd,
                           ISaveCommand<Season> saveSeasonCmd,
                           ICreateActiveSeasonCommand createActiveSeasonCmd,
                           IGetActiveSeasonCommand getActiveSeasonCmd,
@@ -43,6 +45,7 @@ namespace MastersRacers.DataInterface.CRUD
                           IMapper mapper)
         {
             _getAllSeasonsCmd = getAllSeasonsCmd;
+            _getSeasonCmd = getSeasonCmd;
             _saveSeasonCmd = saveSeasonCmd;
             _createActiveSeasonCmd = createActiveSeasonCmd;
             _getActiveSeasonCmd = getActiveSeasonCmd;
@@ -51,9 +54,12 @@ namespace MastersRacers.DataInterface.CRUD
             _mapper = mapper;
         }
 
-        public Task<SeasonDTO> Get(Guid id)
+        public async Task<SeasonDTO> Get(Guid id)
         {
-            throw new NotImplementedException();
+            Season getEntity = await _getSeasonCmd.Get(id);
+            SeasonDTO getDto = _mapper.Map<SeasonDTO>(getEntity);
+
+            return getDto;
         }
 
         public async Task<ICollection<SeasonDTO>> GetAll()

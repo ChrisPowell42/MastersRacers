@@ -16,6 +16,7 @@ export class SeasonService {
 // "http://localhost:17585"
 
     private seasonsUrl = '/api/seasons';  // URL to web api
+    private seasonUrl = '/api/season/';
     private newSeasonUrl = '/api/season/new';
 
     constructor(private http: Http,
@@ -38,6 +39,17 @@ export class SeasonService {
         this.logger.log('Getting Seasons, SeasonService');
 
         return this.http.get(this.seasonsUrl)
+                        .map(resp => this.extractData(resp))
+                        .catch(error => this.errorHandler.handleError(error));
+
+    }
+
+    getSeason(id: string): Observable<SeasonModel> {
+
+        this.logger.log('Getting single Season, SeasonService');
+        this.logger.log(this.seasonUrl + id);
+
+        return this.http.get(this.seasonUrl + id)
                         .map(resp => this.extractData(resp))
                         .catch(error => this.errorHandler.handleError(error));
 

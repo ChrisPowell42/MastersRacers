@@ -7,7 +7,7 @@ import { LocationModel } from './location.type';
 })
 
 export class LocationDetailComponent {
-    
+
     @Input() loc: LocationModel;
 
 }

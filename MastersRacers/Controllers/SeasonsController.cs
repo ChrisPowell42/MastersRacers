@@ -60,6 +60,26 @@ namespace MastersRacers.Controllers
             return Ok(returnValue);
         }
 
+        [Route("season/{id:Guid}")]
+        [ResponseType(typeof(SeasonDTO))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetSeason(Guid id)
+        {
+            SeasonDTO returnValue = null;
+
+            try
+            {
+                returnValue = await _seasonCRUD.Get(id);
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+
+            return Ok(returnValue);
+        }
+
+
         [Route("season/{id:Guid}/active")]
         [ResponseType(typeof(Boolean))]
         [HttpPut]

@@ -6,13 +6,13 @@ import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule} from './Routing/app-routing.module';
-import { LocationModule } from './Locations/location.module';
-import { SeasonModule } from './Seasons/season.module';
+import { SharedModule } from './Shared/shared.module';
 
 import { SeasonService } from './Services/season.service';
 import { LocationService } from './Services/location.service';
 import { LoggerService } from './Services/logger.service';
 import { ErrorService } from './Services/error.service';
+import { DialogService } from './Services/dialog.service';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './Dashboard/dashboard.component';
@@ -24,7 +24,7 @@ import 'hammerjs';
   declarations: [
     AppComponent,
     DashboardComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,14 +33,14 @@ import 'hammerjs';
     FormsModule,
     HttpModule,
     MaterialModule,
-    LocationModule,
-    SeasonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [SeasonService,
               LocationService,
               LoggerService,
-              ErrorService],
+              ErrorService,
+              DialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

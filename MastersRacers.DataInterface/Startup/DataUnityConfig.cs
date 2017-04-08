@@ -40,6 +40,7 @@ namespace MastersRacers.DataInterface.Startup
             container.RegisterType<ILocationCRUD, LocationCRUD>();
 
             container.RegisterType<IGetAllCommand<Season>, GetAllCommand<Season>>();
+            container.RegisterType<IGetCommand<Season>, GetCommand<Season>>();
             container.RegisterType<ISaveCommand<Season>, SaveCommand<Season>>();
             container.RegisterType<ICreateActiveSeasonCommand, CreateActiveSeasonCommand>();
             container.RegisterType<IGetActiveSeasonCommand, GetActiveSeasonCommand>();

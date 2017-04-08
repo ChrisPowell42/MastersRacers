@@ -3,7 +3,6 @@ import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { MdSnackBar} from '@angular/material';
 
-
 import { LoggerService } from './logger.service';
 
 import 'rxjs/add/observable/throw';
@@ -29,6 +28,13 @@ export class ErrorService {
         this.snackBar.open(errMsg, 'x');
 
         return Observable.throw(errMsg);
+
+    }
+
+    displayError(error: string ) {
+
+        this.logger.error(error);
+        this.snackBar.open(error, 'x');
 
     }
 

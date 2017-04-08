@@ -26,6 +26,12 @@ export class LocationListComponent implements OnInit {
 
     }
 
+    onDetail(selectLoc: LocationModel) {
+
+        this.selectedLocation = selectLoc;
+
+    }
+
     ngOnInit(): void {
 
         this.getLocations();

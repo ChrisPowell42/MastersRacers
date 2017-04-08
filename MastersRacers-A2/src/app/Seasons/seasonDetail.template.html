@@ -1,0 +1,4 @@
+<h3>Season Detail</h3>
+<p>{{detailSeason.startYear}} - {{detailSeason.endYear}} <span *ngIf='detailSeason.isCurrentSeason'>Currently Active Season</span></p>
+<p>Notes: {{detailSeason.notes}}</p>
+<div *ngIf='!detailSeason.isCurrentSeason'><button md-button md-raised color='md-warn' (click)='onMakeActive()'>Activate</button></div>

@@ -6,7 +6,7 @@ import { LocationModel } from './location.type';
     templateUrl: 'locationEdit.template.html'
 })
 export class LocationEditComponent {
-    
+
     @Input() loc: LocationModel;
 
 }
