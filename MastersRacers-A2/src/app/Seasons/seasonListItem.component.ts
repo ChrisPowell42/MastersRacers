@@ -20,7 +20,7 @@ export class SeasonListItemComponent {
 
     onSelectDetails() {
 
-        this.router.navigate(['../seasons/detail/' + this.season.id]); // , { relativeTo: this.route });
+        this.router.navigate([`../seasons/detail/${this.season.id}`]); // , { relativeTo: this.route });
  
     }
 

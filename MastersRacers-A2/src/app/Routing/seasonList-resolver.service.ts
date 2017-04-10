@@ -10,21 +10,27 @@ import { ErrorService } from '../Shared/error.service';
 import { LoggerService } from '../Shared/logger.service';
 
 @Injectable()
-export class SeasonResolver implements Resolve<SeasonModel> {
+export class SeasonListResolver implements Resolve<SeasonModel[]> {
 
     constructor (private ls: SeasonService,
                  private error: ErrorService,
                  private logger: LoggerService,
                  private router: Router) {}
 
-    resolve( route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<SeasonModel> {
+    resolve( route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<SeasonModel[]> {
 
-        const id: string = route.params['id'];
-        const seasonList = route.parent.data.seasonList;
+        return this.ls.getSeasons().map( seasons => {
+            if (seasons) {
+                this.logger.log('SeasonsListResolver found seasons.');
+                this.logger.log(seasons);
+                return seasons;
+            } else {
+                this.error.displayError('Seasons not found.');
+                this.router.navigate(['season']);
+                return null;
+            }
+        });
 
-        let returnSeason: SeasonModel = seasonList.find( x => x.id === id);
+    }    
 
-        return Observable.of(returnSeason);
-
-    }
 }

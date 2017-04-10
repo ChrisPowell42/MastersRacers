@@ -26,7 +26,10 @@ export class SeasonListComponent implements OnInit {
 
     ngOnInit(): void {
 
-        this.getSeasons();
+        //this.getSeasons();
+        this.route.data.subscribe((data: { seasonList: SeasonModel[] }) => {
+            this.seasons = data.seasonList;
+        });
 
     }
 
