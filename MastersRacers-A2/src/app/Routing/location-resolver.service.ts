@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { LocationModel } from '../Locations/location.type';
 
 import { LocationService } from '../Services/location.service';
-import { ErrorService } from '../Services/error.service';
+import { ErrorService } from '../Shared/error.service';
 
 @Injectable()
 export class LocationResolver implements Resolve<LocationModel> {

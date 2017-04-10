@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { SeasonModel } from './season.type';
-import { LoggerService } from '../Services/logger.service';
+import { LoggerService } from '../Shared/logger.service';
 
 @Component({
     selector: 'season-list-item',

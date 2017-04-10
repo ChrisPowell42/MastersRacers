@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { DialogService } from '../Services/dialog.service';
+import { DialogService } from '../Shared/dialog.service';
 import { SeasonService } from '../Services/season.service';
-import { LoggerService } from '../Services/logger.service';
+import { LoggerService } from '../Shared/logger.service';
 
 import { SeasonModel } from './season.type';
 
@@ -24,7 +24,13 @@ export class SeasonListComponent implements OnInit {
                 private seasonServe: SeasonService,
                 private logger: LoggerService) {}
 
-    getSeasons(): void {
+    ngOnInit(): void {
+
+        this.getSeasons();
+
+    }
+
+    public getSeasons(): void {
 
         this.logger.log('Getting Seasons, Component');
         this.seasonServe.getSeasons().subscribe(fetchedSeasons => this.seasons = fetchedSeasons);
@@ -35,14 +41,7 @@ export class SeasonListComponent implements OnInit {
     onAddSeason() {
 
         this.dialog.confirmDialog('Add new Season?')
-                   .subscribe(result => {if (result) {this.addNewSeason(); }});
-
-    }
-
-    private postCreateSeason(newSeason: SeasonModel) {
-
-        this.logger.log(newSeason);
-        this.getSeasons();
+                   .subscribe(result => {if (result) { this.addNewSeason(); }});
 
     }
 
@@ -54,8 +53,11 @@ export class SeasonListComponent implements OnInit {
 
     }
 
-    ngOnInit(): void {
+    private postCreateSeason(newSeason: SeasonModel) {
+
+        this.logger.log(newSeason);
         this.getSeasons();
+
     }
 
 }

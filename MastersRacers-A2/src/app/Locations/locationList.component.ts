@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocationService } from '../Services/location.service';
-import { LoggerService } from '../Services/logger.service';
+import { LoggerService } from '../Shared/logger.service';
 
 import { LocationModel } from './location.type';
 

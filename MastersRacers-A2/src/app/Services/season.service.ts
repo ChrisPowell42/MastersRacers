@@ -3,8 +3,8 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { SeasonModel } from '../Seasons/season.type';
-import { LoggerService } from './logger.service';
-import { ErrorService } from './error.service';
+import { LoggerService } from '../Shared/logger.service';
+import { ErrorService } from '../Shared/error.service';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -47,9 +47,10 @@ export class SeasonService {
     getSeason(id: string): Observable<SeasonModel> {
 
         this.logger.log('Getting single Season, SeasonService');
-        this.logger.log(this.seasonUrl + id);
+        let url = `/api/season/${id}`;
+        this.logger.log(url);
 
-        return this.http.get(this.seasonUrl + id)
+        return this.http.get(url)
                         .map(resp => this.extractData(resp))
                         .catch(error => this.errorHandler.handleError(error));
 
@@ -66,6 +67,21 @@ export class SeasonService {
                         .map(resp => this.extractData(resp))
                         .catch(error => this.errorHandler.handleError(error));
 
+    }
+
+    makeActiveSeason(targetSeason: SeasonModel): Observable<boolean> {
+
+        this.logger.log('Making Season active, SeasonService');
+        this.logger.log(targetSeason);
+
+        let url = `/api/season/${targetSeason.id}/active`;
+
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({ headers: headers });
+
+        return this.http.put(url, null, options)
+                        .map(resp => resp.json() as boolean )
+                        .catch(error => this.errorHandler.handleError(error));
     }
 
 }

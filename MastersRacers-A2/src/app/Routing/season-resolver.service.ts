@@ -6,8 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import { SeasonModel } from '../Seasons/season.type';
 
 import { SeasonService } from '../Services/season.service';
-import { ErrorService } from '../Services/error.service';
-import { LoggerService } from '../Services/logger.service';
+import { ErrorService } from '../Shared/error.service';
+import { LoggerService } from '../Shared/logger.service';
 
 @Injectable()
 export class SeasonResolver implements Resolve<SeasonModel> {

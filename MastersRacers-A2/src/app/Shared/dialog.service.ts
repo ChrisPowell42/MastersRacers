@@ -14,7 +14,7 @@ export class DialogService {
                 private logger: LoggerService,
                 private errors: ErrorService) {}
 
-    confirmDialog(message?: string): Observable<boolean> {
+    confirmDialog(message?: string, title?: string): Observable<boolean> {
 
     //     this.logger.log(message);
 
@@ -23,10 +23,17 @@ export class DialogService {
 
     // }
 
-        let dialogRef = this.dialog.open(ConfirmDialogComponent);
+        let dialogRef = this.dialog.open(ConfirmDialogComponent, { data: message });
+
+        if (message) {
+            dialogRef.componentInstance.dialogMessage = message;
+        }
+
+        if (title) {
+            dialogRef.componentInstance.dialogTitle = title;
+        }
 
         return dialogRef.afterClosed()
-                        .map(result => result as boolean)
                         .catch(error => this.errors.handleError(error));
 
     }

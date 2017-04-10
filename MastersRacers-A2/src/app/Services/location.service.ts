@@ -3,8 +3,8 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { LocationModel } from '../Locations/location.type';
-import { LoggerService } from './logger.service';
-import { ErrorService } from './error.service';
+import { LoggerService } from '../Shared/logger.service';
+import { ErrorService } from '../Shared/error.service';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
