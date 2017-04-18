@@ -43,7 +43,9 @@ export class SeasonDetailComponent implements OnInit {
 
     private postMakeActive() {
         // Need to figure this out to reload the seasonList.
-        this.logger.log(this.route.parent.component);
+        this.router.navigate(['/seasons'])
+                   .then(result => window.location.reload());
+
     }
 
     ngOnInit() {

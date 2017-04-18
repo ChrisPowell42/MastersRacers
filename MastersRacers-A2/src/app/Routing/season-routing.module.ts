@@ -11,7 +11,7 @@ const routes: Routes = [
     {
         path: '', component: SeasonListComponent, resolve: { seasonList: SeasonListResolver },
         children: [
-            { path: '', component: SeasonDefaultComponent },
+            { path: '', component: SeasonDefaultComponent, data: {shouldDetach: true}},
             { path: 'detail/:id', component: SeasonDetailComponent, resolve: { detailSeason: SeasonResolver }}
         ]
     }

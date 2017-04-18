@@ -26,7 +26,7 @@ export class SeasonListResolver implements Resolve<SeasonModel[]> {
                 return seasons;
             } else {
                 this.error.displayError('Seasons not found.');
-                this.router.navigate(['season']);
+                this.router.navigate(['/seasons']);
                 return null;
             }
         });
