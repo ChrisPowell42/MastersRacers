@@ -1,3 +1,5 @@
+import { ActivatedRoute } from '@angular/router';
+
 import { Component, OnInit } from '@angular/core';
 import { LocationService } from '../Services/location.service';
 import { LoggerService } from '../Shared/logger.service';
@@ -6,7 +8,7 @@ import { LocationModel } from './location.type';
 
 @Component({
     templateUrl: './locationList.template.html',
-    styles: ['md-sidenav { width: 400px; }'],
+    styleUrls: ['./locationList.style.css'],
     providers: [LocationService, LoggerService]
 })
 export class LocationListComponent implements OnInit {
@@ -15,7 +17,8 @@ export class LocationListComponent implements OnInit {
     selectedLocation: LocationModel;
     title = 'Locations';
 
-    constructor(private locationServe: LocationService,
+    constructor(private route: ActivatedRoute,
+                private locationServe: LocationService,
                 private logger: LoggerService) {}
 
     getLocations() {
@@ -32,9 +35,18 @@ export class LocationListComponent implements OnInit {
 
     }
 
-    ngOnInit(): void {
+    addNewLocation() {
 
-        this.getLocations();
+        this.logger.log("New location clicked");
+
     }
 
+   ngOnInit(): void {
+
+        //this.getSeasons();
+        this.route.data.subscribe((data: { locationList: LocationModel[] }) => {
+            this.locations = data.locationList;
+        });
+
+    }
 }

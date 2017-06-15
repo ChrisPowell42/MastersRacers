@@ -4,6 +4,7 @@ import { MaterialModule } from '@angular/material';
 
 import { LocationService } from '../Services/location.service';
 import { LocationResolver } from '../Routing/location-resolver.service';
+import { LocationListResolver } from '../Routing/locationList-resolver.service';
 import { LocationRoutingModule } from '../Routing/location-routing.module';
 import { SharedModule } from '../Shared/shared.module';
 
@@ -28,6 +29,7 @@ import { LocationDetailComponent } from './locationDetail.component';
         LocationDetailComponent
     ],
     providers: [ LocationService,
-                 LocationResolver ]
+                 LocationResolver,
+                 LocationListResolver ]
 })
 export class LocationModule {}

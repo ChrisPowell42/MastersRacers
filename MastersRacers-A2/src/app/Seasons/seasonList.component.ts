@@ -10,6 +10,7 @@ import { SeasonModel } from './season.type';
 @Component({
     selector: 'season-list',
     templateUrl: './seasonList.template.html',
+    styleUrls: ['./seasonList.style.css'],
     providers: [SeasonService, LoggerService, DialogService]
 })
 export class SeasonListComponent implements OnInit {

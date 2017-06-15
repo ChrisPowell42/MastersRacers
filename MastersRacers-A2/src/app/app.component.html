@@ -1,10 +1,13 @@
 <md-toolbar color="primary">
-  {{title}}
+  <img class="masterIcon" src="assets/images/MastersShield_icon.png">{{title}}
 </md-toolbar>
 <nav>
-  <a md-raised-button color="warn" routerLink='/dashboard' routerLinkActive='active'>Dashboard</a>
-  <a md-raised-button color="warn" routerLink='/seasons' routerLinkActive='active'>Seasons</a>
-  <a md-raised-button color="warn" routerLink='/locations' routerLinkActive='active'>Locations</a>
+  <a md-raised-button color="accent" routerLink='/dashboard' routerLinkActive='active'>Dashboard</a>
+  <button md-raised-button color="accent" [mdMenuTriggerFor]="adminMenu">Admin</button>
+  <md-menu #adminMenu="mdMenu">
+    <button md-menu-item routerLink='/seasons' routerLinkActive='active'>Seasons</button>
+    <button md-menu-item routerLink='/locations' routerLinkActive='active'>Locations</button>
+  </md-menu>
 </nav>
 <router-outlet></router-outlet>
 <hr/>

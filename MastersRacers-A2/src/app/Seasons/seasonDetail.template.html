@@ -1,4 +1,6 @@
-<h3>Season Detail</h3>
-<p>{{detailSeason.startYear}} - {{detailSeason.endYear}} <span *ngIf='detailSeason.isCurrentSeason'>Currently Active Season</span></p>
-<p>Notes: {{detailSeason.notes}}</p>
-<div *ngIf='!detailSeason.isCurrentSeason'><button md-button md-raised color='md-warn' (click)='onMakeActive()'>Activate</button></div>
+<div class="season-detail">
+    <h3>Season Detail</h3>
+    <p>{{detailSeason.startYear}} - {{detailSeason.endYear}}<br/><span *ngIf='detailSeason.isCurrentSeason' myHighlight>Currently Active Season</span></p>
+    <p>Notes: {{detailSeason.notes}}</p>
+    <div *ngIf='!detailSeason.isCurrentSeason'><button md-raised-button color='warn' (click)='onMakeActive()'>Activate</button></div>
+</div>

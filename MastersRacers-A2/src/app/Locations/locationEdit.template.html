@@ -1,1 +1,24 @@
-<p>Placeholder</p>
+<div class="location-edit">
+    <h3>
+        Location Editor
+    </h3>
+    <p>
+        <md-input-container>
+            <input mdInput placeholder='Name' [(ngModel)]='detailLocation.name' required>
+        </md-input-container>
+    </p>
+    <p>
+        <md-input-container>
+            <textarea mdInput class='locationDescEditor' placeholder='Description' maxLength="200" [(ngModel)]='detailLocation.description'></textarea>
+        </md-input-container>
+    </p>
+    <p>
+        <md-input-container>
+            <input mdInput type='number' placeholder="Latitude" [(ngModel)]='detailLocation.latPos'>
+        </md-input-container>
+        <md-input-container>
+            <input mdInput type='number' placeholder="Longitude" [(ngModel)]='detailLocation.longPos'>
+        </md-input-container>
+    </p>
+    <button md-raised-button (click)='onSave()'>Save</button>
+</div>

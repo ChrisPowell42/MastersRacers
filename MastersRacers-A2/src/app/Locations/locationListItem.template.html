@@ -6,7 +6,7 @@
         Note: {{loc.description}}
     </md-card-content>
     <md-card-actions>
-        <button md-button>Details</button>
-        <button md-button>Delete</button>
+        <button md-raised-button (click)='onSelectDetails()'>Details</button>
+        <button md-raised-button (click)='onSelectEdit()'>Edit</button>
     </md-card-actions>
 </md-card>

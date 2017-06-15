@@ -11,7 +11,8 @@ import { SeasonListComponent } from './seasonList.component';
 
 @Component({
     selector: 'season-detail',
-    templateUrl: './seasonDetail.template.html'
+    templateUrl: './seasonDetail.template.html',
+    styles: ['.season-detail { margin: 10px; }']
 })
 export class SeasonDetailComponent implements OnInit {
 
