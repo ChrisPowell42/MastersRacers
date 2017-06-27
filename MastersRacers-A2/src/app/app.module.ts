@@ -10,6 +10,7 @@ import { SharedModule } from './Shared/shared.module';
 
 import { SeasonService } from './Services/season.service';
 import { LocationService } from './Services/location.service';
+import { RacerService } from './Services/racer.service';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './Dashboard/dashboard.component';
@@ -34,7 +35,8 @@ import 'hammerjs';
     SharedModule
   ],
   providers: [SeasonService,
-              LocationService],
+              LocationService,
+              RacerService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

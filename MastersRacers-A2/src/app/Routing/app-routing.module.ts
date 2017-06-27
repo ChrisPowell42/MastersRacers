@@ -9,6 +9,7 @@ const routes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
     { path: 'seasons', loadChildren: 'app/Seasons/season.module#SeasonModule', data: { preload: true }},
     { path: 'locations', loadChildren: 'app/Locations/location.module#LocationModule', data: { preload: true }},
+    { path: 'racers', loadChildren: 'app/Racers/racer.module#RacerModule', data: {reload: true}},
     { path: '**', component: PageNotFoundComponent }
 ];
 

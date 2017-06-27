@@ -1,0 +1,13 @@
+<md-card *ngIf='racer'>
+    <md-card-title>
+        Racer {{racer.name}}
+    </md-card-title>
+    <md-card-content>
+        Note: {{racer.bibNumber}}<br/>
+        Race Series: {{racer.raceSeries.name}} {{racer.raceSeries.gender}}
+    </md-card-content>
+    <md-card-actions>
+        <button md-raised-button (click)='onSelectDetails()'>Details</button>
+        <button md-raised-button (click)='onSelectEdit()'>Edit</button>
+    </md-card-actions>
+</md-card>

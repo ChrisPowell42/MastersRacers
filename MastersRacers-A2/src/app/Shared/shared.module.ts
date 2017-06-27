@@ -6,6 +6,7 @@ import { HighlightDirective } from './myHighlight.directive';
 import { LoggerService } from './logger.service';
 import { ErrorService } from './error.service';
 import { DialogService } from './dialog.service';
+import { RefDataService } from '../Services/refdata.service';
 
 import { ConfirmDialogComponent } from './DialogComponents/confirmDialog.component';
 
@@ -16,7 +17,8 @@ import { ConfirmDialogComponent } from './DialogComponents/confirmDialog.compone
                    ConfirmDialogComponent ],
     providers: [LoggerService,
                 ErrorService,
-                DialogService],
+                DialogService,
+                RefDataService],
     entryComponents: [ ConfirmDialogComponent ]
 })
 export class SharedModule { }

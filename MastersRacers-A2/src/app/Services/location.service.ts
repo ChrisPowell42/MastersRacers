@@ -52,4 +52,18 @@ export class LocationService {
 
     }
 
+    saveLocation(modifiedLocation: LocationModel) {
+
+        this.logger.log('Saving Location');
+        this.logger.log(modifiedLocation);
+
+        let url = `/api/location/${modifiedLocation.id}`;
+
+        return this.http.put(url, modifiedLocation)
+                        .map(resp=> this.extractData(resp))
+                        .catch(error => this.errorHandler.handleError(error));
+
+    }
+
+
 }

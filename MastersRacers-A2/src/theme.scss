@@ -2,118 +2,116 @@
 
 @include mat-core();
 
-// /* For use in src/lib/core/theming/_palette.scss */
-// $md-masterscolors: (
-//     50 : #faf4e6,
-//     100 : #f3e3c1,
-//     200 : #ecd097,
-//     300 : #e4bd6d,
-//     400 : #deae4e,
-//     500 : #d8a02f,
-//     600 : #d4982a,
-//     700 : #ce8e23,
-//     800 : #c8841d,
-//     900 : #bf7312,
-//     A100 : #fff7ee,
-//     A200 : #ffdfbb,
-//     A400 : #ffc788,
-//     A700 : #ffbb6e,
-//     contrast: (
-//         50 : #000000,
-//         100 : #000000,
-//         200 : #000000,
-//         300 : #000000,
-//         400 : #000000,
-//         500 : #000000,
-//         600 : #000000,
-//         700 : #000000,
-//         800 : #000000,
-//         900 : #ffffff,
-//         A100 : #000000,
-//         A200 : #000000,
-//         A400 : #000000,
-//         A700 : #000000,
-//     )
-// );
+/* For use in src/lib/core/theming/_palette.scss */
+$md-masterscolors: (
+    50 : #faf4e6,
+    100 : #f3e3c1,
+    200 : #ecd097,
+    300 : #e4bd6d,
+    400 : #deae4e,
+    500 : #d8a02f,
+    600 : #d4982a,
+    700 : #ce8e23,
+    800 : #c8841d,
+    900 : #bf7312,
+    A100 : #fff7ee,
+    A200 : #ffdfbb,
+    A400 : #ffc788,
+    A700 : #ffbb6e,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
 
-// /* For use in src/lib/core/theming/_palette.scss */
-// $md-mastersalertcolor: (
-//     50 : #fefee4,
-//     100 : #fdfbbb,
-//     200 : #fcf98e,
-//     300 : #fbf760,
-//     400 : #faf53e,
-//     500 : #f9f31c,
-//     600 : #f8f119,
-//     700 : #f7ef14,
-//     800 : #f6ed11,
-//     900 : #f5ea09,
-//     A100 : #ffffff,
-//     A200 : #fffeeb,
-//     A400 : #fffbb8,
-//     A700 : #fffa9e,
-//     contrast: (
-//         50 : #000000,
-//         100 : #000000,
-//         200 : #000000,
-//         300 : #000000,
-//         400 : #000000,
-//         500 : #000000,
-//         600 : #000000,
-//         700 : #000000,
-//         800 : #000000,
-//         900 : #000000,
-//         A100 : #000000,
-//         A200 : #000000,
-//         A400 : #000000,
-//         A700 : #000000,
-//     )
-// );
+$md-mastersalertcolor: (
+    50 : #fffce9,
+    100 : #fff7c8,
+    200 : #fff2a4,
+    300 : #ffed7f,
+    400 : #ffe963,
+    500 : #ffe548,
+    600 : #ffe241,
+    700 : #ffde38,
+    800 : #ffda30,
+    900 : #ffd321,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #fff5d0,
+    A700 : #fff0b7,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
 
-// /* For use in src/lib/core/theming/_palette.scss */
-// $md-mastersplaincolor: (
-//     50 : #fffffc,
-//     100 : #fefef8,
-//     200 : #fdfdf3,
-//     300 : #fcfcee,
-//     400 : #fcfceb,
-//     500 : #fbfbe7,
-//     600 : #fafae4,
-//     700 : #fafae0,
-//     800 : #f9f9dd,
-//     900 : #f8f8d7,
-//     A100 : #ffffff,
-//     A200 : #ffffff,
-//     A400 : #ffffff,
-//     A700 : #ffffff,
-//     contrast: (
-//         50 : #000000,
-//         100 : #000000,
-//         200 : #000000,
-//         300 : #000000,
-//         400 : #000000,
-//         500 : #000000,
-//         600 : #000000,
-//         700 : #000000,
-//         800 : #000000,
-//         900 : #000000,
-//         A100 : #000000,
-//         A200 : #000000,
-//         A400 : #000000,
-//         A700 : #000000,
-//     )
-// );
+$md-mastersplaincolor: (
+    50 : #f3e6e1,
+    100 : #e0c0b5,
+    200 : #cb9683,
+    300 : #b66c51,
+    400 : #a74d2c,
+    500 : #972d07,
+    600 : #8f2806,
+    700 : #842205,
+    800 : #7a1c04,
+    900 : #691102,
+    A100 : #ffa098,
+    A200 : #ff7165,
+    A400 : #ff4232,
+    A700 : #ff2b19,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
 
-// $mr-pp-primary: md-palette($md-masterscolors);
-// $mr-pp-warn: md-palette($md-mastersalertcolor);
-// $mr-pp-accent: md-palette($md-mastersplaincolor);
+$mr-pp-primary: mat-palette($md-masterscolors);
+$mr-pp-warn: mat-palette($md-mastersalertcolor);
+$mr-pp-accent: mat-palette($md-mastersplaincolor);
 
-// $mr-pp-theme: md-light-theme($mr-pp-primary, $mr-pp-warn, $mr-pp-warn);
+$app-theme: mat-light-theme($mr-pp-primary, $mr-pp-warn, $mr-pp-warn);
 
-$app-primary: md-palette($mat-amber);
-$app-accent: md-palette($mat-yellow);
-$app-warn: md-palette($mat-blue-grey);
+// $app-primary: mat-palette($mat-amber);
+// $app-accent: mat-palette($mat-yellow);
+// $app-warn: mat-palette($mat-blue-grey);
 
-$app-theme: md-dark-theme($app-primary, $app-accent, $app-warn);
+// $app-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
 
 @include angular-material-theme($app-theme);

@@ -25,7 +25,7 @@ export class LocationListComponent implements OnInit {
 
         this.logger.log('Getting Locations, Component');
         this.locationServe.getLocations().subscribe(fetchedLocations => this.locations = fetchedLocations);
-        this.logger.log('After Getting Seasons, Component');
+        this.logger.log('After Getting Locations, Component');
 
     }
 
