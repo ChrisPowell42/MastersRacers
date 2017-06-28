@@ -21,15 +21,17 @@ export class LocationListItemComponent {
 
     onSelectDetails() {
 
-        this.router.navigate([`../locations/detail/${this.loc.id}`]); // , { relativeTo: this.route });
- 
+        this.router.navigate(['/locations/detail', this.loc.id
+            
+        ])
+
     }
 
 
     onSelectEdit() {
         
-        this.logger.log("Edit button clicked.");
-        this.router.navigate([`../locations/edit/${this.loc.id}`]);
+        this.router.navigate(['/locations/edit', this.loc.id]);
+
     }
 
 }

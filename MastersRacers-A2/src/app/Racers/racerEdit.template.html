@@ -1,0 +1,21 @@
+<div class="racer-edit">
+    <h3>
+        Racer Editor
+    </h3>
+    <p>
+        <md-input-container>
+            <input mdInput class='racerNameInput' placeholder='Name' [(ngModel)]='detailRacer.name' required>
+        </md-input-container>
+    </p>
+    <p>
+        <md-input-container>
+            <input mdInput type='number' class='racerBibNumberInput' placeholder='Bib Number' [(ngModel)]='detailRacer.bibNumber' required>
+        </md-input-container>
+    </p>
+    <p>
+        <md-select class='racerSeriesSelect' placeholder='Race Series' [(ngModel)]='detailRacer.raceSeries.id' required>
+            <md-option *ngFor='let series of raceSeries' [value]='series.id'>{{series.name}} {{series.gender}}</md-option>
+        </md-select>
+    </p>
+    <button md-raised-button color='primary' (click)='onSave()'>Save</button> <button md-raised-button color='warn' (click)='onCancel()'>Cancel </button>
+</div>

@@ -28,8 +28,7 @@ import { SeasonDetailComponent } from './seasonDetail.component';
         SeasonDefaultComponent,
         SeasonDetailComponent
     ],
-    providers: [ SeasonService, 
-                 SeasonResolver,
+    providers: [ SeasonResolver,
                  SeasonListResolver ]
 })
 export class SeasonModule {}

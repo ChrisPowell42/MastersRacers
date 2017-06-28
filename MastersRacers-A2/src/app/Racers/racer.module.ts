@@ -7,12 +7,13 @@ import { RacerService } from '../Services/racer.service';
 
 import { RacerListResolver } from '../Routing/racerList-resolver.service';
 import { RacerResolver } from '../Routing/racer-resolver.service';
+import { RaceSeriesListResolver } from '../Routing/raceSeriesList-resolver.service';
 import { RacerRoutingModule } from '../Routing/racer-routing.module';
 import { RacerListComponent } from './racerList.component';
 import { RacerDefaultComponent } from './racerDefault.component';
 import { RacerListItemComponent } from './racerListItem.component';
 import { RacerDetailComponent } from './racerDetail.component';
-
+import { RacerEditComponent } from './racerEdit.component';
 
 @NgModule({
   imports: [
@@ -25,13 +26,13 @@ import { RacerDetailComponent } from './racerDetail.component';
     RacerListComponent,
     RacerDefaultComponent,
     RacerListItemComponent,
-    RacerDetailComponent
+    RacerDetailComponent,
+    RacerEditComponent
   ],
   providers: [
-    RacerService,
     RacerListResolver,
     RacerResolver,
-    RacerRoutingModule
+    RaceSeriesListResolver
   ]
 })
 export class RacerModule {}

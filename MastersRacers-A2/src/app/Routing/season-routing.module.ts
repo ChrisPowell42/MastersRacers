@@ -9,7 +9,7 @@ import { SeasonResolver } from './season-resolver.service';
 
 const routes: Routes = [
     {
-        path: '', component: SeasonListComponent, resolve: { seasonList: SeasonListResolver },
+        path: 'seasons', component: SeasonListComponent, resolve: { seasonList: SeasonListResolver },
         children: [
             { path: '', component: SeasonDefaultComponent, data: {shouldDetach: true}},
             { path: 'detail/:id', component: SeasonDetailComponent, resolve: { detailSeason: SeasonResolver }}

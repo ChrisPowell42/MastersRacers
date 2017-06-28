@@ -5,6 +5,9 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { RacerModule } from './Racers/racer.module';
+import { LocationModule } from './Locations/location.module';
+import { SeasonModule } from './Seasons/season.module';
 import { AppRoutingModule} from './Routing/app-routing.module';
 import { SharedModule } from './Shared/shared.module';
 
@@ -31,6 +34,9 @@ import 'hammerjs';
     FormsModule,
     HttpModule,
     MaterialModule,
+    SeasonModule,
+    LocationModule,
+    RacerModule,
     AppRoutingModule,
     SharedModule
   ],

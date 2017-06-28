@@ -28,8 +28,7 @@ import { LocationDetailComponent } from './locationDetail.component';
         LocationEditComponent,
         LocationDetailComponent
     ],
-    providers: [ LocationService,
-                 LocationResolver,
+    providers: [ LocationResolver,
                  LocationListResolver ]
 })
 export class LocationModule {}

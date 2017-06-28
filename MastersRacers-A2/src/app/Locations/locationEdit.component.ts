@@ -26,6 +26,11 @@ export class LocationEditComponent {
         });
     }
 
+    onCancel() {
+        this.logger.log("Cancel Clicked");
+        this.router.navigate(['/locations']);
+    }
+
     onSave() {
 
         this.logger.log("Edit Location Save clicked.");

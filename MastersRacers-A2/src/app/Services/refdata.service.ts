@@ -25,14 +25,14 @@ export class RefDataService {
 
         const body = res.json();
 
-        this.logger.log('Got data, SeasonService');
+        this.logger.log('Got data, RefDataService');
         this.logger.log(body);
 
         return body || { };
 
     }
 
-    getRaceFormats(): Observable<RaceFormatModel> {
+    getRaceFormats(): Observable<RaceFormatModel[]> {
 
       this.logger.log('Getting RaceFormats, RefDataService');
 
@@ -41,7 +41,7 @@ export class RefDataService {
                       .catch(error => this.errorHandler.handleError(error));
     }
 
-    getRaceSeries(): Observable<RaceSeriesModel> {
+    getRaceSeries(): Observable<RaceSeriesModel[]> {
 
       this.logger.log('Getting RaceSeries, RefDataService');
 

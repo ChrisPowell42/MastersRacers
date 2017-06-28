@@ -20,7 +20,6 @@ export class RacerDetailComponent {
 
     ngOnInit() {
         this.route.data.subscribe((data: { detailRacer: RacerModel }) => {
-            this.logger.log(data.detailRacer);
             this.detailRacer = data.detailRacer;
         });
     }

@@ -22,15 +22,14 @@ export class RacerListItemComponent {
     onSelectDetails() {
 
         this.logger.log("Racer detail selected.");
-        this.router.navigate([`../racers/detail/${this.racer.id}`]); // , { relativeTo: this.route });
- 
+        this.router.navigate(['/racers/detail', this.racer.id]);
     }
 
 
     onSelectEdit() {
         
         this.logger.log("Racer Edit button clicked.");
-        // this.router.navigate([`../racers/edit/${this.racer.id}`]);
+        this.router.navigate(['/racers/edit', this.racer.id]);
     }
 
 }

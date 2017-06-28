@@ -39,4 +39,17 @@ export class RacerService {
 
     }
 
+    saveRacer(modifiedRacer: RacerModel) {
+
+        this.logger.log('Saving Racer');
+        this.logger.log(modifiedRacer);
+
+        let url = `/api/racer/${modifiedRacer.id}`;
+
+        return this.http.put(url, modifiedRacer)
+                        .map(resp=> this.extractData(resp))
+                        .catch(error => this.errorHandler.handleError(error));
+
+    }
+
 }
