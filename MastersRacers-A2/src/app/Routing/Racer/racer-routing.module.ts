@@ -3,11 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { RacerListResolver } from './racerList-resolver.service';
 import { RacerResolver} from './racer-resolver.service';
-import { RaceSeriesListResolver } from './raceSeriesList-resolver.service';
-import { RacerListComponent } from '../Racers/racerList.component';
-import { RacerDefaultComponent } from '../Racers/racerDefault.component';
-import { RacerDetailComponent } from '../Racers/racerDetail.component';
-import { RacerEditComponent } from '../Racers/racerEdit.component';
+import { RaceSeriesListResolver } from '../RefData/raceSeriesList-resolver.service';
+
+import { RacerListComponent } from '../../Racers/racerList.component';
+import { RacerDefaultComponent } from '../../Racers/racerDefault.component';
+import { RacerDetailComponent } from '../../Racers/racerDetail.component';
+import { RacerEditComponent } from '../../Racers/racerEdit.component';
 
 const racerRoutes: Routes = [
   {
@@ -23,6 +24,6 @@ const racerRoutes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(racerRoutes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class RacerRoutingModule { }

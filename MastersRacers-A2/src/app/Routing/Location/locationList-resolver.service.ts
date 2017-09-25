@@ -3,11 +3,11 @@ import { Router, Resolve, RouterStateSnapshot,
          ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
-import { LocationModel } from '../Locations/location.type';
+import { LocationModel } from '../../Locations/location.type';
 
-import { LocationService } from '../Services/location.service';
-import { ErrorService } from '../Shared/error.service';
-import { LoggerService } from '../Shared/logger.service';
+import { LocationService } from '../../Services/location.service';
+import { ErrorService } from '../../Shared/error.service';
+import { LoggerService } from '../../Shared/logger.service';
 
 @Injectable()
 export class LocationListResolver implements Resolve<LocationModel[]> {

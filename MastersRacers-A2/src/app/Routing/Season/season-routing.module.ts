@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { SeasonListComponent } from '../Seasons/seasonList.component';
-import { SeasonDefaultComponent } from '../Seasons/seasonDefault.component';
-import { SeasonDetailComponent } from '../Seasons/seasonDetail.component';
+import { SeasonListComponent } from '../../Seasons/seasonList.component';
+import { SeasonDefaultComponent } from '../../Seasons/seasonDefault.component';
+import { SeasonDetailComponent } from '../../Seasons/seasonDetail.component';
 import { SeasonListResolver } from './seasonList-resolver.service';
 import { SeasonResolver } from './season-resolver.service';
 

@@ -56,6 +56,16 @@ export class SeasonService {
 
     }
 
+    getActiveSeason() : Observable<SeasonModel> {
+        this.logger.log("Getting Currently Active Season, SeasonService");
+        let url='/api/season/active';
+
+        return this.http.get(url)
+                        .map(resp => this.extractData(resp))
+                        .catch(error => this.errorHandler.handleError(error));
+
+    }
+
     newSeason(): Observable<SeasonModel> {
 
         this.logger.log('Adding Season, SeasonService');

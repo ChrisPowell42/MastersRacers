@@ -3,11 +3,11 @@ import { Router, Resolve, RouterStateSnapshot,
          ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
-import { RaceSeriesModel } from '../RefData/raceSeries.type';
+import { RaceSeriesModel } from '../../RefData/raceSeries.type';
 
-import { RefDataService } from '../Services/refdata.service';
-import { ErrorService } from '../Shared/error.service';
-import { LoggerService } from '../Shared/logger.service';
+import { RefDataService } from '../../Services/refdata.service';
+import { ErrorService } from '../../Shared/error.service';
+import { LoggerService } from '../../Shared/logger.service';
 
 @Injectable()
 export class RaceSeriesListResolver implements Resolve<RaceSeriesModel[]> {

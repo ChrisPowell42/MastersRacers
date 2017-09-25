@@ -1,10 +1,11 @@
-<md-card *ngIf='racer'>
+<md-card *ngIf='raceEvent'>
     <md-card-title>
-        {{racer.name}}
+        {{raceEvent.raceName}}
     </md-card-title>
     <md-card-content>
-        Bib Number: {{racer.bibNumber}}<br/>
-        Race Series: {{racer.raceSeries.name}} {{racer.raceSeries.gender}}
+        Location: {{raceEvent.location.name}}<br/>
+        Format: {{raceEvent.raceFormat.code}}<br/>
+        Run Count: {{raceEvent.runCount}}
     </md-card-content>
     <md-card-actions>
         <button md-raised-button (click)='onSelectDetails()'>Details</button>

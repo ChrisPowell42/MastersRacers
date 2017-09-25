@@ -1,8 +1,6 @@
 import { ActivatedRoute } from '@angular/router';
-
 import { Component, OnInit } from '@angular/core';
 
-import { RacerService } from '../Services/racer.service';
 import { LoggerService } from '../Shared/logger.service';
 
 import { RacerModel } from './racer.type';
@@ -10,7 +8,7 @@ import { RacerModel } from './racer.type';
 @Component({
     templateUrl: './racerList.template.html',
     styleUrls: ['./racerList.style.css'],
-    providers: [RacerService, LoggerService]
+    providers: [LoggerService]
 })
 export class RacerListComponent implements OnInit {
 
@@ -19,16 +17,7 @@ export class RacerListComponent implements OnInit {
     title = 'Racers';
 
     constructor(private route: ActivatedRoute,
-                private racerServe: RacerService,
                 private logger: LoggerService) {}
-
-    getRacers() {
-
-        this.logger.log('Getting Racers, Component');
-        this.racerServe.getRacers().subscribe(fetchedRacers => this.racers = fetchedRacers);
-        this.logger.log('After Getting Racers, Component');
-
-    }
 
     onDetail(selectRacer: RacerModel) {
 

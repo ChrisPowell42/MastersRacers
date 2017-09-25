@@ -102,6 +102,28 @@ namespace MastersRacers.Controllers
 
         }
 
+        // POST api/<controller>
+        [Route("raceevent/{id:Guid}")]
+        [ResponseType(typeof(RaceEventDTO))]
+        [HttpPut]
+        public async Task<IHttpActionResult> Put(Guid id, [FromBody]RaceEventDTO value)
+        {
+            RaceEventDTO returnResult;
+
+            try
+            {
+                returnResult = await _raceEventCRUD.Put(value);
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+
+            return Ok(returnResult);
+
+        }
+
+
         // DELETE api/<controller>/5
         [Route("raceevent/{id:Guid}")]
         [ResponseType(typeof(bool))]

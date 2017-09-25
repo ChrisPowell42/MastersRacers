@@ -21,9 +21,7 @@ export class LocationListItemComponent {
 
     onSelectDetails() {
 
-        this.router.navigate(['/locations/detail', this.loc.id
-            
-        ])
+        this.router.navigate(['/locations/detail', this.loc.id])
 
     }
 

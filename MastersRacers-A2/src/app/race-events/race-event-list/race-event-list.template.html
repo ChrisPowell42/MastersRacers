@@ -1,0 +1,16 @@
+<div class="list-container">
+    <md-toolbar color="warn" layout-align="space-between center">
+        {{title}} {{activeSeason.startYear}} - {{activeSeason.endYear}} &nbsp; <button md-mini-fab color="primary" (click)="addNewEvent()"><md-icon>add</md-icon></button>
+    </md-toolbar>
+    <md-sidenav-container>
+        <md-sidenav mode="side" opened="true" disableClose="true">
+            <div *ngIf="raceEvents">
+                <race-event-list-item *ngFor='let event of raceEvents' [raceEvent]=event></race-event-list-item>
+            </div>
+            <div *ngIf="raceEvents.length == 0">
+                <p>No Events Available for Active Season</p>
+            </div>
+        </md-sidenav>
+        <router-outlet></router-outlet>
+    </md-sidenav-container>
+</div>

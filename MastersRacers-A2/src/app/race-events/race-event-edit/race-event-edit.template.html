@@ -1,0 +1,38 @@
+<div class="raceEvent-edit">
+  <h3>
+    Race Event Editor
+  </h3>
+  <p>
+    <md-input-container>
+      <input mdInput class='raceEventNameInput' placeholder='Race Name' [(ngModel)]='detailEvent.raceName' required >
+    </md-input-container>
+  </p>
+  <p>
+    <md-input-container>
+      <input mdInput type='number' class='raceEventRunNumberInput' placeholder='Number of Runs' [(ngModel)]='detailEvent.runCount' required >
+    </md-input-container>
+  </p>
+  <p>
+    <md-input-container>
+      <input mdInput [mdDatepicker]="picker" placeholder="Start Time" [(ngModel)]='detailEvent.scheduledStartTime'>
+      <button mdSuffix [mdDatepickerToggle]="picker"></button>
+    </md-input-container>
+    <md-datepicker #picker></md-datepicker>
+  </p>
+  <p>
+    <md-input-container>
+      <textarea mdInput class='raceEventNotesInput' placeholder='Notes' maxLength="8000" [(ngModel)]='detailEvent.notes'></textarea>
+    </md-input-container>
+  </p>
+  <p>
+    <md-select class='raceEventFormatSelect' placeholder='Race Format' [(ngModel)]='detailEvent.raceFormat.id' required>
+      <md-option *ngFor='let format of raceFormats' [value]='format.id'>{{format.code}}</md-option>
+    </md-select>
+  </p>
+  <p>
+    <md-select class='raceEventLocationSelect' placeholder='Race Location' [(ngModel)]='detailEvent.location.id' required>
+      <md-option *ngFor='let location of locations' [value]='location.id'>{{location.name}}</md-option>
+    </md-select>
+  </p>
+  <button md-raised-button color='primary' (click)='onSave()'>Save</button> <button md-raised-button color='warn' (click)='onCancel()'>Cancel </button>
+</div>

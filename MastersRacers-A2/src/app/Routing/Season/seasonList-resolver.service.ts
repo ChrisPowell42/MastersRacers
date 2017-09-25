@@ -3,11 +3,11 @@ import { Router, Resolve, RouterStateSnapshot,
          ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
-import { SeasonModel } from '../Seasons/season.type';
+import { SeasonModel } from '../../Seasons/season.type';
 
-import { SeasonService } from '../Services/season.service';
-import { ErrorService } from '../Shared/error.service';
-import { LoggerService } from '../Shared/logger.service';
+import { SeasonService } from '../../Services/season.service';
+import { ErrorService } from '../../Shared/error.service';
+import { LoggerService } from '../../Shared/logger.service';
 
 @Injectable()
 export class SeasonListResolver implements Resolve<SeasonModel[]> {

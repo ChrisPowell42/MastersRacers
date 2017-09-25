@@ -1,0 +1,17 @@
+.list-container {
+    height: 100%;
+}
+
+md-sidenav-container {
+    height: 100%;
+}
+
+.mat-sidenav {
+    border-right-width: 2px;
+    border-right-style: ridge;
+    border-right-color: black;
+}
+
+p {
+    margin: 3px;
+}

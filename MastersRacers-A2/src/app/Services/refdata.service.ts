@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { RaceFormatModel } from '../RefData/raceFormat.type';
 import { RaceSeriesModel } from '../RefData/raceSeries.type';
+import { RacePhaseModel } from '../RefData/racePhase.type';
 
 import { LoggerService } from '../Shared/logger.service';
 import { ErrorService } from '../Shared/error.service';
@@ -20,6 +21,7 @@ export class RefDataService {
 
     private raceFormatUrl = '/api/refdata/raceformats';
     private raceSeriesUrl = '/api/refdata/raceseries';
+    private racePhasesUrl = '/api/refdata/racephases';
 
     private extractData(res: Response) {
 
@@ -46,6 +48,16 @@ export class RefDataService {
       this.logger.log('Getting RaceSeries, RefDataService');
 
       return this.http.get(this.raceSeriesUrl)
+                      .map(resp => this.extractData(resp))
+                      .catch(error => this.errorHandler.handleError(error));
+
+    }
+
+    getRacePhases(): Observable<RacePhaseModel[]> {
+
+      this.logger.log('Getting RacePhases, RefDataService');
+
+      return this.http.get(this.racePhasesUrl)
                       .map(resp => this.extractData(resp))
                       .catch(error => this.errorHandler.handleError(error));
 

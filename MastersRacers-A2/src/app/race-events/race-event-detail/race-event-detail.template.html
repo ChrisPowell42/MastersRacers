@@ -1,0 +1,17 @@
+<div class='raceEvent-detail'>
+    <h3>Race Details</h3>
+    <md-grid-list cols="2" rowHeight="2em">
+        <md-grid-tile>Name:</md-grid-tile>
+        <md-grid-tile>{{detailRaceEvent.raceName}}</md-grid-tile>
+        <md-grid-tile># of Runs:</md-grid-tile>
+        <md-grid-tile>{{detailRaceEvent.runCount}}</md-grid-tile>
+        <md-grid-tile>Race Format:</md-grid-tile>
+        <md-grid-tile>{{detailRaceEvent.raceFormat.code}}</md-grid-tile>
+        <md-grid-tile>Location:</md-grid-tile>
+        <md-grid-tile>{{detailRaceEvent.location.name}}</md-grid-tile>
+        <md-grid-tile>Notes:</md-grid-tile>
+        <md-grid-tile>{{detailRaceEvent.notes}}</md-grid-tile>
+        <md-grid-tile>Start Time:</md-grid-tile>
+        <md-grid-tile>{{detailRaceEvent.scheduledStartTime | date: "MMM dd, yyyy HH:mm" }}</md-grid-tile>
+    </md-grid-list>
+</div>

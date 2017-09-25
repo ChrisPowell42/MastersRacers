@@ -5,9 +5,9 @@ import { MaterialModule } from '@angular/material';
 import { DialogService } from '../Shared/dialog.service';
 
 import { SeasonService } from '../Services/season.service';
-import { SeasonRoutingModule } from '../Routing/season-routing.module';
-import { SeasonResolver } from '../Routing/season-resolver.service';
-import { SeasonListResolver } from '../Routing/seasonList-resolver.service';
+import { SeasonRoutingModule } from '../Routing/Season/season-routing.module';
+import { SeasonResolver } from '../Routing/Season/season-resolver.service';
+import { SeasonListResolver } from '../Routing/Season/seasonList-resolver.service';
 import { SharedModule } from '../Shared/shared.module';
 
 import { SeasonListComponent } from './seasonList.component';

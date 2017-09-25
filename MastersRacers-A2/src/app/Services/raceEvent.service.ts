@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { LocationModel } from '../Locations/location.type';
+import { RaceEventModel } from '../race-events/raceEvent.type';
 import { LoggerService } from '../Shared/logger.service';
 import { ErrorService } from '../Shared/error.service';
 
@@ -10,10 +10,11 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class LocationService {
+export class RaceEventService {
 
-    private locationsUrl = '/api/locations';
-    private locationUrl = '/api/locations/';
+    private raceEventsUrl = '/api/raceevents';
+    private activeRaceEventsUrl = '/api/raceevents/active';
+    private raceEventUrl = '/api/raceevent/';
 
     constructor(private http: Http,
                 private logger: LoggerService,
@@ -30,53 +31,39 @@ export class LocationService {
 
     }
 
-    newLocation(): LocationModel {
+    getRaceEvents() {
 
-        let returnLocation = new LocationModel();
-            
-        returnLocation.id = null;
-        returnLocation.name = "";
-        returnLocation.description = "";
-        returnLocation.latPos = 0;
-        returnLocation.longPos = 0;
+        this.logger.log('Getting RaceEvents, RaceEventService');
 
-        return null;
+        return this.http.get(this.raceEventsUrl)
+                        .map(resp => this.extractData(resp))
+                        .catch(error => this.errorHandler.handleError(error));
 
     }
 
-    getLocations(): Observable<LocationModel[]> {
+    getActiveSeasonRaceEvents() {
 
-        this.logger.log('Getting Locations, LocationService');
+        this.logger.log('Getting Active Season RaceEvents, RaceEventService');
 
-        return this.http.get(this.locationsUrl)
+        return this.http.get(this.activeRaceEventsUrl)
                         .map(resp => this.extractData(resp))
                         .catch(error => this.errorHandler.handleError(error));
 
 
     }
 
-    getLocation(id: string): Observable<LocationModel> {
+    saveRaceEvent(modifiedEvent: RaceEventModel) {
 
-        this.logger.log('Getting Location, LocationService');
-        this.logger.log(id);
-        
-        return this.http.get(this.locationUrl + id)
-                        .map(resp => this.extractData(resp))
-                        .catch(error => this.errorHandler.handleError(error));
+        this.logger.log('Saving RaceEvent');
+        this.logger.log(modifiedEvent);
 
-    }
+        let url = `/api/raceevent/${modifiedEvent.id}`;
 
-    saveLocation(modifiedLocation: LocationModel) {
-
-        this.logger.log('Saving Location');
-        this.logger.log(modifiedLocation);
-
-        let url = `/api/location/${modifiedLocation.id}`;
-
-        return this.http.put(url, modifiedLocation)
+        return this.http.put(url, modifiedEvent)
                         .map(resp=> this.extractData(resp))
                         .catch(error => this.errorHandler.handleError(error));
 
     }
+
 
 }

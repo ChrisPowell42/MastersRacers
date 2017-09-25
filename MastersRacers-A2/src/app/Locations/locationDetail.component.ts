@@ -5,7 +5,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoggerService } from '../Shared/logger.service';
 
 @Component({
-    selector: 'location-detail-name',
     templateUrl: 'locationDetail.template.html',
     styles: ['.location-detail { margin: 10px; }']
 })
