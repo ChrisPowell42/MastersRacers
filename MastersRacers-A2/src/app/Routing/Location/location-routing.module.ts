@@ -14,7 +14,8 @@ const locationRoutes: Routes = [
     children: [
       { path: '', component: LocationDefaultComponent, data: {shouldDetach: true}},
       { path: 'edit/:id', component: LocationEditComponent, resolve: { detailLocation: LocationResolver }},
-      { path: 'detail/:id', component: LocationDetailComponent, resolve: { detailLocation: LocationResolver }}
+      { path: 'detail/:id', component: LocationDetailComponent, resolve: { detailLocation: LocationResolver }},
+      { path: 'new', component: LocationEditComponent, resolve: {detailLocation: LocationResolver}}
     ]
   }
 ];
