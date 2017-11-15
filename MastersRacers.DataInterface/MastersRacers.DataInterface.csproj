@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CRUD\LocationCRUD.cs" />
+    <Compile Include="CRUD\NewsItemCRUD.cs" />
     <Compile Include="CRUD\RaceEventCRUD.cs" />
     <Compile Include="CRUD\RacerCRUD.cs" />
     <Compile Include="CRUD\RaceResultCRUD.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Startup\DataUnityConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup\DTOProfile.cs" />
+    <Compile Include="Utilities\DateTimeTools.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MastersRacers.Data\MastersRacers.Data.csproj">

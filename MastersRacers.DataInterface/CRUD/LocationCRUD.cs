@@ -22,31 +22,38 @@ namespace MastersRacers.DataInterface.CRUD
     public class LocationCRUD : ILocationCRUD
     {
         private readonly IGetAllCommand<Location> _getAllLocationsCmd;
+        private readonly IGetCommand<Location> _getLocationCmd;
         private readonly IRemoveCommand<Location> _removeLocationCmd;
         private readonly ISaveCommand<Location> _saveLocationCmd;
 
         private readonly IMapper _mapper;
 
         public LocationCRUD(IGetAllCommand<Location> getAllLocationsCmd,
+                            IGetCommand<Location> getLocationCmd,
                             IRemoveCommand<Location> removeLocationCmd,
                             ISaveCommand<Location> saveLocationCmd,
                             IMapper mapper)
         {
             _getAllLocationsCmd = getAllLocationsCmd;
+            _getLocationCmd = getLocationCmd;
             _removeLocationCmd = removeLocationCmd;
             _saveLocationCmd = saveLocationCmd;
             _mapper = mapper;
         }
 
-        public Task<LocationDTO> Get(Guid id)
+        public async Task<LocationDTO> Get(Guid id)
         {
-            throw new NotImplementedException();
+            Location location = await _getLocationCmd.Get(id);
+            LocationDTO locationDTO = _mapper.Map<LocationDTO>(location);
+
+            return locationDTO;
+
         }
 
         public async Task<ICollection<LocationDTO>> GetAll()
         {
             ICollection<Location> locations = await _getAllLocationsCmd.GetAll();
-            ICollection<LocationDTO> locationDTOs = _mapper.Map<ICollection<LocationDTO>>(locations);
+            ICollection<LocationDTO> locationDTOs = _mapper.Map<ICollection<LocationDTO>>(locations.OrderBy(x=>x.Name));
 
             return locationDTOs;
         }
@@ -78,6 +85,7 @@ namespace MastersRacers.DataInterface.CRUD
                     _getAllLocationsCmd.Dispose();
                     _removeLocationCmd.Dispose();
                     _saveLocationCmd.Dispose();
+                    _getLocationCmd.Dispose();
                 }
 
                 // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.

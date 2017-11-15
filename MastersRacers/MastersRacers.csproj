@@ -244,6 +244,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
+    <Compile Include="Controllers\NewsItemsController.cs" />
     <Compile Include="Controllers\RaceEventController.cs" />
     <Compile Include="Controllers\RaceResultsController.cs" />
     <Compile Include="Controllers\RacersController.cs" />
@@ -308,6 +309,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\NewsItems\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

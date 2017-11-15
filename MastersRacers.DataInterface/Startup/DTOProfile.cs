@@ -3,6 +3,7 @@ using MastersRacers.Data.Models;
 using MastersRacers.Data.Models.RefData;
 using MastersRacers.DTOs;
 using MastersRacers.DTOs.RefData;
+using System;
 
 namespace MastersRacers.DataInterface.Startup
 {
@@ -10,6 +11,8 @@ namespace MastersRacers.DataInterface.Startup
     {
         public DTOProfile()
         {
+            CreateMap<DateTime, DateTime>().ConvertUsing(i => DateTime.SpecifyKind(i, DateTimeKind.Utc));
+
             CreateMap<RacerDTO, Racer>();
             CreateMap<Racer, RacerDTO>();
 
@@ -30,6 +33,12 @@ namespace MastersRacers.DataInterface.Startup
 
             CreateMap<RacePhaseDTO, RacePhase>();
             CreateMap<RacePhase, RacePhaseDTO>();
+
+            CreateMap<ArticleTypeDTO, ArticleType>();
+            CreateMap<ArticleType, ArticleTypeDTO>();
+
+            CreateMap<NewsItemDTO, NewsItem>();
+            CreateMap<NewsItem, NewsItemDTO>();
 
         }
 

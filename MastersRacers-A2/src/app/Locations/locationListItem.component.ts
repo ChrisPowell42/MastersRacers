@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { LocationModel } from './location.type';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoggerService } from '../Shared/logger.service';
 
 @Component({
     selector: 'location-list-item',
@@ -12,8 +11,7 @@ export class LocationListItemComponent {
 
     constructor(
         private route: ActivatedRoute,
-        private router: Router,
-        private logger: LoggerService
+        private router: Router
     ) {}
 
 

@@ -41,10 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LocationDTO.cs" />
+    <Compile Include="NewsItemDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RaceEventDTO.cs" />
     <Compile Include="RacerDTO.cs" />
     <Compile Include="RaceResultDTO.cs" />
+    <Compile Include="RefData\ArticleTypeDTO.cs" />
     <Compile Include="RefData\RaceFormatDTO.cs" />
     <Compile Include="RefData\RacePhaseDTO.cs" />
     <Compile Include="RefData\RaceSeriesDTO.cs" />

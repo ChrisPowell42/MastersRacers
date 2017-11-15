@@ -62,6 +62,44 @@ namespace MastersRacers.Controllers
 
         }
 
+        [Route("raceevent/{id:guid}")]
+        [ResponseType(typeof(RaceEventDTO))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetRaceEvent(Guid id)
+        {
+            RaceEventDTO returnRaceEvent = null;
+
+            try
+            {
+                returnRaceEvent = await _raceEventCRUD.Get(id);
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+
+            return Ok(returnRaceEvent);
+        }
+
+        [Route("raceevents/next/{count:int}")]
+        [ResponseType(typeof(ICollection<RaceEventDTO>))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetNextRaceEvents(int count)
+        {
+            ICollection<RaceEventDTO> returnValues = null;
+
+            try
+            {
+                returnValues = await _raceEventCRUD.GetNextRaceEvents(count);
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+
+            return Ok(returnValues);
+        }
+
         [Route("raceevents/active/phase/{id:guid}")]
         [ResponseType(typeof(ICollection<RaceEventDTO>))]
         [HttpGet]

@@ -73,6 +73,7 @@
     <Compile Include="CommandObjects\GetAllCommand.cs" />
     <Compile Include="CommandObjects\GetCommand.cs" />
     <Compile Include="CommandObjects\RaceEventCommands\GetActiveRaceEventsForPhaseCommand.cs" />
+    <Compile Include="CommandObjects\RaceEventCommands\GetNextRaceEventsCommand.cs" />
     <Compile Include="CommandObjects\RaceEventCommands\SaveRaceEventCommand.cs" />
     <Compile Include="CommandObjects\RaceEventCommands\GetActiveSeasonRaceEventsCommand.cs" />
     <Compile Include="CommandObjects\RacerCommands\GetActiveRacersCommand.cs" />
@@ -134,11 +135,17 @@
     <Compile Include="Migrations\201704031302245_MakeRunTimeNullable.Designer.cs">
       <DependentUpon>201704031302245_MakeRunTimeNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711092043366_NewsItems.cs" />
+    <Compile Include="Migrations\201711092043366_NewsItems.Designer.cs">
+      <DependentUpon>201711092043366_NewsItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IDBObject.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\NewsItem.cs" />
     <Compile Include="Models\RaceEvent.cs" />
     <Compile Include="Models\RaceResult.cs" />
+    <Compile Include="Models\RefData\ArticleType.cs" />
     <Compile Include="Models\RefData\RaceFormat.cs" />
     <Compile Include="Models\Racer.cs" />
     <Compile Include="Models\RefData\RacePhase.cs" />
@@ -187,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704031302245_MakeRunTimeNullable.resx">
       <DependentUpon>201704031302245_MakeRunTimeNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711092043366_NewsItems.resx">
+      <DependentUpon>201711092043366_NewsItems.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

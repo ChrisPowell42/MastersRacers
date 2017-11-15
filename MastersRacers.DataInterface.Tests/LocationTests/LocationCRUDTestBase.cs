@@ -16,7 +16,7 @@ namespace MastersRacers.DataInterface.Tests.LocationTests
         protected Mock<IGetAllCommand<Location>> _getAllCommandMock;
         protected Mock<IRemoveCommand<Location>> _removeCommandMock;
         protected Mock<ISaveCommand<Location>> _saveLocationMock;
-
+        protected Mock<IGetCommand<Location>> _getCommandMock;
         protected Mock<IMapper> _mapperMock;
 
         public LocationCRUDTestBase(): base()
@@ -28,13 +28,15 @@ namespace MastersRacers.DataInterface.Tests.LocationTests
         {
 
             _getAllCommandMock = new Mock<IGetAllCommand<Location>>();
+
             _removeCommandMock = new Mock<IRemoveCommand<Location>>();
             _saveLocationMock = new Mock<ISaveCommand<Location>>();
+            _getCommandMock = new Mock<IGetCommand<Location>>();
             _mapperMock = new Mock<IMapper>();
 
             ArrangeLocationCRUD();
 
-            _testObject = new LocationCRUD(_getAllCommandMock.Object, _removeCommandMock.Object, _saveLocationMock.Object, _mapperMock.Object);
+            _testObject = new LocationCRUD(_getAllCommandMock.Object, _getCommandMock.Object, _removeCommandMock.Object, _saveLocationMock.Object, _mapperMock.Object);
 
         }
 

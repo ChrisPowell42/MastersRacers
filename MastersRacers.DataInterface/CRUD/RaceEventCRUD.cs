@@ -3,6 +3,7 @@ using MastersRacers.Data.CommandObjects;
 using MastersRacers.Data.CommandObjects.RaceEventCommands;
 using MastersRacers.Data.Models;
 using MastersRacers.Data.Models.RefData;
+using MastersRacers.DataInterface.Utilities;
 using MastersRacers.DTOs;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace MastersRacers.DataInterface.CRUD
         Task<ICollection<RaceEventDTO>> GetAll();
         Task<ICollection<RaceEventDTO>> GetAllActiveSeasonRaces();
         Task<ICollection<RaceEventDTO>> GetAllActiveSeasonPhaseRaces(Guid phaseId);
+        Task<ICollection<RaceEventDTO>> GetNextRaceEvents(int eventCount);
         Task<RaceEventDTO> Get(Guid id);
         Task<bool> Remove(Guid id);
         Task<RaceEventDTO> Put(RaceEventDTO racer);
@@ -25,33 +27,46 @@ namespace MastersRacers.DataInterface.CRUD
 
     public class RaceEventCRUD : IRaceEventCRUD
     {
-
         private readonly IGetAllCommand<RaceEvent> _getAllRaceEventCmd;
+        private readonly IGetCommand<RaceEvent> _getRaceEventCmd;
         private readonly IGetActiveSeasonRaceEventsCommand _getActiveSeasonRaceEventsCmd;
+        private readonly IGetNextRaceEventsCommand _getNextRaceEventsCmd;
         private readonly ISaveRaceEventCommand _saveRaceEventCmd;
         private readonly IRemoveCommand<RaceEvent> _removeRaceEventCmd;
         private readonly IGetActiveRaceEventsForPhaseCommand _getActiveRaceForPhaseCmd;
+
+        private readonly IDateTimeTools _dateTimeTools;
         private readonly IMapper _mapper;
 
         public RaceEventCRUD(IGetAllCommand<RaceEvent> getAllRaceEventCmd,
+                             IGetCommand<RaceEvent> getRaceEventCmd,
                              IGetActiveSeasonRaceEventsCommand getActiveSeasonRaceEventsCmd,
+                             IGetNextRaceEventsCommand getNextRaceEventsCmd,
                              IGetActiveRaceEventsForPhaseCommand getActiveRaceForPhaseCmd,
                              ISaveRaceEventCommand saveRaceEventCmd,
                              IRemoveCommand<RaceEvent> removeRaceEventCmd,
+                             IDateTimeTools dateTimeTools,
                              IMapper mapper)
         {
             _getAllRaceEventCmd = getAllRaceEventCmd;
+            _getRaceEventCmd = getRaceEventCmd;
             _getActiveSeasonRaceEventsCmd = getActiveSeasonRaceEventsCmd;
+            _getNextRaceEventsCmd = getNextRaceEventsCmd;
             _getActiveRaceForPhaseCmd = getActiveRaceForPhaseCmd;
             _saveRaceEventCmd = saveRaceEventCmd;
             _removeRaceEventCmd = removeRaceEventCmd;
 
+            _dateTimeTools = dateTimeTools;
             _mapper = mapper;
         }
 
-        public Task<RaceEventDTO> Get(Guid id)
+        public async Task<RaceEventDTO> Get(Guid id)
         {
-            throw new NotImplementedException();
+
+            RaceEvent entityRaceEvent = await _getRaceEventCmd.Get(id);
+            RaceEventDTO returnRaceEvent = _mapper.Map<RaceEventDTO>(entityRaceEvent);
+
+            return returnRaceEvent;
         }
 
         public async Task<ICollection<RaceEventDTO>> GetAll()
@@ -62,6 +77,16 @@ namespace MastersRacers.DataInterface.CRUD
             return returnValues;
         }
 
+        public async Task<ICollection<RaceEventDTO>> GetNextRaceEvents(int eventCount)
+        {
+            ICollection<RaceEvent> nextRaceEvents = await _getNextRaceEventsCmd.GetNextEvents(eventCount, _dateTimeTools.GetUTCNow());
+
+            ICollection<RaceEventDTO> returnValues = _mapper.Map<ICollection<RaceEventDTO>>(nextRaceEvents);
+
+            return returnValues;
+        }
+
+
         public async Task<RaceEventDTO> Put(RaceEventDTO raceEvent)
         {
 
@@ -69,6 +94,10 @@ namespace MastersRacers.DataInterface.CRUD
             {
                 raceEvent.RacePhaseId = RacePhase.ScheduledId;
             }
+
+            raceEvent.LocationId = raceEvent.Location.Id;
+            raceEvent.RaceFormatId = raceEvent.RaceFormat.Id;
+            raceEvent.SeasonId = raceEvent.Season.Id;
 
             RaceEvent toSave = _mapper.Map<RaceEvent>(raceEvent);
 

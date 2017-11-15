@@ -77,5 +77,25 @@ namespace MastersRacers.Controllers
 
         }
 
+        [Route("articletypes")]
+        [ResponseType(typeof(IEnumerable<ArticleTypeDTO>))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetArticleTypes()
+        {
+            IEnumerable<ArticleTypeDTO> returnValues;
+            try
+            {
+                returnValues = await _refDataReader.GetAllArticleTypes();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+
+            return Ok(returnValues);
+
+        }
+
+
     }
 }

@@ -80,7 +80,7 @@ namespace MastersRacers.Controllers
         }
 
 
-        [Route("season/{id:Guid}/active")]
+        [Route("season/active/{id:Guid}")]
         [ResponseType(typeof(Boolean))]
         [HttpPut]
         public async Task<IHttpActionResult> MakeActive(Guid id, [FromBody]SeasonDTO value)

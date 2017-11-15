@@ -23,10 +23,11 @@ namespace MastersRacers.Data.Migrations
             RefDataSeed(context);
 
             //For Test Data.  Not required.
-            RacerSeed(context);
-            LocationSeed(context);
-            SeasonSeed(context);
-            RaceEventSeed(context);
+            //RacerSeed(context);
+            //LocationSeed(context);
+            //SeasonSeed(context);
+            //RaceEventSeed(context);
+            //NewsItemSeed(context);
 
         }
 
@@ -55,6 +56,29 @@ namespace MastersRacers.Data.Migrations
             RacePhase rp3 = new RacePhase { Id = RacePhase.FinalizedId, SortIdx = 3, Phase = "Finalized" };
 
             context.RacePhases.AddOrUpdate(rp1, rp2, rp3);
+
+            ArticleType a1 = new ArticleType { Id = ArticleType.MastersId, TypeName = "Masters" };
+            ArticleType a2 = new ArticleType { Id = ArticleType.RaceId, TypeName = "Racing" };
+            ArticleType a3 = new ArticleType { Id = ArticleType.TechId, TypeName = "Ski Tech" };
+            ArticleType a4 = new ArticleType { Id = ArticleType.TrainingId, TypeName = "Training" };
+
+            context.ArticleTypes.AddOrUpdate(a1, a2, a3, a4);
+
+        }
+
+        private readonly Guid ni1Id = Guid.Parse("{D68F16F3-9F42-4EC8-A25D-C60949627206}");
+        private readonly Guid ni2Id = Guid.Parse("{8233456F-FE23-4EF4-AC1F-0E152DA9C5B1}");
+        private readonly Guid ni3Id = Guid.Parse("{17AA925F-C122-4B90-BFB1-6D2BA4F9D45A}");
+        private readonly Guid ni4Id = Guid.Parse("{9949165E-05F6-4332-97C5-D8E5B22B5982}");
+
+        private void NewsItemSeed(RaceContext context)
+        {
+            NewsItem n1 = new Models.NewsItem { Id = ni1Id, ArticleTypeId = ArticleType.MastersId, Title = "Test News Item", ArticleText = "Test News Article Body", PostedBy = "Seed Generator", PostedOn = DateTime.UtcNow };
+            NewsItem n2 = new Models.NewsItem { Id = ni2Id, ArticleTypeId = ArticleType.RaceId, Title = "Test Race Item", ArticleText = "Test Race Article Body", PostedBy = "Seed Generator", PostedOn = DateTime.UtcNow };
+            NewsItem n3 = new Models.NewsItem { Id = ni3Id, ArticleTypeId = ArticleType.TrainingId, Title = "Test Training", ArticleText = "Test Training Article body", PostedBy = "Seed Generator", PostedOn = DateTime.UtcNow };
+            NewsItem n4 = new Models.NewsItem { Id = ni4Id, ArticleTypeId = ArticleType.TechId, Title = "Test Ski Tech", ArticleText = "Test Ski Tech article body", PostedBy = "Seed Generator", PostedOn = DateTime.UtcNow };
+
+            context.NewsItems.AddOrUpdate(n1, n2, n3, n4);
 
         }
 

@@ -15,6 +15,7 @@ namespace MastersRacers.DataInterface.CRUD
         Task<ICollection<RaceFormatDTO>> GetAllRaceFormats();
         Task<ICollection<RaceSeriesDTO>> GetAllRaceSeries();
         Task<ICollection<RacePhaseDTO>> GetAllRacePhases();
+        Task<ICollection<ArticleTypeDTO>> GetAllArticleTypes();
     }
 
     public class RefDataReader : IRefDataReader
@@ -24,15 +25,18 @@ namespace MastersRacers.DataInterface.CRUD
         private readonly IGetAllCommand<RaceFormat> _getAllRaceFormatCmd;
         private readonly IGetAllCommand<RaceSeries> _getAllRaceSeriesCmd;
         private readonly IGetAllCommand<RacePhase> _getAllRacePhaseCmd;
+        private readonly IGetAllCommand<ArticleType> _getAllArticleTypeCmd;
 
         public RefDataReader(IGetAllCommand<RaceFormat> getAllRaceFormatCmd, 
                              IGetAllCommand<RaceSeries> getAllRaceSeriesCmd,
                              IGetAllCommand<RacePhase> getAllRacePhaseCmd,
+                             IGetAllCommand<ArticleType> getAllArticleTypeCmd,
                              IMapper mapper)
         {
             _getAllRaceFormatCmd = getAllRaceFormatCmd;
             _getAllRaceSeriesCmd = getAllRaceSeriesCmd;
             _getAllRacePhaseCmd = getAllRacePhaseCmd;
+            _getAllArticleTypeCmd = getAllArticleTypeCmd;
 
             _mapper = mapper;
         }
@@ -57,6 +61,14 @@ namespace MastersRacers.DataInterface.CRUD
         {
             ICollection<RacePhase> allRacePhases = await _getAllRacePhaseCmd.GetAll();
             ICollection<RacePhaseDTO> returnValues = _mapper.Map<ICollection<RacePhaseDTO>>(allRacePhases.OrderBy(x => x.SortIdx));
+
+            return returnValues;
+        }
+
+        public async Task<ICollection<ArticleTypeDTO>> GetAllArticleTypes()
+        {
+            ICollection<ArticleType> allRacePhases = await _getAllArticleTypeCmd.GetAll();
+            ICollection<ArticleTypeDTO> returnValues = _mapper.Map<ICollection<ArticleTypeDTO>>(allRacePhases);
 
             return returnValues;
         }

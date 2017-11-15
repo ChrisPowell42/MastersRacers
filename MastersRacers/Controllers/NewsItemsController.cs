@@ -3,74 +3,71 @@ using MastersRacers.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 
 namespace MastersRacers.Controllers
 {
-    [RoutePrefix("api")]
-    public class LocationsController : ApiController
+    [System.Web.Http.RoutePrefix("api")]
+    public class NewsItemsController : ApiController
     {
-        private readonly ILocationCRUD _locationCRUD;
+        private readonly INewsItemCRUD _newsItemCRUD;
 
-        public LocationsController(ILocationCRUD locationCRUD):base()
+        public NewsItemsController(INewsItemCRUD newsItemCRUD):base()
         {
-            _locationCRUD = locationCRUD;
+            _newsItemCRUD = newsItemCRUD;
         }
 
-        // GET api/<controller>
-        [Route("locations")]
-        [ResponseType(typeof(IEnumerable<LocationDTO>))]
+        [Route("newsitems")]
+        [ResponseType(typeof(IEnumerable<NewsItemDTO>))]
         [HttpGet]
         public async Task<IHttpActionResult> Get()
         {
-            IEnumerable<LocationDTO> returnLocations;
+            IEnumerable<NewsItemDTO> returnNewsItems;
             try
             {
-                returnLocations = await _locationCRUD.GetAll();
+                returnNewsItems = await _newsItemCRUD.GetAll();
             }
             catch (Exception e)
             {
                 return InternalServerError(e);
             }
 
-            return Ok(returnLocations);
+            return Ok(returnNewsItems);
         }
 
-        // GET api/<controller>/5
-        [Route("location/{id:Guid}")]
-        [ResponseType(typeof(LocationDTO))]
+        [Route("newsitem/{id:Guid}")]
+        [ResponseType(typeof(NewsItemDTO))]
         [HttpGet]
         public async Task<IHttpActionResult> GetLocation(Guid id)
         {
-            LocationDTO returnLocation;
+            NewsItemDTO returnItem;
 
             try
             {
-                returnLocation = await _locationCRUD.Get(id);
+                returnItem = await _newsItemCRUD.Get(id);
             }
             catch (Exception e)
             {
                 return InternalServerError(e);
             }
 
-            return Ok(returnLocation);
+            return Ok(returnItem);
         }
 
         // POST api/<controller>
-        [Route("location")]
-        [ResponseType(typeof(LocationDTO))]
+        [Route("newsitem")]
+        [ResponseType(typeof(NewsItemDTO))]
         [HttpPost]
-        public async Task<IHttpActionResult> Post([FromBody]LocationDTO value)
+        public async Task<IHttpActionResult> Post([FromBody]NewsItemDTO value)
         {
-            LocationDTO returnResult;
+            NewsItemDTO returnResult;
 
             try
             {
-                returnResult = await _locationCRUD.Put(value);
+                returnResult = await _newsItemCRUD.Put(value);
             }
             catch (Exception e)
             {
@@ -82,16 +79,16 @@ namespace MastersRacers.Controllers
         }
 
         // PUT api/<controller>/5
-        [Route("location/{id:Guid}")]
-        [ResponseType(typeof(LocationDTO))]
+        [Route("newsitem/{id:Guid}")]
+        [ResponseType(typeof(NewsItemDTO))]
         [HttpPut]
-        public async Task<IHttpActionResult> Put(Guid id, [FromBody]LocationDTO value)
+        public async Task<IHttpActionResult> Put(Guid id, [FromBody]NewsItemDTO value)
         {
-            LocationDTO returnResult;
+            NewsItemDTO returnResult;
 
             try
             {
-                returnResult = await _locationCRUD.Put(value);
+                returnResult = await _newsItemCRUD.Put(value);
             }
             catch (Exception e)
             {
@@ -101,8 +98,8 @@ namespace MastersRacers.Controllers
             return Ok(returnResult);
         }
 
-        // DELETE api/<controller>/5
-        [Route("location/{id:Guid}")]
+
+        [Route("newsitem/{id:Guid}")]
         [ResponseType(typeof(bool))]
         [HttpDelete]
         public async Task<IHttpActionResult> Delete(Guid id)
@@ -110,7 +107,7 @@ namespace MastersRacers.Controllers
             bool deleteResult = false;
             try
             {
-                deleteResult = await _locationCRUD.Remove(id);
+                deleteResult = await _newsItemCRUD.Remove(id);
             }
             catch (Exception e)
             {
@@ -122,5 +119,7 @@ namespace MastersRacers.Controllers
             else
                 return Ok(deleteResult);
         }
+
+
     }
 }
