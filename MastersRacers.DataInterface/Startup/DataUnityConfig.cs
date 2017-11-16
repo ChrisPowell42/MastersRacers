@@ -65,7 +65,7 @@ namespace MastersRacers.DataInterface.Startup
             container.RegisterType<IGetAllCommand<NewsItem>, GetAllCommand<NewsItem>>();
             container.RegisterType<IRemoveCommand<NewsItem>, RemoveCommand<NewsItem>>();
             container.RegisterType<IGetCommand<NewsItem>, GetCommand<NewsItem>>();
-            container.RegisterType<ISaveCommand<NewsItem>, SaveCommand<NewsItem>>();
+            container.RegisterType<ISaveNewsItemCommand, SaveNewsItemCommand>();
 
             container.RegisterType<INewsItemCRUD, NewsItemCRUD>();
 

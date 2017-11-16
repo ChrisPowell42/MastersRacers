@@ -83,6 +83,7 @@
     <Compile Include="CommandObjects\RaceResultCommands\GetRaceResultsForRaceCommand.cs" />
     <Compile Include="CommandObjects\RemoveCommand.cs" />
     <Compile Include="CommandObjects\SaveCommand.cs" />
+    <Compile Include="CommandObjects\SaveNewsItemCommand.cs" />
     <Compile Include="CommandObjects\SeasonCommands\CreateActiveSeasonCommand.cs" />
     <Compile Include="CommandObjects\SeasonCommands\GetActiveSeasonCommand.cs" />
     <Compile Include="CommandObjects\SeasonCommands\SetActiveSeasonCommand.cs" />

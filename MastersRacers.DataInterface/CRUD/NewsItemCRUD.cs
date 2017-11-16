@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MastersRacers.Data.CommandObjects;
 using MastersRacers.Data.Models;
+using MastersRacers.DataInterface.Utilities;
 using MastersRacers.DTOs;
 using System;
 using System.Collections.Generic;
@@ -25,14 +26,16 @@ namespace MastersRacers.DataInterface.CRUD
         private readonly IGetCommand<NewsItem> _getNewsItemCmd;
         private readonly IGetAllCommand<NewsItem> _getAllNewsItemCmd;
         private readonly IRemoveCommand<NewsItem> _removeNewsItemCmd;
-        private readonly ISaveCommand<NewsItem> _saveNewsItemCmd;
+        private readonly ISaveNewsItemCommand _saveNewsItemCmd;
+        private readonly IDateTimeTools _dateTimeTools;
 
         private readonly IMapper _mapper;
 
         public NewsItemCRUD(IGetCommand<NewsItem> getNewsItemCmd, 
                             IGetAllCommand<NewsItem> getAllNewsItemCmd,
                             IRemoveCommand<NewsItem> removeNewsItemCmd,
-                            ISaveCommand<NewsItem> saveNewsItemCmd,
+                            ISaveNewsItemCommand saveNewsItemCmd,
+                            IDateTimeTools dateTimeTools,
                             IMapper mapper)
         {
             _getNewsItemCmd = getNewsItemCmd;
@@ -40,8 +43,9 @@ namespace MastersRacers.DataInterface.CRUD
             _removeNewsItemCmd = removeNewsItemCmd;
             _saveNewsItemCmd = saveNewsItemCmd;
 
-            _mapper = mapper;
+            _dateTimeTools = dateTimeTools;
 
+            _mapper = mapper;
         }
 
         public async Task<NewsItemDTO> Get(Guid id)
@@ -60,9 +64,17 @@ namespace MastersRacers.DataInterface.CRUD
             return newsItemsDTOs;
         }
 
-        public async Task<NewsItemDTO> Put(NewsItemDTO location)
+        public async Task<NewsItemDTO> Put(NewsItemDTO newsItem)
         {
-            NewsItem toSave = _mapper.Map<NewsItem>(location);
+            newsItem.ArticleTypeId = newsItem.ArticleType.Id;
+
+            if (newsItem.PostedOn.Year == 1)
+            {
+                newsItem.PostedOn = _dateTimeTools.GetUTCNow();
+            }
+
+            NewsItem toSave = _mapper.Map<NewsItem>(newsItem);
+
             NewsItem saved = await _saveNewsItemCmd.Save(toSave);
             NewsItemDTO dtoItem = _mapper.Map<NewsItemDTO>(saved);
 
