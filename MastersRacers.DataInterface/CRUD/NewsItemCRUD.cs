@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MastersRacers.Data.CommandObjects;
+using MastersRacers.Data.CommandObjects.NewsItemCommands;
 using MastersRacers.Data.Models;
 using MastersRacers.DataInterface.Utilities;
 using MastersRacers.DTOs;

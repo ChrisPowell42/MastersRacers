@@ -72,6 +72,7 @@
     <Compile Include="CommandObjects\CommandObjectBase.cs" />
     <Compile Include="CommandObjects\GetAllCommand.cs" />
     <Compile Include="CommandObjects\GetCommand.cs" />
+    <Compile Include="CommandObjects\LocationCommands\SaveLocationCommand.cs" />
     <Compile Include="CommandObjects\RaceEventCommands\GetActiveRaceEventsForPhaseCommand.cs" />
     <Compile Include="CommandObjects\RaceEventCommands\GetNextRaceEventsCommand.cs" />
     <Compile Include="CommandObjects\RaceEventCommands\SaveRaceEventCommand.cs" />
@@ -83,9 +84,10 @@
     <Compile Include="CommandObjects\RaceResultCommands\GetRaceResultsForRaceCommand.cs" />
     <Compile Include="CommandObjects\RemoveCommand.cs" />
     <Compile Include="CommandObjects\SaveCommand.cs" />
-    <Compile Include="CommandObjects\SaveNewsItemCommand.cs" />
+    <Compile Include="CommandObjects\NewsItemCommands\SaveNewsItemCommand.cs" />
     <Compile Include="CommandObjects\SeasonCommands\CreateActiveSeasonCommand.cs" />
     <Compile Include="CommandObjects\SeasonCommands\GetActiveSeasonCommand.cs" />
+    <Compile Include="CommandObjects\SeasonCommands\SaveSeasonCommand.cs" />
     <Compile Include="CommandObjects\SeasonCommands\SetActiveSeasonCommand.cs" />
     <Compile Include="Contexts\RaceContext.cs" />
     <Compile Include="Migrations\201702022030301_InitialMigration.cs" />

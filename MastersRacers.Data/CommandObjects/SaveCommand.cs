@@ -15,13 +15,13 @@ namespace MastersRacers.Data.CommandObjects
         Task<T> Save(T toSave);
     }
 
-    public class SaveCommand<T> : CommandObjectBase, ISaveCommand<T> where T : class, IDBObject
+    public abstract class SaveCommand<T> : CommandObjectBase, ISaveCommand<T> where T : class, IDBObject
     {
         public SaveCommand(IRaceContext dbContext) : base(dbContext)
         {
         }
 
-        public virtual async Task<T> Save(T toSave)
+        public async Task<T> Save(T toSave)
         {
             if (toSave.Id.Equals(Guid.Empty))
             {
@@ -33,18 +33,21 @@ namespace MastersRacers.Data.CommandObjects
             }
         }
 
-        protected virtual async Task<T> Add(T toSave)
+        protected abstract void SetUnchangedItems(T toSave);
+
+        protected async Task<T> Add(T toSave)
         {
             toSave.Id = Guid.NewGuid();
 
             _dbContext.Set<T>().Add(toSave);
+            SetUnchangedItems(toSave);
 
             await _dbContext.SaveChangesAsync();
 
             return toSave;
         }
 
-        protected virtual async Task<T> Edit(T toEdit)
+        protected async Task<T> Edit(T toEdit)
         {
             _dbContext.Entry(toEdit).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
