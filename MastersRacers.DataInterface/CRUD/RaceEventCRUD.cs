@@ -98,6 +98,7 @@ namespace MastersRacers.DataInterface.CRUD
             raceEvent.LocationId = raceEvent.Location.Id;
             raceEvent.RaceFormatId = raceEvent.RaceFormat.Id;
             raceEvent.SeasonId = raceEvent.Season.Id;
+            raceEvent.RaceEventTypeId = raceEvent.RaceEventType.Id;
 
             RaceEvent toSave = _mapper.Map<RaceEvent>(raceEvent);
 
