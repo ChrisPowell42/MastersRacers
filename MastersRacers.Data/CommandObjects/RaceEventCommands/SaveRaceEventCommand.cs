@@ -19,6 +19,7 @@ namespace MastersRacers.Data.CommandObjects.RaceEventCommands
             _dbContext.Entry(toSave.Location).State = EntityState.Unchanged;
             _dbContext.Entry(toSave.RaceFormat).State = EntityState.Unchanged;
             _dbContext.Entry(toSave.Season).State = EntityState.Unchanged;
+            _dbContext.Entry(toSave.RaceEventType).State = EntityState.Unchanged;
         }
     }
 }
