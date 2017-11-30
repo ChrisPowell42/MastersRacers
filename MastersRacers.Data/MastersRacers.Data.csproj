@@ -142,6 +142,10 @@
     <Compile Include="Migrations\201711092043366_NewsItems.Designer.cs">
       <DependentUpon>201711092043366_NewsItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711301848298_AddRaceEventType.cs" />
+    <Compile Include="Migrations\201711301848298_AddRaceEventType.Designer.cs">
+      <DependentUpon>201711301848298_AddRaceEventType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IDBObject.cs" />
     <Compile Include="Models\Location.cs" />
@@ -149,6 +153,7 @@
     <Compile Include="Models\RaceEvent.cs" />
     <Compile Include="Models\RaceResult.cs" />
     <Compile Include="Models\RefData\ArticleType.cs" />
+    <Compile Include="Models\RefData\RaceEventType.cs" />
     <Compile Include="Models\RefData\RaceFormat.cs" />
     <Compile Include="Models\Racer.cs" />
     <Compile Include="Models\RefData\RacePhase.cs" />
@@ -200,6 +205,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711092043366_NewsItems.resx">
       <DependentUpon>201711092043366_NewsItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711301848298_AddRaceEventType.resx">
+      <DependentUpon>201711301848298_AddRaceEventType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

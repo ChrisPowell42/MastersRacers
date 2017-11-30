@@ -26,7 +26,7 @@ namespace MastersRacers.Data.Migrations
             //RacerSeed(context);
             //LocationSeed(context);
             //SeasonSeed(context);
-            //RaceEventSeed(context);
+            RaceEventSeed(context);
             //NewsItemSeed(context);
 
         }
@@ -63,6 +63,11 @@ namespace MastersRacers.Data.Migrations
             ArticleType a4 = new ArticleType { Id = ArticleType.TrainingId, TypeName = "Training" };
 
             context.ArticleTypes.AddOrUpdate(a1, a2, a3, a4);
+
+            RaceEventType ret1 = new RaceEventType { Id = RaceEventType.RaceId, TypeName = "Race" };
+            RaceEventType ret2 = new RaceEventType { Id = RaceEventType.TrainId, TypeName = "Train" };
+
+            context.RaceEventTypes.AddOrUpdate(ret1, ret2);
 
         }
 
@@ -159,10 +164,10 @@ namespace MastersRacers.Data.Migrations
             Guid rc3Id = Guid.Parse("{91636DFB-0F83-4603-A54E-DA33AE2D5AF1}");
             Guid rc4Id = Guid.Parse("{3247BBB7-104C-4977-B78C-07A62051B3B4}");
 
-            RaceEvent rc1 = new RaceEvent { Id = rc1Id, LocationId = l1Id, SeasonId = s1Id, RaceFormatId = RaceFormat.SlalomId, RunCount = 2, RaceName = "Race 1", RacePhaseId = RacePhase.ScheduledId, ScheduledStartTime =new DateTime(2014, 02, 14, 19, 0, 0)};
-            RaceEvent rc2 = new RaceEvent { Id = rc2Id, LocationId = l2Id, SeasonId = s1Id, RaceFormatId = RaceFormat.GSlalomId, RunCount = 2, RaceName = "Race 2", RacePhaseId = RacePhase.ScheduledId, ScheduledStartTime = new DateTime(2014, 02, 24, 10, 0, 0) };
-            RaceEvent rc3 = new RaceEvent { Id = rc3Id, LocationId = l1Id, SeasonId = s2Id, RaceFormatId = RaceFormat.SlalomId, RunCount = 2, RaceName = "Race 1", RacePhaseId = RacePhase.ScheduledId, ScheduledStartTime = new DateTime(2015, 01, 09, 19, 0, 0) };
-            RaceEvent rc4 = new RaceEvent { Id = rc4Id, LocationId = l2Id, SeasonId = s2Id, RaceFormatId = RaceFormat.GSlalomId, RunCount = 2, RaceName = "Race 2", RacePhaseId = RacePhase.ScheduledId, ScheduledStartTime = new DateTime(2015, 02, 14, 10, 0, 0) };
+            RaceEvent rc1 = new RaceEvent { Id = rc1Id, LocationId = l1Id, SeasonId = s1Id, RaceFormatId = RaceFormat.SlalomId, RunCount = 2, RaceName = "Race 1", RacePhaseId = RacePhase.ScheduledId, ScheduledStartTime =new DateTime(2014, 02, 14, 19, 0, 0), RaceEventTypeId = RaceEventType.RaceId };
+            RaceEvent rc2 = new RaceEvent { Id = rc2Id, LocationId = l2Id, SeasonId = s1Id, RaceFormatId = RaceFormat.GSlalomId, RunCount = 2, RaceName = "Race 2", RacePhaseId = RacePhase.ScheduledId, ScheduledStartTime = new DateTime(2014, 02, 24, 10, 0, 0), RaceEventTypeId = RaceEventType.RaceId };
+            RaceEvent rc3 = new RaceEvent { Id = rc3Id, LocationId = l1Id, SeasonId = s2Id, RaceFormatId = RaceFormat.SlalomId, RunCount = 2, RaceName = "Race 1", RacePhaseId = RacePhase.ScheduledId, ScheduledStartTime = new DateTime(2015, 01, 09, 19, 0, 0), RaceEventTypeId = RaceEventType.TrainId };
+            RaceEvent rc4 = new RaceEvent { Id = rc4Id, LocationId = l2Id, SeasonId = s2Id, RaceFormatId = RaceFormat.GSlalomId, RunCount = 2, RaceName = "Race 2", RacePhaseId = RacePhase.ScheduledId, ScheduledStartTime = new DateTime(2015, 02, 14, 10, 0, 0), RaceEventTypeId = RaceEventType.TrainId };
 
             context.RaceEvents.AddOrUpdate(rc1, rc2, rc3, rc4);
 

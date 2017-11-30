@@ -96,6 +96,24 @@ namespace MastersRacers.Controllers
 
         }
 
+        [Route("raceeventtypes")]
+        [ResponseType(typeof(IEnumerable<RaceEventTypeDTO>))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetRaceEventTypes()
+        {
+            IEnumerable<RaceEventTypeDTO> returnValues;
+
+            try
+            {
+                returnValues = await _refDataReader.GetAllRaceEventTypes();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+
+            return Ok(returnValues);
+        }
 
     }
 }

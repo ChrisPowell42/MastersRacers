@@ -71,6 +71,7 @@ namespace MastersRacers.DataInterface.Startup
             container.RegisterType<IGetAllCommand<RaceSeries>, GetAllCommand<RaceSeries>>();
             container.RegisterType<IGetAllCommand<RacePhase>, GetAllCommand<RacePhase>>();
             container.RegisterType<IGetAllCommand<ArticleType>, GetAllCommand<ArticleType>>();
+            container.RegisterType<IGetAllCommand<RaceEventType>, GetAllCommand<RaceEventType>>();
 
             container.RegisterType<IRefDataReader, RefDataReader>();
 

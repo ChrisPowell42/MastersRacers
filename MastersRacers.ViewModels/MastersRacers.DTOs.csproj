@@ -47,6 +47,7 @@
     <Compile Include="RacerDTO.cs" />
     <Compile Include="RaceResultDTO.cs" />
     <Compile Include="RefData\ArticleTypeDTO.cs" />
+    <Compile Include="RefData\RaceEventTypeDTO.cs" />
     <Compile Include="RefData\RaceFormatDTO.cs" />
     <Compile Include="RefData\RacePhaseDTO.cs" />
     <Compile Include="RefData\RaceSeriesDTO.cs" />

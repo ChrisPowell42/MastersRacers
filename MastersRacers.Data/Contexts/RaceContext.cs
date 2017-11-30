@@ -24,6 +24,7 @@ namespace MastersRacers.Data.Contexts
         IDbSet<RaceSeries> RaceSeries { get; set; }
         IDbSet<RacePhase> RacePhases { get; set; }
         IDbSet<ArticleType> ArticleTypes { get; set; }
+        IDbSet<RaceEventType> RaceEventTypes { get; set; }
 
         int SaveChanges();
         Task<int> SaveChangesAsync();
@@ -49,6 +50,7 @@ namespace MastersRacers.Data.Contexts
         public IDbSet<RaceSeries> RaceSeries { get; set; }
         public IDbSet<RacePhase> RacePhases { get; set; }
         public IDbSet<ArticleType> ArticleTypes { get; set; }
+        public IDbSet<RaceEventType> RaceEventTypes { get; set; }
 
     }
 }

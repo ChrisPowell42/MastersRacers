@@ -25,6 +25,9 @@ namespace MastersRacers.DataInterface.Startup
             CreateMap<RaceEventDTO, RaceEvent>();
             CreateMap<RaceEvent, RaceEventDTO>();
 
+            CreateMap<RaceEventTypeDTO, RaceEventType>();
+            CreateMap<RaceEventType, RaceEventTypeDTO>();
+
             CreateMap<RaceFormatDTO, RaceFormat>();
             CreateMap<RaceFormat, RaceFormatDTO>();
 

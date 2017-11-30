@@ -16,6 +16,8 @@ namespace MastersRacers.DataInterface.CRUD
         Task<ICollection<RaceSeriesDTO>> GetAllRaceSeries();
         Task<ICollection<RacePhaseDTO>> GetAllRacePhases();
         Task<ICollection<ArticleTypeDTO>> GetAllArticleTypes();
+        Task<ICollection<RaceEventTypeDTO>> GetAllRaceEventTypes();
+        
     }
 
     public class RefDataReader : IRefDataReader
@@ -26,17 +28,20 @@ namespace MastersRacers.DataInterface.CRUD
         private readonly IGetAllCommand<RaceSeries> _getAllRaceSeriesCmd;
         private readonly IGetAllCommand<RacePhase> _getAllRacePhaseCmd;
         private readonly IGetAllCommand<ArticleType> _getAllArticleTypeCmd;
+        private readonly IGetAllCommand<RaceEventType> _getAllRaceEventTypeCmd;
 
         public RefDataReader(IGetAllCommand<RaceFormat> getAllRaceFormatCmd, 
                              IGetAllCommand<RaceSeries> getAllRaceSeriesCmd,
                              IGetAllCommand<RacePhase> getAllRacePhaseCmd,
                              IGetAllCommand<ArticleType> getAllArticleTypeCmd,
+                             IGetAllCommand<RaceEventType> getAllRaceEventTypeCmd,
                              IMapper mapper)
         {
             _getAllRaceFormatCmd = getAllRaceFormatCmd;
             _getAllRaceSeriesCmd = getAllRaceSeriesCmd;
             _getAllRacePhaseCmd = getAllRacePhaseCmd;
             _getAllArticleTypeCmd = getAllArticleTypeCmd;
+            _getAllRaceEventTypeCmd = getAllRaceEventTypeCmd;
 
             _mapper = mapper;
         }
@@ -72,6 +77,15 @@ namespace MastersRacers.DataInterface.CRUD
 
             return returnValues;
         }
+
+        public async Task<ICollection<RaceEventTypeDTO>> GetAllRaceEventTypes()
+        {
+            ICollection<RaceEventType> allRaceEventTypes = await _getAllRaceEventTypeCmd.GetAll();
+            ICollection<RaceEventTypeDTO> returnValues = _mapper.Map<ICollection<RaceEventTypeDTO>>(allRaceEventTypes);
+
+            return returnValues;
+        }
+
 
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls

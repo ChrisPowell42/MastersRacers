@@ -20,6 +20,8 @@ namespace MastersRacers.Data.Models
         public Guid RaceFormatId { get; set; }
         [Required]
         public Guid RacePhaseId { get; set; }
+        [Required]
+        public Guid RaceEventTypeId { get; set; }
 
         public int RunCount { get; set; }
         [MaxLength(255)]
@@ -36,6 +38,8 @@ namespace MastersRacers.Data.Models
         public virtual RaceFormat RaceFormat { get; set; }
         [ForeignKey("RacePhaseId")]
         public virtual RacePhase RacePhase { get; set; }
+        [ForeignKey("RaceEventTypeId")]
+        public virtual RaceEventType RaceEventType { get; set; }
 
         public virtual ICollection<RaceResult> RaceResults { get; set; }
 
