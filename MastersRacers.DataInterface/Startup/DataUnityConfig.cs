@@ -55,6 +55,7 @@ namespace MastersRacers.DataInterface.Startup
             container.RegisterType<ISaveRaceEventCommand, SaveRaceEventCommand>();
             container.RegisterType<IGetCommand<RaceEvent>, GetCommand<RaceEvent>>();
             container.RegisterType<IGetActiveRaceEventsForPhaseCommand, GetActiveRaceEventsForPhaseCommand>();
+            container.RegisterType<IGetActiveSeasonRaceEventsOfTypeCommand, GetActiveSeasonRaceEventsOfTypeCommand>();
 
             container.RegisterType<IRaceEventCRUD, RaceEventCRUD>();
 

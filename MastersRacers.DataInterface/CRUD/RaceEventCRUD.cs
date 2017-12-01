@@ -19,6 +19,7 @@ namespace MastersRacers.DataInterface.CRUD
         Task<ICollection<RaceEventDTO>> GetAll();
         Task<ICollection<RaceEventDTO>> GetAllActiveSeasonRaces();
         Task<ICollection<RaceEventDTO>> GetAllActiveSeasonPhaseRaces(Guid phaseId);
+        Task<ICollection<RaceEventDTO>> GetActiveSeasonEventsByType(Guid raceEventTypeId);
         Task<ICollection<RaceEventDTO>> GetNextRaceEvents(int eventCount);
         Task<RaceEventDTO> Get(Guid id);
         Task<bool> Remove(Guid id);
@@ -34,7 +35,7 @@ namespace MastersRacers.DataInterface.CRUD
         private readonly ISaveRaceEventCommand _saveRaceEventCmd;
         private readonly IRemoveCommand<RaceEvent> _removeRaceEventCmd;
         private readonly IGetActiveRaceEventsForPhaseCommand _getActiveRaceForPhaseCmd;
-
+        private readonly IGetActiveSeasonRaceEventsOfTypeCommand _getActiveRaceForTypeCmd;
         private readonly IDateTimeTools _dateTimeTools;
         private readonly IMapper _mapper;
 
@@ -43,6 +44,7 @@ namespace MastersRacers.DataInterface.CRUD
                              IGetActiveSeasonRaceEventsCommand getActiveSeasonRaceEventsCmd,
                              IGetNextRaceEventsCommand getNextRaceEventsCmd,
                              IGetActiveRaceEventsForPhaseCommand getActiveRaceForPhaseCmd,
+                             IGetActiveSeasonRaceEventsOfTypeCommand getActiveRaceForTypeCmd,
                              ISaveRaceEventCommand saveRaceEventCmd,
                              IRemoveCommand<RaceEvent> removeRaceEventCmd,
                              IDateTimeTools dateTimeTools,
@@ -51,6 +53,7 @@ namespace MastersRacers.DataInterface.CRUD
             _getAllRaceEventCmd = getAllRaceEventCmd;
             _getRaceEventCmd = getRaceEventCmd;
             _getActiveSeasonRaceEventsCmd = getActiveSeasonRaceEventsCmd;
+            _getActiveRaceForTypeCmd = getActiveRaceForTypeCmd;
             _getNextRaceEventsCmd = getNextRaceEventsCmd;
             _getActiveRaceForPhaseCmd = getActiveRaceForPhaseCmd;
             _saveRaceEventCmd = saveRaceEventCmd;
@@ -130,6 +133,13 @@ namespace MastersRacers.DataInterface.CRUD
             return returnValues.OrderBy(x => x.ScheduledStartTime).ToList();
         }
 
+        public async Task<ICollection<RaceEventDTO>> GetActiveSeasonEventsByType(Guid raceEventTypeId)
+        {
+            ICollection<RaceEvent> eventsOfType = await _getActiveRaceForTypeCmd.GetAllActiveOfType(raceEventTypeId);
+            ICollection<RaceEventDTO> returnValues = _mapper.Map<ICollection<RaceEventDTO>>(eventsOfType);
+
+            return returnValues;
+        }
 
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls

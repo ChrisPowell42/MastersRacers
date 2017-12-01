@@ -74,6 +74,7 @@
     <Compile Include="CommandObjects\GetCommand.cs" />
     <Compile Include="CommandObjects\LocationCommands\SaveLocationCommand.cs" />
     <Compile Include="CommandObjects\RaceEventCommands\GetActiveRaceEventsForPhaseCommand.cs" />
+    <Compile Include="CommandObjects\RaceEventCommands\GetActiveSeasonRaceEventsOfTypeCommand.cs" />
     <Compile Include="CommandObjects\RaceEventCommands\GetNextRaceEventsCommand.cs" />
     <Compile Include="CommandObjects\RaceEventCommands\SaveRaceEventCommand.cs" />
     <Compile Include="CommandObjects\RaceEventCommands\GetActiveSeasonRaceEventsCommand.cs" />

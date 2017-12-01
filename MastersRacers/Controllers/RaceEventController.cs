@@ -41,6 +41,24 @@ namespace MastersRacers.Controllers
 
         }
 
+        [Route("raceevents/active/{raceEventTypeId:guid}")]
+        public async Task<IHttpActionResult> GetActiveByType(Guid raceEventTypeId)
+        {
+            ICollection<RaceEventDTO> returnValues = null;
+
+            try
+            {
+                returnValues = await _raceEventCRUD.GetActiveSeasonEventsByType(raceEventTypeId);
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+
+            return Ok(returnValues);
+
+        }
+
 
         [Route("raceevents")]
         [ResponseType(typeof(ICollection<RaceEventDTO>))]
