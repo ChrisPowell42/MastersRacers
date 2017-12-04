@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MastersRacers.Data.Contexts;
 using MastersRacers.Data.Models;
 using System.Data.Entity;
+using MastersRacers.Data.Models.RefData;
 
 namespace MastersRacers.Data.CommandObjects.RaceEventCommands
 {
@@ -22,7 +23,9 @@ namespace MastersRacers.Data.CommandObjects.RaceEventCommands
 
         public async Task<ICollection<RaceEvent>> GetActiveRacesForPhase(Guid phaseId)
         {
-            ICollection<RaceEvent> returnValues = await _dbContext.RaceEvents.Where(x => x.Season.IsCurrentSeason && x.RacePhaseId.Equals(phaseId))
+            ICollection<RaceEvent> returnValues = await _dbContext.RaceEvents.Where(x => x.Season.IsCurrentSeason && 
+                                                                                         x.RaceEventTypeId == RaceEventType.RaceId &&
+                                                                                         x.RacePhaseId.Equals(phaseId))
                                                                              .Include(x => x.Location)
                                                                              .Include(x => x.RaceFormat)
                                                                              .Include(x => x.RacePhase)

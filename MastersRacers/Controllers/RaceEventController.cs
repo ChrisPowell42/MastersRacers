@@ -41,7 +41,7 @@ namespace MastersRacers.Controllers
 
         }
 
-        [Route("raceevents/active/{raceEventTypeId:guid}")]
+        [Route("raceevents/active/eventtype/{raceEventTypeId:guid}")]
         public async Task<IHttpActionResult> GetActiveByType(Guid raceEventTypeId)
         {
             ICollection<RaceEventDTO> returnValues = null;
@@ -118,7 +118,7 @@ namespace MastersRacers.Controllers
             return Ok(returnValues);
         }
 
-        [Route("raceevents/active/phase/{id:guid}")]
+        [Route("raceevents/active/race/phase/{id:guid}")]
         [ResponseType(typeof(ICollection<RaceEventDTO>))]
         [HttpGet]
         public async Task<IHttpActionResult> GetActivePhaseRaces(Guid id)
