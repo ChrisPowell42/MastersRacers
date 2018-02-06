@@ -6,6 +6,7 @@ using MastersRacers.Data.Models;
 using Moq;
 using AutoMapper;
 using MastersRacers.Tests;
+using MastersRacers.Data.CommandObjects.LocationCommands;
 
 namespace MastersRacers.DataInterface.Tests.LocationTests
 {
@@ -14,6 +15,7 @@ namespace MastersRacers.DataInterface.Tests.LocationTests
     {
 
         protected Mock<IGetAllCommand<Location>> _getAllCommandMock;
+        protected Mock<IGetActiveLocationsCommand> _getAllActiveCommandMock;
         protected Mock<IRemoveCommand<Location>> _removeCommandMock;
         protected Mock<ISaveCommand<Location>> _saveLocationMock;
         protected Mock<IGetCommand<Location>> _getCommandMock;
@@ -28,7 +30,7 @@ namespace MastersRacers.DataInterface.Tests.LocationTests
         {
 
             _getAllCommandMock = new Mock<IGetAllCommand<Location>>();
-
+            _getAllActiveCommandMock = new Mock<IGetActiveLocationsCommand>();
             _removeCommandMock = new Mock<IRemoveCommand<Location>>();
             _saveLocationMock = new Mock<ISaveCommand<Location>>();
             _getCommandMock = new Mock<IGetCommand<Location>>();
@@ -36,7 +38,7 @@ namespace MastersRacers.DataInterface.Tests.LocationTests
 
             ArrangeLocationCRUD();
 
-            _testObject = new LocationCRUD(_getAllCommandMock.Object, _getCommandMock.Object, _removeCommandMock.Object, _saveLocationMock.Object, _mapperMock.Object);
+            _testObject = new LocationCRUD(_getAllCommandMock.Object, _getAllActiveCommandMock.Object, _getCommandMock.Object, _removeCommandMock.Object, _saveLocationMock.Object, _mapperMock.Object);
 
         }
 

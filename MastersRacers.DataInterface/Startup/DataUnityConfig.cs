@@ -33,6 +33,7 @@ namespace MastersRacers.DataInterface.Startup
             container.RegisterType<IRacerCRUD, RacerCRUD>();
 
             container.RegisterType<IGetAllCommand<Location>, GetAllCommand<Location>>();
+            container.RegisterType<IGetActiveLocationsCommand, GetActiveLocationsCommand>();
             container.RegisterType<IGetCommand<Location>, GetCommand<Location>>();
             container.RegisterType<IRemoveCommand<Location>, RemoveCommand<Location>>();
             container.RegisterType<ISaveCommand<Location>, SaveLocationCommand>();

@@ -40,6 +40,25 @@ namespace MastersRacers.Controllers
             return Ok(returnLocations);
         }
 
+        [Route("locations/active")]
+        [ResponseType(typeof(IEnumerable<LocationDTO>))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetActive()
+        {
+            IEnumerable<LocationDTO> returnLocations;
+
+            try
+            {
+                returnLocations = await _locationCRUD.GetAllActive();
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+
+            return Ok(returnLocations);
+        }
+
         // GET api/<controller>/5
         [Route("location/{id:Guid}")]
         [ResponseType(typeof(LocationDTO))]

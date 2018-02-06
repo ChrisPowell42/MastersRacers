@@ -1,11 +1,10 @@
-﻿using MastersRacers.Data.Models;
+﻿using MastersRacers.Data.Contexts;
+using MastersRacers.Data.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MastersRacers.Data.Contexts;
 using System.Data.Entity;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MastersRacers.Data.CommandObjects.RacerCommands
 {

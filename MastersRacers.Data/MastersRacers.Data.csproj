@@ -72,6 +72,7 @@
     <Compile Include="CommandObjects\CommandObjectBase.cs" />
     <Compile Include="CommandObjects\GetAllCommand.cs" />
     <Compile Include="CommandObjects\GetCommand.cs" />
+    <Compile Include="CommandObjects\LocationCommands\GetActiveLocationsCommand.cs" />
     <Compile Include="CommandObjects\LocationCommands\SaveLocationCommand.cs" />
     <Compile Include="CommandObjects\RaceEventCommands\GetActiveRaceEventsForPhaseCommand.cs" />
     <Compile Include="CommandObjects\RaceEventCommands\GetActiveSeasonRaceEventsOfTypeCommand.cs" />
@@ -147,6 +148,10 @@
     <Compile Include="Migrations\201711301848298_AddRaceEventType.Designer.cs">
       <DependentUpon>201711301848298_AddRaceEventType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802060321507_Add_LocationActive.cs" />
+    <Compile Include="Migrations\201802060321507_Add_LocationActive.Designer.cs">
+      <DependentUpon>201802060321507_Add_LocationActive.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IDBObject.cs" />
     <Compile Include="Models\Location.cs" />
@@ -209,6 +214,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711301848298_AddRaceEventType.resx">
       <DependentUpon>201711301848298_AddRaceEventType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802060321507_Add_LocationActive.resx">
+      <DependentUpon>201802060321507_Add_LocationActive.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

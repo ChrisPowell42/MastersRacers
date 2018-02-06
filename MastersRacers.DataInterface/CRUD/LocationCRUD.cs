@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using MastersRacers.Data.CommandObjects;
+using MastersRacers.Data.CommandObjects.LocationCommands;
 using MastersRacers.Data.Models;
 using MastersRacers.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MastersRacers.DataInterface.CRUD
@@ -14,6 +14,7 @@ namespace MastersRacers.DataInterface.CRUD
     public interface ILocationCRUD : IDisposable
     {
         Task<ICollection<LocationDTO>> GetAll();
+        Task<ICollection<LocationDTO>> GetAllActive();
         Task<LocationDTO> Get(Guid id);
         Task<bool> Remove(Guid id);
         Task<LocationDTO> Put(LocationDTO location);
@@ -22,6 +23,7 @@ namespace MastersRacers.DataInterface.CRUD
     public class LocationCRUD : ILocationCRUD
     {
         private readonly IGetAllCommand<Location> _getAllLocationsCmd;
+        private readonly IGetActiveLocationsCommand _getActiveLocationsCmd;
         private readonly IGetCommand<Location> _getLocationCmd;
         private readonly IRemoveCommand<Location> _removeLocationCmd;
         private readonly ISaveCommand<Location> _saveLocationCmd;
@@ -29,12 +31,14 @@ namespace MastersRacers.DataInterface.CRUD
         private readonly IMapper _mapper;
 
         public LocationCRUD(IGetAllCommand<Location> getAllLocationsCmd,
+                            IGetActiveLocationsCommand getActiveLocationsCmd,
                             IGetCommand<Location> getLocationCmd,
                             IRemoveCommand<Location> removeLocationCmd,
                             ISaveCommand<Location> saveLocationCmd,
                             IMapper mapper)
         {
             _getAllLocationsCmd = getAllLocationsCmd;
+            _getActiveLocationsCmd = getActiveLocationsCmd;
             _getLocationCmd = getLocationCmd;
             _removeLocationCmd = removeLocationCmd;
             _saveLocationCmd = saveLocationCmd;
@@ -57,6 +61,15 @@ namespace MastersRacers.DataInterface.CRUD
 
             return locationDTOs;
         }
+
+        public async Task<ICollection<LocationDTO>> GetAllActive()
+        {
+            ICollection<Location> locations = await _getActiveLocationsCmd.GetActiveLocations();
+            ICollection<LocationDTO> locationDTOs = _mapper.Map<ICollection<LocationDTO>>(locations.OrderBy(x => x.Name));
+
+            return locationDTOs;
+        }
+
 
         public async Task<LocationDTO> Put(LocationDTO location)
         {
@@ -109,6 +122,7 @@ namespace MastersRacers.DataInterface.CRUD
             // TODO: uncomment the following line if the finalizer is overridden above.
             // GC.SuppressFinalize(this);
         }
+
         #endregion
 
     }

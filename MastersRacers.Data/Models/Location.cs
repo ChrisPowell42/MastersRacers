@@ -19,5 +19,6 @@ namespace MastersRacers.Data.Models
         public double LatPos { get; set; }
         public double LongPos { get; set; }
 
+        public bool Active { get; set; }
     }
 }

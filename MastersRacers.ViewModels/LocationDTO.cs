@@ -9,5 +9,6 @@ namespace MastersRacers.DTOs
         public string Description { get; set; }
         public double LatPos { get; set; }
         public double LongPos { get; set; }
+        public bool Active { get; set; }
     }
 }
