@@ -152,6 +152,10 @@
     <Compile Include="Migrations\201802060321507_Add_LocationActive.Designer.cs">
       <DependentUpon>201802060321507_Add_LocationActive.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802261546371_AddRaceResultBibNumber.cs" />
+    <Compile Include="Migrations\201802261546371_AddRaceResultBibNumber.Designer.cs">
+      <DependentUpon>201802261546371_AddRaceResultBibNumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IDBObject.cs" />
     <Compile Include="Models\Location.cs" />
@@ -217,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802060321507_Add_LocationActive.resx">
       <DependentUpon>201802060321507_Add_LocationActive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802261546371_AddRaceResultBibNumber.resx">
+      <DependentUpon>201802261546371_AddRaceResultBibNumber.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

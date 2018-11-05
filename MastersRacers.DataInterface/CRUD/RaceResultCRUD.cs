@@ -6,8 +6,6 @@ using MastersRacers.Data.Models;
 using MastersRacers.DTOs;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MastersRacers.DataInterface.CRUD
@@ -57,7 +55,8 @@ namespace MastersRacers.DataInterface.CRUD
                     RaceEventId = currentRaceDTO.Id,
                     RaceEvent = currentRaceDTO,
                     RacerId = racerDTO.Id,
-                    Racer = racerDTO
+                    Racer = racerDTO,
+                    RacerBib = racer.BibNumber
                 };
 
                 List<RunResultDTO> runResults = new List<RunResultDTO>();

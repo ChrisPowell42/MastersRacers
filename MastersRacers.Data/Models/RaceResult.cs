@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MastersRacers.Data.Models
 {
@@ -18,6 +15,7 @@ namespace MastersRacers.Data.Models
         [Required]
         public Guid RacerId { get; set; }
 
+        public int RacerBib { get; set; }
         public double TotalRaceTime { get; set; }
         public bool IsDsqOrDnf { get; set; }
         public int Place { get; set; }

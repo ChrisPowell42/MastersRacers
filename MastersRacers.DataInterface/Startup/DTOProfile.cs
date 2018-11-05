@@ -43,6 +43,12 @@ namespace MastersRacers.DataInterface.Startup
             CreateMap<NewsItemDTO, NewsItem>();
             CreateMap<NewsItem, NewsItemDTO>();
 
+            CreateMap<RaceResult, RaceResultDTO>();
+            CreateMap<RaceResultDTO, RaceResult>();
+
+            CreateMap<RunResult, RunResultDTO>();
+            CreateMap<RunResultDTO, RunResult>();
+
         }
 
     }

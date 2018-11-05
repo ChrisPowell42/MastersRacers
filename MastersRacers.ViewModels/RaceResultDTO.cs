@@ -9,6 +9,7 @@ namespace MastersRacers.DTOs
 
         public Guid RaceEventId { get; set; }
         public Guid RacerId { get; set; }
+        public int RacerBib { get; set; }
 
         public double TotalRaceTime { get; set; }
         public bool IsDsqOrDnf { get; set; }
